@@ -14,7 +14,7 @@ namespace Client
     {
         public ClientForm()
         {
-            InitializeComponent();
+            InitializeComponent(); //변경
         }
     }
 }
