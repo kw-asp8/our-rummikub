@@ -3,33 +3,26 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.Drawing.Drawing2D;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Client
+namespace WindowsFormsApp17
 {
-    public partial class ClientForm : Form
+    public partial class Background : Form
     {
-        public ClientForm()
+        public Background()
         {
             InitializeComponent();
             btn_timer.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_timer.Width, btn_timer.Height, 15, 15));
-            btn_sort_num.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_sort_num.Width, btn_sort_num.Height, 15, 15));
-            btn_sort_col.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_sort_col.Width, btn_sort_col.Height, 15, 15));
-            Grid_tile.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, Grid_tile.Width, Grid_tile.Height, 15, 15));
-            Grid_tile.BorderStyle = BorderStyle.FixedSingle; //border?
-            profile1.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, profile1.Width, profile1.Height, 15, 30));
-            profile2.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, profile2.Width, profile2.Height, 15, 30));
-            profile3.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, profile3.Width, profile3.Height, 15, 30));
-            profile4.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, profile4.Width, profile4.Height, 15, 30));
-            btn_plus.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_plus.Width, btn_plus.Height, 30, 30));
         }
 
         private void btn_timer_Click(object sender, EventArgs e)
         {
-
+            
         }
 
         class ButtonEx : Button
@@ -58,21 +51,6 @@ namespace Client
 
         private void Background_Load(object sender, EventArgs e)
         {
-        }
-
-        private void lbl_exit_Click(object sender, EventArgs e)
-        {
-            Application.Exit();
-        }
-
-        private void lbl_exit_MouseHover(object sender, EventArgs e)
-        {
-            lbl_exit.ForeColor = Color.FromArgb(102, 102, 102);
-        }
-
-        private void lbl_exit_MouseLeave(object sender, EventArgs e)
-        {
-            lbl_exit.ForeColor = Color.FromArgb(255, 255, 255);
         }
     }
 }
