@@ -44,7 +44,7 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-            profile profile1 = new profile();
+            ProfileForm profile1 = new ProfileForm();
             profile1.Show();
         }
     }
