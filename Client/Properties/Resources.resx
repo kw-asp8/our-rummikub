@@ -118,19 +118,31 @@
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="프사1" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\Resources\프사1.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
   <data name="프사2" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\프사2.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
   <data name="프사4" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\프사4.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="프사1" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\프사1.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="check_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\check_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="프사3" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\프사3.JPG;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="returnButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\returnButton.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
   <data name="tiletable" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\Resources\tiletable.jpg;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="checkButton" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\checkButton.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="return_button" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\Resources\return_button.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
 </root>

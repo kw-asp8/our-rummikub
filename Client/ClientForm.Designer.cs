@@ -36,9 +36,7 @@
             this.txtbox_chat = new System.Windows.Forms.TextBox();
             this.Main = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tileTable = new System.Windows.Forms.PictureBox();
             this.lbl_exit = new System.Windows.Forms.Label();
-            this.lbl_plus = new System.Windows.Forms.Label();
             this.btn_plus = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_title = new System.Windows.Forms.Label();
@@ -47,6 +45,9 @@
             this.btn_sort_num = new System.Windows.Forms.Button();
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.btn_return = new System.Windows.Forms.Button();
+            this.btn_complete = new System.Windows.Forms.Button();
+            this.tileTable = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.profile4 = new System.Windows.Forms.PictureBox();
             this.profile3 = new System.Windows.Forms.PictureBox();
@@ -55,9 +56,9 @@
             this.Chatting.SuspendLayout();
             this.Main.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).BeginInit();
@@ -111,9 +112,10 @@
             // Main
             // 
             this.Main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.Main.Controls.Add(this.btn_return);
+            this.Main.Controls.Add(this.btn_complete);
             this.Main.Controls.Add(this.panel2);
             this.Main.Controls.Add(this.lbl_exit);
-            this.Main.Controls.Add(this.lbl_plus);
             this.Main.Controls.Add(this.btn_plus);
             this.Main.Controls.Add(this.profile4);
             this.Main.Controls.Add(this.profile3);
@@ -138,20 +140,6 @@
             this.panel2.Size = new System.Drawing.Size(602, 128);
             this.panel2.TabIndex = 10;
             // 
-            // tileTable
-            // 
-            this.tileTable.BackColor = System.Drawing.Color.Transparent;
-            this.tileTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tileTable.ErrorImage = null;
-            this.tileTable.Image = global::Client.Properties.Resources.tiletable;
-            this.tileTable.InitialImage = null;
-            this.tileTable.Location = new System.Drawing.Point(0, 0);
-            this.tileTable.Name = "tileTable";
-            this.tileTable.Size = new System.Drawing.Size(602, 128);
-            this.tileTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.tileTable.TabIndex = 1;
-            this.tileTable.TabStop = false;
-            // 
             // lbl_exit
             // 
             this.lbl_exit.AutoSize = true;
@@ -166,19 +154,6 @@
             this.lbl_exit.MouseLeave += new System.EventHandler(this.lbl_exit_MouseLeave);
             this.lbl_exit.MouseHover += new System.EventHandler(this.lbl_exit_MouseHover);
             // 
-            // lbl_plus
-            // 
-            this.lbl_plus.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.lbl_plus.AutoSize = true;
-            this.lbl_plus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(220)))), ((int)(((byte)(102)))));
-            this.lbl_plus.Font = new System.Drawing.Font("Gill Sans MT", 40F, System.Drawing.FontStyle.Bold);
-            this.lbl_plus.ForeColor = System.Drawing.Color.Transparent;
-            this.lbl_plus.Location = new System.Drawing.Point(750, 388);
-            this.lbl_plus.Name = "lbl_plus";
-            this.lbl_plus.Size = new System.Drawing.Size(79, 93);
-            this.lbl_plus.TabIndex = 8;
-            this.lbl_plus.Text = "+";
-            // 
             // btn_plus
             // 
             this.btn_plus.AllowDrop = true;
@@ -186,13 +161,16 @@
             this.btn_plus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_plus.FlatAppearance.BorderSize = 0;
             this.btn_plus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_plus.Font = new System.Drawing.Font("Gadugi", 48F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_plus.Font = new System.Drawing.Font("Consolas", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_plus.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_plus.Location = new System.Drawing.Point(726, 361);
+            this.btn_plus.Location = new System.Drawing.Point(727, 360);
             this.btn_plus.Name = "btn_plus";
-            this.btn_plus.Size = new System.Drawing.Size(117, 144);
+            this.btn_plus.Size = new System.Drawing.Size(117, 138);
             this.btn_plus.TabIndex = 7;
+            this.btn_plus.Text = "+";
+            this.btn_plus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_plus.UseVisualStyleBackColor = false;
+            this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
             // 
             // panel1
             // 
@@ -218,6 +196,7 @@
             this.lbl_title.Size = new System.Drawing.Size(268, 56);
             this.lbl_title.TabIndex = 1;
             this.lbl_title.Text = "Rummikub";
+            this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // Grid_tile
             // 
@@ -290,6 +269,50 @@
             this.imageList1.Images.SetKeyName(3, "프사3.JPG");
             this.imageList1.Images.SetKeyName(4, "프사4.JPG");
             // 
+            // btn_return
+            // 
+            this.btn_return.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.btn_return.BackgroundImage = global::Client.Properties.Resources.returnButton;
+            this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_return.FlatAppearance.BorderSize = 0;
+            this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_return.Location = new System.Drawing.Point(727, 443);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.Size = new System.Drawing.Size(116, 99);
+            this.btn_return.TabIndex = 12;
+            this.btn_return.UseVisualStyleBackColor = false;
+            this.btn_return.Visible = false;
+            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
+            // btn_complete
+            // 
+            this.btn_complete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.btn_complete.BackgroundImage = global::Client.Properties.Resources.check_button;
+            this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_complete.FlatAppearance.BorderSize = 0;
+            this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_complete.Location = new System.Drawing.Point(726, 360);
+            this.btn_complete.Name = "btn_complete";
+            this.btn_complete.Size = new System.Drawing.Size(117, 83);
+            this.btn_complete.TabIndex = 11;
+            this.btn_complete.UseVisualStyleBackColor = false;
+            this.btn_complete.Visible = false;
+            this.btn_complete.Click += new System.EventHandler(this.btn_complete_Click);
+            // 
+            // tileTable
+            // 
+            this.tileTable.BackColor = System.Drawing.Color.Transparent;
+            this.tileTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tileTable.ErrorImage = null;
+            this.tileTable.Image = global::Client.Properties.Resources.tiletable;
+            this.tileTable.InitialImage = null;
+            this.tileTable.Location = new System.Drawing.Point(0, 0);
+            this.tileTable.Name = "tileTable";
+            this.tileTable.Size = new System.Drawing.Size(602, 128);
+            this.tileTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.tileTable.TabIndex = 1;
+            this.tileTable.TabStop = false;
+            // 
             // pictureBox1
             // 
             this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -306,9 +329,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile4.BackColor = System.Drawing.Color.Transparent;
             this.profile4.Image = global::Client.Properties.Resources.프사4;
-            this.profile4.Location = new System.Drawing.Point(12, 360);
+            this.profile4.Location = new System.Drawing.Point(7, 360);
             this.profile4.Name = "profile4";
-            this.profile4.Size = new System.Drawing.Size(100, 88);
+            this.profile4.Size = new System.Drawing.Size(105, 100);
             this.profile4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile4.TabIndex = 6;
             this.profile4.TabStop = false;
@@ -320,9 +343,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile3.BackColor = System.Drawing.Color.Transparent;
             this.profile3.Image = global::Client.Properties.Resources.프사3;
-            this.profile3.Location = new System.Drawing.Point(12, 254);
+            this.profile3.Location = new System.Drawing.Point(7, 254);
             this.profile3.Name = "profile3";
-            this.profile3.Size = new System.Drawing.Size(100, 88);
+            this.profile3.Size = new System.Drawing.Size(105, 100);
             this.profile3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile3.TabIndex = 5;
             this.profile3.TabStop = false;
@@ -334,9 +357,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile2.BackColor = System.Drawing.Color.Transparent;
             this.profile2.Image = global::Client.Properties.Resources.프사2;
-            this.profile2.Location = new System.Drawing.Point(12, 148);
+            this.profile2.Location = new System.Drawing.Point(7, 148);
             this.profile2.Name = "profile2";
-            this.profile2.Size = new System.Drawing.Size(100, 88);
+            this.profile2.Size = new System.Drawing.Size(105, 100);
             this.profile2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile2.TabIndex = 4;
             this.profile2.TabStop = false;
@@ -348,9 +371,9 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile1.BackColor = System.Drawing.Color.Transparent;
             this.profile1.Image = global::Client.Properties.Resources.프사1;
-            this.profile1.Location = new System.Drawing.Point(12, 42);
+            this.profile1.Location = new System.Drawing.Point(7, 42);
             this.profile1.Name = "profile1";
-            this.profile1.Size = new System.Drawing.Size(100, 88);
+            this.profile1.Size = new System.Drawing.Size(105, 100);
             this.profile1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile1.TabIndex = 2;
             this.profile1.TabStop = false;
@@ -372,10 +395,10 @@
             this.Main.ResumeLayout(false);
             this.Main.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.tileTable)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.tileTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).EndInit();
@@ -400,7 +423,6 @@
         private System.Windows.Forms.PictureBox profile3;
         private System.Windows.Forms.PictureBox profile2;
         private System.Windows.Forms.Button btn_plus;
-        private System.Windows.Forms.Label lbl_plus;
         private System.Windows.Forms.Label lbl_exit;
         private System.Windows.Forms.Panel panel2;
         protected internal System.Windows.Forms.PictureBox pictureBox1;
@@ -409,6 +431,8 @@
         private System.Windows.Forms.Button btn_send;
         private System.Windows.Forms.TextBox txtbox_chat;
         private System.Windows.Forms.ImageList imageList1;
+        private System.Windows.Forms.Button btn_complete;
+        private System.Windows.Forms.Button btn_return;
     }
 }
 
