@@ -81,5 +81,32 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\프사1.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\프사2.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\프사3.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\프사4.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tiletable.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\returnButton.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return_button.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
