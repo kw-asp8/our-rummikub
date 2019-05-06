@@ -35,36 +35,35 @@
             this.btn_send = new System.Windows.Forms.Button();
             this.txtbox_chat = new System.Windows.Forms.TextBox();
             this.MainForm = new System.Windows.Forms.Panel();
-            this.btn_return = new System.Windows.Forms.Button();
-            this.btn_complete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.tileTable = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_exit = new System.Windows.Forms.Label();
-            this.btn_plus = new System.Windows.Forms.Button();
-            this.profile4 = new System.Windows.Forms.PictureBox();
-            this.profile3 = new System.Windows.Forms.PictureBox();
-            this.profile2 = new System.Windows.Forms.PictureBox();
-            this.profile1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_title = new System.Windows.Forms.Label();
             this.Grid_tile = new System.Windows.Forms.DataGridView();
-            this.btn_sort_col = new System.Windows.Forms.Button();
             this.btn_sort_num = new System.Windows.Forms.Button();
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
+            this.btn_return = new System.Windows.Forms.Button();
+            this.btn_complete = new System.Windows.Forms.Button();
+            this.tileTable = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
+            this.profile4 = new System.Windows.Forms.PictureBox();
+            this.profile3 = new System.Windows.Forms.PictureBox();
+            this.profile2 = new System.Windows.Forms.PictureBox();
+            this.profile1 = new System.Windows.Forms.PictureBox();
+            this.btn_sort_col = new System.Windows.Forms.Button();
             this.Chatting.SuspendLayout();
             this.MainForm.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile1)).BeginInit();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).BeginInit();
             this.SuspendLayout();
             // 
             // Chatting
@@ -118,7 +117,6 @@
             this.MainForm.Controls.Add(this.btn_complete);
             this.MainForm.Controls.Add(this.panel2);
             this.MainForm.Controls.Add(this.lbl_exit);
-            this.MainForm.Controls.Add(this.btn_plus);
             this.MainForm.Controls.Add(this.profile4);
             this.MainForm.Controls.Add(this.profile3);
             this.MainForm.Controls.Add(this.profile2);
@@ -135,36 +133,6 @@
             this.MainForm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.MainForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             // 
-            // btn_return
-            // 
-            this.btn_return.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
-            this.btn_return.BackgroundImage = global::Client.Properties.Resources.returnButton;
-            this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_return.FlatAppearance.BorderSize = 0;
-            this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_return.Location = new System.Drawing.Point(727, 443);
-            this.btn_return.Name = "btn_return";
-            this.btn_return.Size = new System.Drawing.Size(116, 99);
-            this.btn_return.TabIndex = 12;
-            this.btn_return.UseVisualStyleBackColor = false;
-            this.btn_return.Visible = false;
-            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
-            // 
-            // btn_complete
-            // 
-            this.btn_complete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
-            this.btn_complete.BackgroundImage = global::Client.Properties.Resources.check_button;
-            this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_complete.FlatAppearance.BorderSize = 0;
-            this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_complete.Location = new System.Drawing.Point(726, 360);
-            this.btn_complete.Name = "btn_complete";
-            this.btn_complete.Size = new System.Drawing.Size(117, 83);
-            this.btn_complete.TabIndex = 11;
-            this.btn_complete.UseVisualStyleBackColor = false;
-            this.btn_complete.Visible = false;
-            this.btn_complete.Click += new System.EventHandler(this.btn_complete_Click);
-            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.tileTable);
@@ -173,6 +141,133 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(602, 128);
             this.panel2.TabIndex = 10;
+            // 
+            // lbl_exit
+            // 
+            this.lbl_exit.AutoSize = true;
+            this.lbl_exit.Font = new System.Drawing.Font("Microsoft JhengHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_exit.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lbl_exit.Location = new System.Drawing.Point(818, 3);
+            this.lbl_exit.Name = "lbl_exit";
+            this.lbl_exit.Size = new System.Drawing.Size(34, 36);
+            this.lbl_exit.TabIndex = 9;
+            this.lbl_exit.Text = "X";
+            this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
+            this.lbl_exit.MouseLeave += new System.EventHandler(this.lbl_exit_MouseLeave);
+            this.lbl_exit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_exit_MouseMove);
+            // 
+            // panel1
+            // 
+            this.panel1.Controls.Add(this.lbl_title);
+            this.panel1.Controls.Add(this.Grid_tile);
+            this.panel1.Location = new System.Drawing.Point(118, 42);
+            this.panel1.Name = "panel1";
+            this.panel1.Size = new System.Drawing.Size(602, 419);
+            this.panel1.TabIndex = 3;
+            // 
+            // lbl_title
+            // 
+            this.lbl_title.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.lbl_title.AutoSize = true;
+            this.lbl_title.BackColor = System.Drawing.Color.Navy;
+            this.lbl_title.Cursor = System.Windows.Forms.Cursors.Default;
+            this.lbl_title.Font = new System.Drawing.Font("Garamond", 30F, System.Drawing.FontStyle.Bold);
+            this.lbl_title.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.lbl_title.Location = new System.Drawing.Point(173, 169);
+            this.lbl_title.Name = "lbl_title";
+            this.lbl_title.Size = new System.Drawing.Size(268, 56);
+            this.lbl_title.TabIndex = 1;
+            this.lbl_title.Text = "Rummikub";
+            this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // Grid_tile
+            // 
+            this.Grid_tile.BackgroundColor = System.Drawing.Color.Navy;
+            this.Grid_tile.CausesValidation = false;
+            this.Grid_tile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.Grid_tile.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Grid_tile.GridColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.Grid_tile.Location = new System.Drawing.Point(0, 0);
+            this.Grid_tile.Name = "Grid_tile";
+            this.Grid_tile.RowTemplate.Height = 27;
+            this.Grid_tile.Size = new System.Drawing.Size(602, 419);
+            this.Grid_tile.TabIndex = 0;
+            // 
+            // btn_sort_num
+            // 
+            this.btn_sort_num.AllowDrop = true;
+            this.btn_sort_num.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
+            this.btn_sort_num.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_sort_num.FlatAppearance.BorderSize = 0;
+            this.btn_sort_num.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_sort_num.Font = new System.Drawing.Font("Gadugi", 20F);
+            this.btn_sort_num.ForeColor = System.Drawing.Color.Red;
+            this.btn_sort_num.Location = new System.Drawing.Point(727, 148);
+            this.btn_sort_num.Name = "btn_sort_num";
+            this.btn_sort_num.Size = new System.Drawing.Size(116, 100);
+            this.btn_sort_num.TabIndex = 1;
+            this.btn_sort_num.Text = "789";
+            this.btn_sort_num.UseVisualStyleBackColor = false;
+            // 
+            // btn_timer
+            // 
+            this.btn_timer.AllowDrop = true;
+            this.btn_timer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(250)))));
+            this.btn_timer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_timer.FlatAppearance.BorderSize = 0;
+            this.btn_timer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_timer.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_timer.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btn_timer.Location = new System.Drawing.Point(727, 42);
+            this.btn_timer.Name = "btn_timer";
+            this.btn_timer.Size = new System.Drawing.Size(116, 100);
+            this.btn_timer.TabIndex = 0;
+            this.btn_timer.Text = "60";
+            this.btn_timer.UseVisualStyleBackColor = false;
+            this.btn_timer.Click += new System.EventHandler(this.btn_timer_Click);
+            // 
+            // imageList1
+            // 
+            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
+            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
+            this.imageList1.Images.SetKeyName(0, "tiletable.jpg");
+            this.imageList1.Images.SetKeyName(1, "프사1.JPG");
+            this.imageList1.Images.SetKeyName(2, "프사2.JPG");
+            this.imageList1.Images.SetKeyName(3, "프사3.JPG");
+            this.imageList1.Images.SetKeyName(4, "프사4.JPG");
+            // 
+            // tmrClock
+            // 
+            this.tmrClock.Interval = 1000;
+            this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
+            // 
+            // btn_return
+            // 
+            this.btn_return.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.btn_return.BackgroundImage = global::Client.Properties.Resources.returnButton;
+            this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_return.FlatAppearance.BorderSize = 0;
+            this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_return.Location = new System.Drawing.Point(728, 443);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.Size = new System.Drawing.Size(116, 99);
+            this.btn_return.TabIndex = 12;
+            this.btn_return.UseVisualStyleBackColor = false;
+            // 
+            // btn_complete
+            // 
+            this.btn_complete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.btn_complete.BackgroundImage = global::Client.Properties.Resources.check_button;
+            this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_complete.FlatAppearance.BorderSize = 0;
+            this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_complete.Location = new System.Drawing.Point(727, 360);
+            this.btn_complete.Name = "btn_complete";
+            this.btn_complete.Size = new System.Drawing.Size(117, 83);
+            this.btn_complete.TabIndex = 11;
+            this.btn_complete.UseVisualStyleBackColor = false;
             // 
             // tileTable
             // 
@@ -196,38 +291,6 @@
             this.pictureBox1.Size = new System.Drawing.Size(602, 128);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
-            // 
-            // lbl_exit
-            // 
-            this.lbl_exit.AutoSize = true;
-            this.lbl_exit.Font = new System.Drawing.Font("Microsoft JhengHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_exit.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lbl_exit.Location = new System.Drawing.Point(818, 3);
-            this.lbl_exit.Name = "lbl_exit";
-            this.lbl_exit.Size = new System.Drawing.Size(34, 36);
-            this.lbl_exit.TabIndex = 9;
-            this.lbl_exit.Text = "X";
-            this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
-            this.lbl_exit.MouseLeave += new System.EventHandler(this.lbl_exit_MouseLeave);
-            this.lbl_exit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_exit_MouseMove);
-            // 
-            // btn_plus
-            // 
-            this.btn_plus.AllowDrop = true;
-            this.btn_plus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(220)))), ((int)(((byte)(102)))));
-            this.btn_plus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_plus.FlatAppearance.BorderSize = 0;
-            this.btn_plus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_plus.Font = new System.Drawing.Font("Consolas", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_plus.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_plus.Location = new System.Drawing.Point(727, 360);
-            this.btn_plus.Name = "btn_plus";
-            this.btn_plus.Size = new System.Drawing.Size(117, 138);
-            this.btn_plus.TabIndex = 7;
-            this.btn_plus.Text = "+";
-            this.btn_plus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn_plus.UseVisualStyleBackColor = false;
-            this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
             // 
             // profile4
             // 
@@ -285,45 +348,6 @@
             this.profile1.TabIndex = 2;
             this.profile1.TabStop = false;
             // 
-            // panel1
-            // 
-            this.panel1.Controls.Add(this.lbl_title);
-            this.panel1.Controls.Add(this.Grid_tile);
-            this.panel1.Location = new System.Drawing.Point(118, 42);
-            this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(602, 419);
-            this.panel1.TabIndex = 3;
-            // 
-            // lbl_title
-            // 
-            this.lbl_title.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.lbl_title.AutoSize = true;
-            this.lbl_title.BackColor = System.Drawing.Color.Navy;
-            this.lbl_title.Cursor = System.Windows.Forms.Cursors.Default;
-            this.lbl_title.Font = new System.Drawing.Font("Garamond", 30F, System.Drawing.FontStyle.Bold);
-            this.lbl_title.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_title.Location = new System.Drawing.Point(173, 169);
-            this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(268, 56);
-            this.lbl_title.TabIndex = 1;
-            this.lbl_title.Text = "Rummikub";
-            this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // Grid_tile
-            // 
-            this.Grid_tile.BackgroundColor = System.Drawing.Color.Navy;
-            this.Grid_tile.CausesValidation = false;
-            this.Grid_tile.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.Grid_tile.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Grid_tile.GridColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.Grid_tile.Location = new System.Drawing.Point(0, 0);
-            this.Grid_tile.Name = "Grid_tile";
-            this.Grid_tile.RowTemplate.Height = 27;
-            this.Grid_tile.Size = new System.Drawing.Size(602, 419);
-            this.Grid_tile.TabIndex = 0;
-            // 
             // btn_sort_col
             // 
             this.btn_sort_col.AllowDrop = true;
@@ -332,60 +356,12 @@
             this.btn_sort_col.FlatAppearance.BorderSize = 0;
             this.btn_sort_col.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_sort_col.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_sort_col.Image = global::Client.Properties.Resources.buttonImage;
             this.btn_sort_col.Location = new System.Drawing.Point(727, 254);
             this.btn_sort_col.Name = "btn_sort_col";
             this.btn_sort_col.Size = new System.Drawing.Size(116, 100);
             this.btn_sort_col.TabIndex = 2;
-            this.btn_sort_col.Text = "777";
             this.btn_sort_col.UseVisualStyleBackColor = false;
-            // 
-            // btn_sort_num
-            // 
-            this.btn_sort_num.AllowDrop = true;
-            this.btn_sort_num.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
-            this.btn_sort_num.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_sort_num.FlatAppearance.BorderSize = 0;
-            this.btn_sort_num.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sort_num.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_sort_num.ForeColor = System.Drawing.Color.Red;
-            this.btn_sort_num.Location = new System.Drawing.Point(727, 148);
-            this.btn_sort_num.Name = "btn_sort_num";
-            this.btn_sort_num.Size = new System.Drawing.Size(116, 100);
-            this.btn_sort_num.TabIndex = 1;
-            this.btn_sort_num.Text = "789";
-            this.btn_sort_num.UseVisualStyleBackColor = false;
-            // 
-            // btn_timer
-            // 
-            this.btn_timer.AllowDrop = true;
-            this.btn_timer.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(204)))), ((int)(((byte)(204)))), ((int)(((byte)(250)))));
-            this.btn_timer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_timer.FlatAppearance.BorderSize = 0;
-            this.btn_timer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_timer.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_timer.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_timer.Location = new System.Drawing.Point(727, 42);
-            this.btn_timer.Name = "btn_timer";
-            this.btn_timer.Size = new System.Drawing.Size(116, 100);
-            this.btn_timer.TabIndex = 0;
-            this.btn_timer.Text = "60";
-            this.btn_timer.UseVisualStyleBackColor = false;
-            this.btn_timer.Click += new System.EventHandler(this.btn_timer_Click);
-            // 
-            // imageList1
-            // 
-            this.imageList1.ImageStream = ((System.Windows.Forms.ImageListStreamer)(resources.GetObject("imageList1.ImageStream")));
-            this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
-            this.imageList1.Images.SetKeyName(0, "tiletable.jpg");
-            this.imageList1.Images.SetKeyName(1, "프사1.JPG");
-            this.imageList1.Images.SetKeyName(2, "프사2.JPG");
-            this.imageList1.Images.SetKeyName(3, "프사3.JPG");
-            this.imageList1.Images.SetKeyName(4, "프사4.JPG");
-            // 
-            // tmrClock
-            // 
-            this.tmrClock.Interval = 1000;
-            this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
             // GameForm
             // 
@@ -404,15 +380,15 @@
             this.MainForm.ResumeLayout(false);
             this.MainForm.PerformLayout();
             this.panel2.ResumeLayout(false);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile1)).EndInit();
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -431,7 +407,6 @@
         private System.Windows.Forms.PictureBox profile4;
         private System.Windows.Forms.PictureBox profile3;
         private System.Windows.Forms.PictureBox profile2;
-        private System.Windows.Forms.Button btn_plus;
         private System.Windows.Forms.Label lbl_exit;
         private System.Windows.Forms.Panel panel2;
         protected internal System.Windows.Forms.PictureBox pictureBox1;

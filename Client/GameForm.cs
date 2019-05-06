@@ -31,7 +31,6 @@ namespace Client
             profile2.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile2.Width, profile2.Height, 30, 50));
             profile3.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile3.Width, profile3.Height, 30, 50));
             profile4.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile4.Width, profile4.Height, 30, 50));
-            btn_plus.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, btn_plus.Width, btn_plus.Height, 30, 30));
 
             //GameForm form1 = new GameForm();
             //form1.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -105,56 +104,56 @@ namespace Client
             lbl_exit.ForeColor = Color.FromArgb(255, 255, 255);
         }
 
-        private void btn_plus_Click(object sender, EventArgs e)
-        {
-            if(clickPlus == false)
-            {
-                btn_plus.Visible = false;
-                clickPlus = true;
-                this.btn_plus.Click -= new System.EventHandler(this.btn_plus_Click);
-                MainForm.Controls.Remove(btn_plus);
+        //private void btn_plus_Click(object sender, EventArgs e)
+        //{
+        //    if(clickPlus == false)
+        //    {
+        //        btn_plus.Visible = false;
+        //        clickPlus = true;
+        //        this.btn_plus.Click -= new System.EventHandler(this.btn_plus_Click);
+        //        MainForm.Controls.Remove(btn_plus);
 
-                MainForm.Controls.Add(btn_complete);
-                this.newButton.Click += new System.EventHandler(this.btn_complete_Click);
-                btn_complete.Visible = true;
+        //        MainForm.Controls.Add(btn_complete);
+        //        this.newButton.Click += new System.EventHandler(this.btn_complete_Click);
+        //        btn_complete.Visible = true;
 
-                MainForm.Controls.Add(btn_return);
-                this.newButton.Click += new System.EventHandler(this.btn_return_Click);
-                btn_return.Visible = true;
-            }
-        }
+        //        MainForm.Controls.Add(btn_return);
+        //        this.newButton.Click += new System.EventHandler(this.btn_return_Click);
+        //        btn_return.Visible = true;
+        //    }
+        //}
 
-        private void btn_complete_Click(object sender, EventArgs e)
-        {
-            btn_plus.Visible = true;
-            clickPlus = false;
-            this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
-            MainForm.Controls.Add(btn_plus);
+        //private void btn_complete_Click(object sender, EventArgs e)
+        //{
+        //    btn_plus.Visible = true;
+        //    clickPlus = false;
+        //    this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
+        //    MainForm.Controls.Add(btn_plus);
 
-            MainForm.Controls.Add(btn_complete);
-            this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
-            btn_complete.Visible = false;
+        //    MainForm.Controls.Add(btn_complete);
+        //    this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
+        //    btn_complete.Visible = false;
 
-            MainForm.Controls.Add(btn_return);
-            this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
-            btn_return.Visible = false;
-        }
+        //    MainForm.Controls.Add(btn_return);
+        //    this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
+        //    btn_return.Visible = false;
+        //}
 
-        private void btn_return_Click(object sender, EventArgs e)
-        {
-            btn_plus.Visible = true;
-            clickPlus = false;
-            this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
-            MainForm.Controls.Add(btn_plus);
+        //private void btn_return_Click(object sender, EventArgs e)
+        //{
+        //    btn_plus.Visible = true;
+        //    clickPlus = false;
+        //    this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
+        //    MainForm.Controls.Add(btn_plus);
 
-            MainForm.Controls.Add(btn_complete);
-            this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
-            btn_complete.Visible = false;
+        //    MainForm.Controls.Add(btn_complete);
+        //    this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
+        //    btn_complete.Visible = false;
 
-            MainForm.Controls.Add(btn_return);
-            this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
-            btn_return.Visible = false;
-        }
+        //    MainForm.Controls.Add(btn_return);
+        //    this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
+        //    btn_return.Visible = false;
+        //}
 
         private void lbl_exit_MouseMove(object sender, MouseEventArgs e)
         {
