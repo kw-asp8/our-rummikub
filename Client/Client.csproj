@@ -129,5 +129,11 @@
   <ItemGroup>
     <None Include="Resources\return_button.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{c7dbef28-ff8f-437c-ac1c-592a01156347}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
