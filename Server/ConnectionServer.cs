@@ -13,6 +13,7 @@ namespace Server
 {
     delegate void PacketHandler(Connection connection, Packet packet);
     delegate void AcceptionHandler(Connection connection);
+    delegate void DisconnectionHandler(Connection connection);
 
     class ConnectionServer : IConnectionOwner
     {
@@ -24,6 +25,8 @@ namespace Server
         public HashSet<Connection> Connections { get; private set; } = new HashSet<Connection>();
 
         public List<AcceptionHandler> OnAccept { get; set; } = new List<AcceptionHandler>();
+
+        public List<DisconnectionHandler> OnDisconnect { get; set; } = new List<DisconnectionHandler>();
 
         public bool IsAlive { get; set; } = false;
 
@@ -86,7 +89,7 @@ namespace Server
                     foreach (AcceptionHandler handler in OnAccept)
                         handler(connection);
 
-                    connection.OnDisconnect.Add((disconnectedConnection) =>
+                    OnDisconnect.Add((disconnectedConnection) =>
                     {
                         lock (Connections)
                         {
@@ -124,6 +127,12 @@ namespace Server
                     handler(connection, packet);
                 }
             }
+        }
+
+        public void HandleDisconnection(Connection connection)
+        {
+            foreach (DisconnectionHandler handler in OnDisconnect)
+                handler(connection);
         }
     }
 }
