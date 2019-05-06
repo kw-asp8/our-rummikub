@@ -12,12 +12,14 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class ClientForm : Form
+    public partial class GameForm : Form
     {
         private bool clickPlus = false;
         public Button newButton = new Button();
 
-        public ClientForm()
+        Timer timer = new Timer();
+
+        public GameForm()
         {
             InitializeComponent();
             btn_timer.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_timer.Width, btn_timer.Height, 15, 15));
@@ -30,6 +32,9 @@ namespace Client
             profile3.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile3.Width, profile3.Height, 30, 50));
             profile4.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile4.Width, profile4.Height, 30, 50));
             btn_plus.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, btn_plus.Width, btn_plus.Height, 30, 30));
+
+            //GameForm form1 = new GameForm();
+            //form1.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
         }
 
         public class RoundButton : Button
@@ -72,18 +77,27 @@ namespace Client
             int nHeightEllipse  // width of ellipse  
         );
 
-        private void Background_Load(object sender, EventArgs e)
+        private Point mousePoint;
+
+        private void MainForm_MouseDown(object sender, MouseEventArgs e)
         {
+            mousePoint = new Point(e.X, e.Y);
         }
+        // 마우스 클릭시 먼저 선언된 mousePoint변수에 현재 마우스 위치값이 들어갑니다.
+
+        private void MainForm_MouseMove(object sender, MouseEventArgs e)
+        {
+            if ((e.Button & MouseButtons.Left) == MouseButtons.Left)
+            {
+                Location = new Point(this.Left - (mousePoint.X - e.X),
+                    this.Top - (mousePoint.Y - e.Y));
+            }
+        }
+        // 클릭상태로 마우스를 이동시 이동한 만큼에서 윈도우 위치값을 빼게됩니다.
 
         private void lbl_exit_Click(object sender, EventArgs e)
         {
             Application.Exit();
-        }
-
-        private void lbl_exit_MouseHover(object sender, EventArgs e)
-        {
-            lbl_exit.ForeColor = Color.FromArgb(102, 102, 102);
         }
 
         private void lbl_exit_MouseLeave(object sender, EventArgs e)
@@ -98,13 +112,13 @@ namespace Client
                 btn_plus.Visible = false;
                 clickPlus = true;
                 this.btn_plus.Click -= new System.EventHandler(this.btn_plus_Click);
-                Main.Controls.Remove(btn_plus);
+                MainForm.Controls.Remove(btn_plus);
 
-                Main.Controls.Add(btn_complete);
+                MainForm.Controls.Add(btn_complete);
                 this.newButton.Click += new System.EventHandler(this.btn_complete_Click);
                 btn_complete.Visible = true;
 
-                Main.Controls.Add(btn_return);
+                MainForm.Controls.Add(btn_return);
                 this.newButton.Click += new System.EventHandler(this.btn_return_Click);
                 btn_return.Visible = true;
             }
@@ -115,13 +129,13 @@ namespace Client
             btn_plus.Visible = true;
             clickPlus = false;
             this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
-            Main.Controls.Add(btn_plus);
+            MainForm.Controls.Add(btn_plus);
 
-            Main.Controls.Add(btn_complete);
+            MainForm.Controls.Add(btn_complete);
             this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
             btn_complete.Visible = false;
 
-            Main.Controls.Add(btn_return);
+            MainForm.Controls.Add(btn_return);
             this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
             btn_return.Visible = false;
         }
@@ -131,15 +145,44 @@ namespace Client
             btn_plus.Visible = true;
             clickPlus = false;
             this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
-            Main.Controls.Add(btn_plus);
+            MainForm.Controls.Add(btn_plus);
 
-            Main.Controls.Add(btn_complete);
+            MainForm.Controls.Add(btn_complete);
             this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
             btn_complete.Visible = false;
 
-            Main.Controls.Add(btn_return);
+            MainForm.Controls.Add(btn_return);
             this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
             btn_return.Visible = false;
+        }
+
+        private void lbl_exit_MouseMove(object sender, MouseEventArgs e)
+        {
+            lbl_exit.ForeColor = Color.FromArgb(102, 102, 102);
+        }
+
+        private void tmrClock_Tick(object sender, EventArgs e)
+        {
+
+            //btn_timer.Text = (max - int.Parse(tmrClock.ToString())).ToString();
+
+            //int interval = max - int.Parse(tmrClock.ToString());
+            btn_timer.Text = (int.Parse(btn_timer.Text) - 1).ToString();
+
+            if (btn_timer.Text == "0")
+            {
+                GameResult dlg = new GameResult();
+                tmrClock.Stop();
+
+                dlg.StartPosition = FormStartPosition.CenterParent;
+                dlg.Owner = this;
+                dlg.Show();
+            }
+        }
+
+        private void GameForm_Load(object sender, EventArgs e)
+        {
+            tmrClock.Start();
         }
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class ClientForm
+    partial class GameForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -29,15 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.Chatting = new System.Windows.Forms.Panel();
             this.txt_log = new System.Windows.Forms.TextBox();
             this.btn_send = new System.Windows.Forms.Button();
             this.txtbox_chat = new System.Windows.Forms.TextBox();
-            this.Main = new System.Windows.Forms.Panel();
+            this.MainForm = new System.Windows.Forms.Panel();
+            this.btn_return = new System.Windows.Forms.Button();
+            this.btn_complete = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.tileTable = new System.Windows.Forms.PictureBox();
+            this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.lbl_exit = new System.Windows.Forms.Label();
             this.btn_plus = new System.Windows.Forms.Button();
+            this.profile4 = new System.Windows.Forms.PictureBox();
+            this.profile3 = new System.Windows.Forms.PictureBox();
+            this.profile2 = new System.Windows.Forms.PictureBox();
+            this.profile1 = new System.Windows.Forms.PictureBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_title = new System.Windows.Forms.Label();
             this.Grid_tile = new System.Windows.Forms.DataGridView();
@@ -45,25 +53,18 @@
             this.btn_sort_num = new System.Windows.Forms.Button();
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
-            this.btn_return = new System.Windows.Forms.Button();
-            this.btn_complete = new System.Windows.Forms.Button();
-            this.tileTable = new System.Windows.Forms.PictureBox();
-            this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.profile4 = new System.Windows.Forms.PictureBox();
-            this.profile3 = new System.Windows.Forms.PictureBox();
-            this.profile2 = new System.Windows.Forms.PictureBox();
-            this.profile1 = new System.Windows.Forms.PictureBox();
+            this.tmrClock = new System.Windows.Forms.Timer(this.components);
             this.Chatting.SuspendLayout();
-            this.Main.SuspendLayout();
+            this.MainForm.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile1)).BeginInit();
+            this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).BeginInit();
             this.SuspendLayout();
             // 
             // Chatting
@@ -109,27 +110,60 @@
             this.txtbox_chat.Size = new System.Drawing.Size(749, 36);
             this.txtbox_chat.TabIndex = 2;
             // 
-            // Main
+            // MainForm
             // 
-            this.Main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
-            this.Main.Controls.Add(this.btn_return);
-            this.Main.Controls.Add(this.btn_complete);
-            this.Main.Controls.Add(this.panel2);
-            this.Main.Controls.Add(this.lbl_exit);
-            this.Main.Controls.Add(this.btn_plus);
-            this.Main.Controls.Add(this.profile4);
-            this.Main.Controls.Add(this.profile3);
-            this.Main.Controls.Add(this.profile2);
-            this.Main.Controls.Add(this.profile1);
-            this.Main.Controls.Add(this.panel1);
-            this.Main.Controls.Add(this.btn_sort_col);
-            this.Main.Controls.Add(this.btn_sort_num);
-            this.Main.Controls.Add(this.btn_timer);
-            this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Main.Location = new System.Drawing.Point(0, 0);
-            this.Main.Name = "Main";
-            this.Main.Size = new System.Drawing.Size(855, 601);
-            this.Main.TabIndex = 1;
+            this.MainForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.MainForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainForm.Controls.Add(this.btn_return);
+            this.MainForm.Controls.Add(this.btn_complete);
+            this.MainForm.Controls.Add(this.panel2);
+            this.MainForm.Controls.Add(this.lbl_exit);
+            this.MainForm.Controls.Add(this.btn_plus);
+            this.MainForm.Controls.Add(this.profile4);
+            this.MainForm.Controls.Add(this.profile3);
+            this.MainForm.Controls.Add(this.profile2);
+            this.MainForm.Controls.Add(this.profile1);
+            this.MainForm.Controls.Add(this.panel1);
+            this.MainForm.Controls.Add(this.btn_sort_col);
+            this.MainForm.Controls.Add(this.btn_sort_num);
+            this.MainForm.Controls.Add(this.btn_timer);
+            this.MainForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainForm.Location = new System.Drawing.Point(0, 0);
+            this.MainForm.Name = "MainForm";
+            this.MainForm.Size = new System.Drawing.Size(855, 601);
+            this.MainForm.TabIndex = 1;
+            this.MainForm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.MainForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
+            // 
+            // btn_return
+            // 
+            this.btn_return.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.btn_return.BackgroundImage = global::Client.Properties.Resources.returnButton;
+            this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_return.FlatAppearance.BorderSize = 0;
+            this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_return.Location = new System.Drawing.Point(727, 443);
+            this.btn_return.Name = "btn_return";
+            this.btn_return.Size = new System.Drawing.Size(116, 99);
+            this.btn_return.TabIndex = 12;
+            this.btn_return.UseVisualStyleBackColor = false;
+            this.btn_return.Visible = false;
+            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            // 
+            // btn_complete
+            // 
+            this.btn_complete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.btn_complete.BackgroundImage = global::Client.Properties.Resources.check_button;
+            this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.btn_complete.FlatAppearance.BorderSize = 0;
+            this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_complete.Location = new System.Drawing.Point(726, 360);
+            this.btn_complete.Name = "btn_complete";
+            this.btn_complete.Size = new System.Drawing.Size(117, 83);
+            this.btn_complete.TabIndex = 11;
+            this.btn_complete.UseVisualStyleBackColor = false;
+            this.btn_complete.Visible = false;
+            this.btn_complete.Click += new System.EventHandler(this.btn_complete_Click);
             // 
             // panel2
             // 
@@ -139,6 +173,29 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(602, 128);
             this.panel2.TabIndex = 10;
+            // 
+            // tileTable
+            // 
+            this.tileTable.BackColor = System.Drawing.Color.Transparent;
+            this.tileTable.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tileTable.ErrorImage = null;
+            this.tileTable.Image = global::Client.Properties.Resources.tiletable;
+            this.tileTable.InitialImage = null;
+            this.tileTable.Location = new System.Drawing.Point(0, 0);
+            this.tileTable.Name = "tileTable";
+            this.tileTable.Size = new System.Drawing.Size(602, 128);
+            this.tileTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.tileTable.TabIndex = 1;
+            this.tileTable.TabStop = false;
+            // 
+            // pictureBox1
+            // 
+            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
+            this.pictureBox1.Name = "pictureBox1";
+            this.pictureBox1.Size = new System.Drawing.Size(602, 128);
+            this.pictureBox1.TabIndex = 0;
+            this.pictureBox1.TabStop = false;
             // 
             // lbl_exit
             // 
@@ -152,7 +209,7 @@
             this.lbl_exit.Text = "X";
             this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
             this.lbl_exit.MouseLeave += new System.EventHandler(this.lbl_exit_MouseLeave);
-            this.lbl_exit.MouseHover += new System.EventHandler(this.lbl_exit_MouseHover);
+            this.lbl_exit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_exit_MouseMove);
             // 
             // btn_plus
             // 
@@ -171,6 +228,62 @@
             this.btn_plus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
             this.btn_plus.UseVisualStyleBackColor = false;
             this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
+            // 
+            // profile4
+            // 
+            this.profile4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.profile4.BackColor = System.Drawing.Color.Transparent;
+            this.profile4.Image = global::Client.Properties.Resources.프사4;
+            this.profile4.Location = new System.Drawing.Point(7, 360);
+            this.profile4.Name = "profile4";
+            this.profile4.Size = new System.Drawing.Size(103, 98);
+            this.profile4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.profile4.TabIndex = 6;
+            this.profile4.TabStop = false;
+            // 
+            // profile3
+            // 
+            this.profile3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.profile3.BackColor = System.Drawing.Color.Transparent;
+            this.profile3.Image = global::Client.Properties.Resources.프사3;
+            this.profile3.Location = new System.Drawing.Point(7, 254);
+            this.profile3.Name = "profile3";
+            this.profile3.Size = new System.Drawing.Size(103, 98);
+            this.profile3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.profile3.TabIndex = 5;
+            this.profile3.TabStop = false;
+            // 
+            // profile2
+            // 
+            this.profile2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.profile2.BackColor = System.Drawing.Color.Transparent;
+            this.profile2.Image = global::Client.Properties.Resources.프사2;
+            this.profile2.Location = new System.Drawing.Point(7, 148);
+            this.profile2.Name = "profile2";
+            this.profile2.Size = new System.Drawing.Size(103, 98);
+            this.profile2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.profile2.TabIndex = 4;
+            this.profile2.TabStop = false;
+            // 
+            // profile1
+            // 
+            this.profile1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.profile1.BackColor = System.Drawing.Color.Transparent;
+            this.profile1.Image = global::Client.Properties.Resources.프사1;
+            this.profile1.Location = new System.Drawing.Point(7, 42);
+            this.profile1.Name = "profile1";
+            this.profile1.Size = new System.Drawing.Size(103, 98);
+            this.profile1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.profile1.TabIndex = 2;
+            this.profile1.TabStop = false;
             // 
             // panel1
             // 
@@ -269,141 +382,37 @@
             this.imageList1.Images.SetKeyName(3, "프사3.JPG");
             this.imageList1.Images.SetKeyName(4, "프사4.JPG");
             // 
-            // btn_return
+            // tmrClock
             // 
-            this.btn_return.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
-            this.btn_return.BackgroundImage = global::Client.Properties.Resources.returnButton;
-            this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_return.FlatAppearance.BorderSize = 0;
-            this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_return.Location = new System.Drawing.Point(727, 443);
-            this.btn_return.Name = "btn_return";
-            this.btn_return.Size = new System.Drawing.Size(116, 99);
-            this.btn_return.TabIndex = 12;
-            this.btn_return.UseVisualStyleBackColor = false;
-            this.btn_return.Visible = false;
-            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
+            this.tmrClock.Interval = 1000;
+            this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
-            // btn_complete
-            // 
-            this.btn_complete.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
-            this.btn_complete.BackgroundImage = global::Client.Properties.Resources.check_button;
-            this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_complete.FlatAppearance.BorderSize = 0;
-            this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_complete.Location = new System.Drawing.Point(726, 360);
-            this.btn_complete.Name = "btn_complete";
-            this.btn_complete.Size = new System.Drawing.Size(117, 83);
-            this.btn_complete.TabIndex = 11;
-            this.btn_complete.UseVisualStyleBackColor = false;
-            this.btn_complete.Visible = false;
-            this.btn_complete.Click += new System.EventHandler(this.btn_complete_Click);
-            // 
-            // tileTable
-            // 
-            this.tileTable.BackColor = System.Drawing.Color.Transparent;
-            this.tileTable.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tileTable.ErrorImage = null;
-            this.tileTable.Image = global::Client.Properties.Resources.tiletable;
-            this.tileTable.InitialImage = null;
-            this.tileTable.Location = new System.Drawing.Point(0, 0);
-            this.tileTable.Name = "tileTable";
-            this.tileTable.Size = new System.Drawing.Size(602, 128);
-            this.tileTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.tileTable.TabIndex = 1;
-            this.tileTable.TabStop = false;
-            // 
-            // pictureBox1
-            // 
-            this.pictureBox1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.pictureBox1.Location = new System.Drawing.Point(0, 0);
-            this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(602, 128);
-            this.pictureBox1.TabIndex = 0;
-            this.pictureBox1.TabStop = false;
-            // 
-            // profile4
-            // 
-            this.profile4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.profile4.BackColor = System.Drawing.Color.Transparent;
-            this.profile4.Image = global::Client.Properties.Resources.프사4;
-            this.profile4.Location = new System.Drawing.Point(7, 360);
-            this.profile4.Name = "profile4";
-            this.profile4.Size = new System.Drawing.Size(105, 100);
-            this.profile4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.profile4.TabIndex = 6;
-            this.profile4.TabStop = false;
-            // 
-            // profile3
-            // 
-            this.profile3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.profile3.BackColor = System.Drawing.Color.Transparent;
-            this.profile3.Image = global::Client.Properties.Resources.프사3;
-            this.profile3.Location = new System.Drawing.Point(7, 254);
-            this.profile3.Name = "profile3";
-            this.profile3.Size = new System.Drawing.Size(105, 100);
-            this.profile3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.profile3.TabIndex = 5;
-            this.profile3.TabStop = false;
-            // 
-            // profile2
-            // 
-            this.profile2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.profile2.BackColor = System.Drawing.Color.Transparent;
-            this.profile2.Image = global::Client.Properties.Resources.프사2;
-            this.profile2.Location = new System.Drawing.Point(7, 148);
-            this.profile2.Name = "profile2";
-            this.profile2.Size = new System.Drawing.Size(105, 100);
-            this.profile2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.profile2.TabIndex = 4;
-            this.profile2.TabStop = false;
-            // 
-            // profile1
-            // 
-            this.profile1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.profile1.BackColor = System.Drawing.Color.Transparent;
-            this.profile1.Image = global::Client.Properties.Resources.프사1;
-            this.profile1.Location = new System.Drawing.Point(7, 42);
-            this.profile1.Name = "profile1";
-            this.profile1.Size = new System.Drawing.Size(105, 100);
-            this.profile1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.profile1.TabIndex = 2;
-            this.profile1.TabStop = false;
-            // 
-            // ClientForm
+            // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(855, 719);
-            this.Controls.Add(this.Main);
+            this.Controls.Add(this.MainForm);
             this.Controls.Add(this.Chatting);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ClientForm";
+            this.Name = "GameForm";
             this.Text = "Rummikub";
-            this.Load += new System.EventHandler(this.Background_Load);
+            this.Load += new System.EventHandler(this.GameForm_Load);
             this.Chatting.ResumeLayout(false);
             this.Chatting.PerformLayout();
-            this.Main.ResumeLayout(false);
-            this.Main.PerformLayout();
+            this.MainForm.ResumeLayout(false);
+            this.MainForm.PerformLayout();
             this.panel2.ResumeLayout(false);
-            this.panel1.ResumeLayout(false);
-            this.panel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile1)).EndInit();
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -411,7 +420,7 @@
         #endregion
 
         private System.Windows.Forms.Panel Chatting;
-        private System.Windows.Forms.Panel Main;
+        private System.Windows.Forms.Panel MainForm;
         private System.Windows.Forms.Button btn_timer;
         private System.Windows.Forms.Button btn_sort_num;
         private System.Windows.Forms.Panel panel1;
@@ -433,6 +442,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btn_complete;
         private System.Windows.Forms.Button btn_return;
+        private System.Windows.Forms.Timer tmrClock;
     }
 }
 
