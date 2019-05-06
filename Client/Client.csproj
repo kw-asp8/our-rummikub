@@ -136,5 +136,11 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\777buton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\buttonImage.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
