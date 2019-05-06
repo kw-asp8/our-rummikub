@@ -8,10 +8,11 @@
     <OutputType>WinExe</OutputType>
     <RootNamespace>Client</RootNamespace>
     <AssemblyName>Client</AssemblyName>
-    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -53,8 +54,19 @@
       <DependentUpon>ClientForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Client.cs" />
-    <Compile Include="ConnectionClient.cs" />
+    <Compile Include="ProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileForm.Designer.cs">
+      <DependentUpon>ProfileForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StartForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="StartForm.Designer.cs">
+      <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="ClientForm.resx">
       <DependentUpon>ClientForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -66,6 +78,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -81,10 +94,31 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{c7dbef28-ff8f-437c-ac1c-592a01156347}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
+    <None Include="Resources\프사1.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\프사2.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\프사3.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\프사4.JPG" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\tiletable.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checkButton.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check_button.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\returnButton.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\return_button.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
