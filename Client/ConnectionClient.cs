@@ -12,10 +12,14 @@ namespace Client
 {
     delegate void PacketHandler(Connection connection, Packet packet);
 
+    delegate void DisconnectionHandler(Connection connection);
+
     class ConnectionClient : IConnectionOwner
     {
         private Dictionary<PacketType, List<PacketHandler>> packetHandlers
             = new Dictionary<PacketType, List<PacketHandler>>();
+
+        public List<DisconnectionHandler> OnDisconnect { get; set; } = new List<DisconnectionHandler>();
 
         public Connection Connection { get; private set; }
 
@@ -76,6 +80,12 @@ namespace Client
                     handler(connection, packet);
                 }
             }
+        }
+
+        public void HandleDisconnection(Connection connection)
+        {
+            foreach (DisconnectionHandler handler in OnDisconnect)
+                handler(connection);
         }
     }
 }

@@ -8,9 +8,25 @@ namespace Common
 {
     public enum PacketType
     {
-        SB_StartGame = 0,
+        SB_Login = 0,
+        SB_StartGame,
+        SB_NextTurn,
         SB_SendChat,
-        CB_SendChat
+        CB_SendRoomStatus,
+        CB_SendGameStatus,
+        CB_SendChat,
+        CB_EndGame
+    }
+
+    [Serializable]
+    public class LoginPacket : Packet
+    {
+        public string Nickname { get; private set; }
+
+        public LoginPacket(string nickname) : base(PacketType.SB_Login)
+        {
+            Nickname = nickname;
+        }
     }
 
     [Serializable]
@@ -18,7 +34,14 @@ namespace Common
     {
         public StartGamePacket() : base(PacketType.SB_StartGame)
         {
-            
+        }
+    }
+
+    [Serializable]
+    public class NextTurnPacket : Packet
+    {
+        public NextTurnPacket() : base(PacketType.SB_NextTurn)
+        {
         }
     }
 
@@ -34,6 +57,28 @@ namespace Common
     }
 
     [Serializable]
+    public class SendRoomStatusPacket : Packet
+    {
+        public RoomStatus RoomStatus { get; private set; }
+
+        public SendRoomStatusPacket(RoomStatus roomStatus) : base(PacketType.CB_SendRoomStatus)
+        {
+            RoomStatus = roomStatus;
+        }
+    }
+
+    [Serializable]
+    public class SendGameStatusPacket : Packet
+    {
+        public GameStatus GameStatus { get; private set; }
+
+        public SendGameStatusPacket(GameStatus gameStatus) : base(PacketType.CB_SendGameStatus)
+        {
+            GameStatus = gameStatus;
+        }
+    }
+
+    [Serializable]
     public class SendChatToClientPacket : Packet
     {
         public string Message { get; private set; }
@@ -41,6 +86,17 @@ namespace Common
         public SendChatToClientPacket(string message) : base(PacketType.CB_SendChat)
         {
             this.Message = message;
+        }
+    }
+
+    [Serializable]
+    public class EndGamePacket : Packet
+    {
+        public List<PlayerInfo> Ranking { get; private set; }
+
+        public EndGamePacket(List<PlayerInfo> ranking) : base(PacketType.CB_EndGame)
+        {
+            Ranking = ranking;
         }
     }
 

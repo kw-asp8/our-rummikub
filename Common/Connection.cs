@@ -8,8 +8,6 @@ using System.Threading;
 
 namespace Common
 {
-    public delegate void DisconnectionHandler(Connection connection);
-
     public class Connection : IDisposable
     {
         public const int BufferSize = 1024 * 4;
@@ -20,8 +18,6 @@ namespace Common
         private Thread listeningThread;
 
         public bool IsClosed { get; private set; } = false;
-
-        public List<DisconnectionHandler> OnDisconnect { get; set; } = new List<DisconnectionHandler>();
 
         public Connection(IConnectionOwner owner, NetworkStream networkStream)
         {
@@ -95,8 +91,7 @@ namespace Common
             }
 
             IsClosed = true;
-            foreach (DisconnectionHandler handler in OnDisconnect)
-                handler(this);
+            owner.HandleDisconnection(this);
         }
 
         #region IDisposable Support
