@@ -1,6 +1,6 @@
 ﻿namespace Client
 {
-    partial class ClientForm
+    partial class GameForm
     {
         /// <summary>
         /// 필수 디자이너 변수입니다.
@@ -29,22 +29,21 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ClientForm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GameForm));
             this.Chatting = new System.Windows.Forms.Panel();
             this.txt_log = new System.Windows.Forms.TextBox();
             this.btn_send = new System.Windows.Forms.Button();
             this.txtbox_chat = new System.Windows.Forms.TextBox();
-            this.Main = new System.Windows.Forms.Panel();
+            this.MainForm = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.lbl_exit = new System.Windows.Forms.Label();
-            this.btn_plus = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbl_title = new System.Windows.Forms.Label();
             this.Grid_tile = new System.Windows.Forms.DataGridView();
-            this.btn_sort_col = new System.Windows.Forms.Button();
             this.btn_sort_num = new System.Windows.Forms.Button();
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
+            this.tmrClock = new System.Windows.Forms.Timer(this.components);
             this.btn_return = new System.Windows.Forms.Button();
             this.btn_complete = new System.Windows.Forms.Button();
             this.tileTable = new System.Windows.Forms.PictureBox();
@@ -53,8 +52,9 @@
             this.profile3 = new System.Windows.Forms.PictureBox();
             this.profile2 = new System.Windows.Forms.PictureBox();
             this.profile1 = new System.Windows.Forms.PictureBox();
+            this.btn_sort_col = new System.Windows.Forms.Button();
             this.Chatting.SuspendLayout();
-            this.Main.SuspendLayout();
+            this.MainForm.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Grid_tile)).BeginInit();
@@ -109,27 +109,29 @@
             this.txtbox_chat.Size = new System.Drawing.Size(749, 36);
             this.txtbox_chat.TabIndex = 2;
             // 
-            // Main
+            // MainForm
             // 
-            this.Main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
-            this.Main.Controls.Add(this.btn_return);
-            this.Main.Controls.Add(this.btn_complete);
-            this.Main.Controls.Add(this.panel2);
-            this.Main.Controls.Add(this.lbl_exit);
-            this.Main.Controls.Add(this.btn_plus);
-            this.Main.Controls.Add(this.profile4);
-            this.Main.Controls.Add(this.profile3);
-            this.Main.Controls.Add(this.profile2);
-            this.Main.Controls.Add(this.profile1);
-            this.Main.Controls.Add(this.panel1);
-            this.Main.Controls.Add(this.btn_sort_col);
-            this.Main.Controls.Add(this.btn_sort_num);
-            this.Main.Controls.Add(this.btn_timer);
-            this.Main.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Main.Location = new System.Drawing.Point(0, 0);
-            this.Main.Name = "Main";
-            this.Main.Size = new System.Drawing.Size(855, 601);
-            this.Main.TabIndex = 1;
+            this.MainForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
+            this.MainForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainForm.Controls.Add(this.btn_return);
+            this.MainForm.Controls.Add(this.btn_complete);
+            this.MainForm.Controls.Add(this.panel2);
+            this.MainForm.Controls.Add(this.lbl_exit);
+            this.MainForm.Controls.Add(this.profile4);
+            this.MainForm.Controls.Add(this.profile3);
+            this.MainForm.Controls.Add(this.profile2);
+            this.MainForm.Controls.Add(this.profile1);
+            this.MainForm.Controls.Add(this.panel1);
+            this.MainForm.Controls.Add(this.btn_sort_col);
+            this.MainForm.Controls.Add(this.btn_sort_num);
+            this.MainForm.Controls.Add(this.btn_timer);
+            this.MainForm.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.MainForm.Location = new System.Drawing.Point(0, 0);
+            this.MainForm.Name = "MainForm";
+            this.MainForm.Size = new System.Drawing.Size(855, 601);
+            this.MainForm.TabIndex = 1;
+            this.MainForm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
+            this.MainForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             // 
             // panel2
             // 
@@ -152,25 +154,7 @@
             this.lbl_exit.Text = "X";
             this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
             this.lbl_exit.MouseLeave += new System.EventHandler(this.lbl_exit_MouseLeave);
-            this.lbl_exit.MouseHover += new System.EventHandler(this.lbl_exit_MouseHover);
-            // 
-            // btn_plus
-            // 
-            this.btn_plus.AllowDrop = true;
-            this.btn_plus.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(2)))), ((int)(((byte)(220)))), ((int)(((byte)(102)))));
-            this.btn_plus.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_plus.FlatAppearance.BorderSize = 0;
-            this.btn_plus.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_plus.Font = new System.Drawing.Font("Consolas", 48F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_plus.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.btn_plus.Location = new System.Drawing.Point(727, 360);
-            this.btn_plus.Name = "btn_plus";
-            this.btn_plus.Size = new System.Drawing.Size(117, 138);
-            this.btn_plus.TabIndex = 7;
-            this.btn_plus.Text = "+";
-            this.btn_plus.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageAboveText;
-            this.btn_plus.UseVisualStyleBackColor = false;
-            this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
+            this.lbl_exit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_exit_MouseMove);
             // 
             // panel1
             // 
@@ -211,21 +195,6 @@
             this.Grid_tile.Size = new System.Drawing.Size(602, 419);
             this.Grid_tile.TabIndex = 0;
             // 
-            // btn_sort_col
-            // 
-            this.btn_sort_col.AllowDrop = true;
-            this.btn_sort_col.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
-            this.btn_sort_col.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btn_sort_col.FlatAppearance.BorderSize = 0;
-            this.btn_sort_col.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sort_col.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_sort_col.Location = new System.Drawing.Point(727, 254);
-            this.btn_sort_col.Name = "btn_sort_col";
-            this.btn_sort_col.Size = new System.Drawing.Size(116, 100);
-            this.btn_sort_col.TabIndex = 2;
-            this.btn_sort_col.Text = "777";
-            this.btn_sort_col.UseVisualStyleBackColor = false;
-            // 
             // btn_sort_num
             // 
             this.btn_sort_num.AllowDrop = true;
@@ -233,7 +202,7 @@
             this.btn_sort_num.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sort_num.FlatAppearance.BorderSize = 0;
             this.btn_sort_num.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_sort_num.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_sort_num.Font = new System.Drawing.Font("Gadugi", 20F);
             this.btn_sort_num.ForeColor = System.Drawing.Color.Red;
             this.btn_sort_num.Location = new System.Drawing.Point(727, 148);
             this.btn_sort_num.Name = "btn_sort_num";
@@ -269,6 +238,11 @@
             this.imageList1.Images.SetKeyName(3, "프사3.JPG");
             this.imageList1.Images.SetKeyName(4, "프사4.JPG");
             // 
+            // tmrClock
+            // 
+            this.tmrClock.Interval = 1000;
+            this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
+            // 
             // btn_return
             // 
             this.btn_return.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
@@ -276,13 +250,11 @@
             this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_return.FlatAppearance.BorderSize = 0;
             this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_return.Location = new System.Drawing.Point(727, 443);
+            this.btn_return.Location = new System.Drawing.Point(728, 443);
             this.btn_return.Name = "btn_return";
             this.btn_return.Size = new System.Drawing.Size(116, 99);
             this.btn_return.TabIndex = 12;
             this.btn_return.UseVisualStyleBackColor = false;
-            this.btn_return.Visible = false;
-            this.btn_return.Click += new System.EventHandler(this.btn_return_Click);
             // 
             // btn_complete
             // 
@@ -291,13 +263,11 @@
             this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_complete.FlatAppearance.BorderSize = 0;
             this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_complete.Location = new System.Drawing.Point(726, 360);
+            this.btn_complete.Location = new System.Drawing.Point(727, 360);
             this.btn_complete.Name = "btn_complete";
             this.btn_complete.Size = new System.Drawing.Size(117, 83);
             this.btn_complete.TabIndex = 11;
             this.btn_complete.UseVisualStyleBackColor = false;
-            this.btn_complete.Visible = false;
-            this.btn_complete.Click += new System.EventHandler(this.btn_complete_Click);
             // 
             // tileTable
             // 
@@ -331,7 +301,7 @@
             this.profile4.Image = global::Client.Properties.Resources.프사4;
             this.profile4.Location = new System.Drawing.Point(7, 360);
             this.profile4.Name = "profile4";
-            this.profile4.Size = new System.Drawing.Size(105, 100);
+            this.profile4.Size = new System.Drawing.Size(103, 98);
             this.profile4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile4.TabIndex = 6;
             this.profile4.TabStop = false;
@@ -345,7 +315,7 @@
             this.profile3.Image = global::Client.Properties.Resources.프사3;
             this.profile3.Location = new System.Drawing.Point(7, 254);
             this.profile3.Name = "profile3";
-            this.profile3.Size = new System.Drawing.Size(105, 100);
+            this.profile3.Size = new System.Drawing.Size(103, 98);
             this.profile3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile3.TabIndex = 5;
             this.profile3.TabStop = false;
@@ -359,7 +329,7 @@
             this.profile2.Image = global::Client.Properties.Resources.프사2;
             this.profile2.Location = new System.Drawing.Point(7, 148);
             this.profile2.Name = "profile2";
-            this.profile2.Size = new System.Drawing.Size(105, 100);
+            this.profile2.Size = new System.Drawing.Size(103, 98);
             this.profile2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile2.TabIndex = 4;
             this.profile2.TabStop = false;
@@ -373,27 +343,42 @@
             this.profile1.Image = global::Client.Properties.Resources.프사1;
             this.profile1.Location = new System.Drawing.Point(7, 42);
             this.profile1.Name = "profile1";
-            this.profile1.Size = new System.Drawing.Size(105, 100);
+            this.profile1.Size = new System.Drawing.Size(103, 98);
             this.profile1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile1.TabIndex = 2;
             this.profile1.TabStop = false;
             // 
-            // ClientForm
+            // btn_sort_col
+            // 
+            this.btn_sort_col.AllowDrop = true;
+            this.btn_sort_col.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(255)))), ((int)(((byte)(204)))));
+            this.btn_sort_col.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_sort_col.FlatAppearance.BorderSize = 0;
+            this.btn_sort_col.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_sort_col.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_sort_col.Image = global::Client.Properties.Resources.buttonImage;
+            this.btn_sort_col.Location = new System.Drawing.Point(727, 254);
+            this.btn_sort_col.Name = "btn_sort_col";
+            this.btn_sort_col.Size = new System.Drawing.Size(116, 100);
+            this.btn_sort_col.TabIndex = 2;
+            this.btn_sort_col.UseVisualStyleBackColor = false;
+            // 
+            // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(855, 719);
-            this.Controls.Add(this.Main);
+            this.Controls.Add(this.MainForm);
             this.Controls.Add(this.Chatting);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "ClientForm";
+            this.Name = "GameForm";
             this.Text = "Rummikub";
-            this.Load += new System.EventHandler(this.Background_Load);
+            this.Load += new System.EventHandler(this.GameForm_Load);
             this.Chatting.ResumeLayout(false);
             this.Chatting.PerformLayout();
-            this.Main.ResumeLayout(false);
-            this.Main.PerformLayout();
+            this.MainForm.ResumeLayout(false);
+            this.MainForm.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
@@ -411,7 +396,7 @@
         #endregion
 
         private System.Windows.Forms.Panel Chatting;
-        private System.Windows.Forms.Panel Main;
+        private System.Windows.Forms.Panel MainForm;
         private System.Windows.Forms.Button btn_timer;
         private System.Windows.Forms.Button btn_sort_num;
         private System.Windows.Forms.Panel panel1;
@@ -422,7 +407,6 @@
         private System.Windows.Forms.PictureBox profile4;
         private System.Windows.Forms.PictureBox profile3;
         private System.Windows.Forms.PictureBox profile2;
-        private System.Windows.Forms.Button btn_plus;
         private System.Windows.Forms.Label lbl_exit;
         private System.Windows.Forms.Panel panel2;
         protected internal System.Windows.Forms.PictureBox pictureBox1;
@@ -433,6 +417,7 @@
         private System.Windows.Forms.ImageList imageList1;
         private System.Windows.Forms.Button btn_complete;
         private System.Windows.Forms.Button btn_return;
+        private System.Windows.Forms.Timer tmrClock;
     }
 }
 
