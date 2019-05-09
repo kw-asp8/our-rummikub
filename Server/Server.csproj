@@ -46,6 +46,7 @@
   <ItemGroup>
     <Compile Include="ConnectionServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Server.cs" />
     <Compile Include="ServerMain.cs" />
   </ItemGroup>
   <ItemGroup>
