@@ -81,10 +81,13 @@ namespace Common
     [Serializable]
     public class SendChatToClientPacket : Packet
     {
+        public string PlayerName { get; private set; }
+
         public string Message { get; private set; }
 
-        public SendChatToClientPacket(string message) : base(PacketType.CB_SendChat)
+        public SendChatToClientPacket(string playerName, string message) : base(PacketType.CB_SendChat)
         {
+            this.PlayerName = playerName;
             this.Message = message;
         }
     }

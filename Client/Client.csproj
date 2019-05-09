@@ -47,6 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Client.cs" />
     <Compile Include="ConnectionClient.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -14,9 +15,12 @@ namespace Client
 {
     public partial class GameResultForm : Form
     {
-        public GameResultForm()
+        private List<PlayerInfo> ranking;
+
+        public GameResultForm(List<PlayerInfo> ranking)
         {
             InitializeComponent();
+            this.ranking = ranking;
             btn_regame.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, btn_regame.Width, btn_regame.Height, 30, 30));
             btn_main.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, btn_main.Width, btn_main.Height, 30, 30));
         }

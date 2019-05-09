@@ -15,8 +15,11 @@ namespace Client
         Boolean isMove = false;
         Point fPt;
 
-        public StartForm()
+        private Client client;
+
+        public StartForm(Client client)
         {
+            this.client = client;
             InitializeComponent();
         }
 
@@ -44,7 +47,7 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-            ProfileForm profile1 = new ProfileForm();
+            ProfileForm profile1 = new ProfileForm(client);
             profile1.Show();
         }
     }

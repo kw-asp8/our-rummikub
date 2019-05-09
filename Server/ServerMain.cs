@@ -18,7 +18,7 @@ namespace Server
                 var sendChatToServer = (SendChatToServerPacket)packet;
                 Console.WriteLine(sendChatToServer.Message);
 
-                var sendChatToClient = new SendChatToClientPacket(sendChatToServer.Message);
+                var sendChatToClient = new SendChatToClientPacket("annonymous", sendChatToServer.Message);
                 foreach (Connection everyConnection in server.Connections)
                 {
                     everyConnection.Send(sendChatToClient);

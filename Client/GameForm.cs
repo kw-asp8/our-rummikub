@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -19,8 +20,14 @@ namespace Client
 
         Timer timer = new Timer();
 
-        public GameForm()
+        private Client client;
+        private RoomStatus roomStatus;
+        private GameStatus gameStatus;
+
+        public GameForm(Client client)
         {
+            this.client = client;
+
             InitializeComponent();
             btn_timer.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_timer.Width, btn_timer.Height, 15, 15));
             btn_sort_num.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_sort_num.Width, btn_sort_num.Height, 15, 15));
@@ -170,18 +177,41 @@ namespace Client
 
             if (btn_timer.Text == "0")
             {
-                GameResultForm dlg = new GameResultForm();
+                //TODO next turn
                 tmrClock.Stop();
-
-                dlg.StartPosition = FormStartPosition.CenterParent;
-                dlg.Owner = this;
-                dlg.Show();
             }
         }
 
         private void GameForm_Load(object sender, EventArgs e)
         {
             tmrClock.Start();
+        }
+
+        public void UpdateRoomStatus(RoomStatus roomStatus)
+        {
+            this.roomStatus = roomStatus;
+            //TODO Update the form
+        }
+
+        public void UpdateGameStatus(GameStatus gameStatus)
+        {
+            this.gameStatus = gameStatus;
+            //TODO Update the form
+        }
+
+        public void PrintChatMessage(string playerName, string message)
+        {
+            //TODO Print the chat message
+        }
+
+        private void Btn_complete_Click(object sender, EventArgs e)
+        {
+            client.NextTurn();
+        }
+
+        private void Btn_return_Click(object sender, EventArgs e)
+        {
+            //TODO Undo the changes
         }
     }
 }

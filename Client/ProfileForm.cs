@@ -14,8 +14,12 @@ namespace Client
     {
         Boolean isMove = false;
         Point fPt;
-        public ProfileForm()
+
+        private Client client;
+        
+        public ProfileForm(Client client)
         {
+            this.client = client;
             InitializeComponent();
         }
         private void button3_Click(object sender, EventArgs e)
@@ -41,7 +45,10 @@ namespace Client
         }
         private void button2_Click(object sender, EventArgs e)
         {
+            client.Connect();
+            client.Login(textBox1.Text);
             this.Close();
+            client.OpenGameForm();
         }
     }
 }
