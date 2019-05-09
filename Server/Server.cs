@@ -8,10 +8,6 @@ namespace Server
 {
     class Server
     {
-        static void Main(string[] args)
-        {
-        }
-
         class Game
         {
             public List<Player> Players { get; private set; } = new List<Player>();
