@@ -277,6 +277,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "GameResult";
             this.Text = "GameResult";
+            this.Load += new System.EventHandler(this.GameResult_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GameResult_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GameResult_MouseMove);
             this.ResumeLayout(false);

@@ -30,8 +30,8 @@
         {
             this.label1 = new System.Windows.Forms.Label();
             this.button2 = new System.Windows.Forms.Button();
+            this.lbl_exit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.button3 = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,33 +60,31 @@
             this.button2.UseVisualStyleBackColor = false;
             this.button2.Click += new System.EventHandler(this.button2_Click);
             // 
+            // lbl_exit
+            // 
+            this.lbl_exit.AutoSize = true;
+            this.lbl_exit.Dock = System.Windows.Forms.DockStyle.Right;
+            this.lbl_exit.Font = new System.Drawing.Font("Microsoft JhengHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_exit.ForeColor = System.Drawing.SystemColors.HighlightText;
+            this.lbl_exit.Location = new System.Drawing.Point(664, 0);
+            this.lbl_exit.Name = "lbl_exit";
+            this.lbl_exit.Size = new System.Drawing.Size(34, 36);
+            this.lbl_exit.TabIndex = 11;
+            this.lbl_exit.Text = "X";
+            this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
+            // 
             // panel1
             // 
-            this.panel1.BackColor = System.Drawing.SystemColors.Info;
-            this.panel1.Controls.Add(this.button3);
-            this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel1.Controls.Add(this.lbl_exit);
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(698, 30);
-            this.panel1.TabIndex = 3;
+            this.panel1.Size = new System.Drawing.Size(698, 36);
+            this.panel1.TabIndex = 12;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
             this.panel1.MouseUp += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseUp);
             // 
-            // button3
-            // 
-            this.button3.Dock = System.Windows.Forms.DockStyle.Right;
-            this.button3.Font = new System.Drawing.Font("Wide Latin", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button3.ForeColor = System.Drawing.Color.Black;
-            this.button3.Location = new System.Drawing.Point(651, 0);
-            this.button3.Name = "button3";
-            this.button3.Size = new System.Drawing.Size(47, 30);
-            this.button3.TabIndex = 0;
-            this.button3.Text = "X";
-            this.button3.UseVisualStyleBackColor = true;
-            this.button3.Click += new System.EventHandler(this.button3_Click);
-            // 
-            // Form1
+            // StartForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -99,10 +97,12 @@
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.LightBlue;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
-            this.Name = "Form1";
+            this.Name = "StartForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.StartForm_Load);
             this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -112,7 +112,7 @@
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Label lbl_exit;
         private System.Windows.Forms.Panel panel1;
-        private System.Windows.Forms.Button button3;
     }
 }

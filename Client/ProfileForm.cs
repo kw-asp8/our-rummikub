@@ -43,5 +43,15 @@ namespace Client
         {
             this.Close();
         }
+
+        private void ProfileForm_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lbl_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }
