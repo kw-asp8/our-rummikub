@@ -34,7 +34,7 @@ namespace Server
                         Console.WriteLine("The game has been ended.");
                         break;
                     default:
-                        Console.WriteLine($"'$input' is not a valid command!");
+                        Console.WriteLine("'" + input + "' is not a valid command!");
                         break;
                 }
             }

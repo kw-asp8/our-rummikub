@@ -61,7 +61,7 @@ namespace Server
                         Game.NextTurn();
                         SendGameStatus();
 
-                        Console.WriteLine("Now " + player.Nickname + "'s turn.");
+                        Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
                     }
                     else
                     {

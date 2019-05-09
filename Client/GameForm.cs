@@ -199,13 +199,19 @@ namespace Client
 
             Invoke(new MethodInvoker(delegate ()
             {
-                btnStart.Enabled = !gameStatus.IsEnabled;
+                if (gameStatus.IsEnabled)
+                    btnStart.Hide();
+                else
+                    btnStart.Show();
             }));
         }
 
         public void PrintChatMessage(string playerName, string message)
         {
-            //TODO Print the chat message
+            Invoke(new MethodInvoker(delegate ()
+            {
+                txt_log.AppendText("<" + playerName + ">: " + message + "\r\n");
+            }));
         }
 
         public void ShowResultForm(List<PlayerInfo> ranking)
@@ -235,6 +241,12 @@ namespace Client
             {
                 client.StartGame();
             }
+        }
+
+        private void Btn_send_Click(object sender, EventArgs e)
+        {
+            client.SendChat(txtbox_chat.Text);
+            txtbox_chat.Clear();
         }
     }
 }
