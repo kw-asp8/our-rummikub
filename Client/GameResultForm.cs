@@ -68,5 +68,10 @@ namespace Client
         {
             mousePoint = new Point(e.X, e.Y);
         }
+
+        private void GameResult_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

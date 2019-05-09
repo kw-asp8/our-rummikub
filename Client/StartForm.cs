@@ -50,5 +50,15 @@ namespace Client
             ProfileForm profile1 = new ProfileForm(client);
             profile1.Show();
         }
+
+        private void lbl_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
+
+        private void StartForm_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }
