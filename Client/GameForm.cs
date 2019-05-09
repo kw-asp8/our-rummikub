@@ -196,12 +196,27 @@ namespace Client
         public void UpdateGameStatus(GameStatus gameStatus)
         {
             this.gameStatus = gameStatus;
-            //TODO Update the form
+
+            Invoke(new MethodInvoker(delegate ()
+            {
+                btnStart.Enabled = !gameStatus.IsEnabled;
+            }));
         }
 
         public void PrintChatMessage(string playerName, string message)
         {
             //TODO Print the chat message
+        }
+
+        public void ShowResultForm(List<PlayerInfo> ranking)
+        {
+            Invoke(new MethodInvoker(delegate ()
+            {
+                GameResultForm resultForm = new GameResultForm(ranking);
+                resultForm.StartPosition = FormStartPosition.CenterParent;
+                resultForm.Owner = this;
+                resultForm.Show();
+            }));
         }
 
         private void Btn_complete_Click(object sender, EventArgs e)
@@ -212,6 +227,14 @@ namespace Client
         private void Btn_return_Click(object sender, EventArgs e)
         {
             //TODO Undo the changes
+        }
+
+        private void BtnStart_Click(object sender, EventArgs e)
+        {
+            if (!gameStatus.IsEnabled)
+            {
+                client.StartGame();
+            }
         }
     }
 }

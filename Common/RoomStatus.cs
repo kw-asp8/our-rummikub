@@ -7,5 +7,11 @@ namespace Common
     [Serializable]
     public class RoomStatus
     {
+        public List<PlayerInfo> Players { get; private set; }
+
+        public RoomStatus(List<PlayerInfo> players)
+        {
+            Players = players;
+        }
     }
 }

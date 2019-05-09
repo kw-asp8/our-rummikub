@@ -12,18 +12,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            ConnectionServer server = new ConnectionServer(IPAddress.Parse("127.0.0.1"), 7777);
-            server.RegisterPacketHandler(PacketType.SB_SendChat, (connection, packet) =>
-            {
-                var sendChatToServer = (SendChatToServerPacket)packet;
-                Console.WriteLine(sendChatToServer.Message);
-
-                var sendChatToClient = new SendChatToClientPacket("annonymous", sendChatToServer.Message);
-                foreach (Connection everyConnection in server.Connections)
-                {
-                    everyConnection.Send(sendChatToClient);
-                }
-            });
+            Server server = new Server();
 
             server.Start();
             Console.WriteLine("Server has been started!");
@@ -37,8 +26,16 @@ namespace Server
                 {
                     case "stop":
                         server.Stop();
-                        Console.WriteLine("Server has been stopped.");
+                        Console.WriteLine("Server has been stopped!");
                         return;
+                    case "end":
+                        server.Game.End();
+                        server.SendGameOver();
+                        Console.WriteLine("The game has been ended.");
+                        break;
+                    default:
+                        Console.WriteLine($"'$input' is not a valid command!");
+                        break;
                 }
             }
         }

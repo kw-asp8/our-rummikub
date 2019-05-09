@@ -53,6 +53,7 @@
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
+            this.btnStart = new System.Windows.Forms.Button();
             this.Chatting.SuspendLayout();
             this.MainForm.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -117,6 +118,7 @@
             // 
             this.MainForm.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(51)))), ((int)(((byte)(102)))), ((int)(((byte)(240)))));
             this.MainForm.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.MainForm.Controls.Add(this.btnStart);
             this.MainForm.Controls.Add(this.btn_return);
             this.MainForm.Controls.Add(this.btn_complete);
             this.MainForm.Controls.Add(this.panel2);
@@ -384,6 +386,16 @@
             this.tmrClock.Interval = 1000;
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
+            // btnStart
+            // 
+            this.btnStart.Location = new System.Drawing.Point(11, 397);
+            this.btnStart.Name = "btnStart";
+            this.btnStart.Size = new System.Drawing.Size(73, 36);
+            this.btnStart.TabIndex = 2;
+            this.btnStart.Text = "Start Game";
+            this.btnStart.UseVisualStyleBackColor = true;
+            this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -440,6 +452,7 @@
         private System.Windows.Forms.Button btn_complete;
         private System.Windows.Forms.Button btn_return;
         private System.Windows.Forms.Timer tmrClock;
+        private System.Windows.Forms.Button btnStart;
     }
 }
 

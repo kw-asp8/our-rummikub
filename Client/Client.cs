@@ -17,10 +17,14 @@ namespace Client
         public Client()
         {
             conClient.RegisterPacketHandler(PacketType.CB_SendRoomStatus, (con, packet) => {
+                while (gameForm == null) ;
+
                 var sendRoomStatus = (SendRoomStatusPacket)packet;
                 gameForm.UpdateRoomStatus(sendRoomStatus.RoomStatus);
             });
             conClient.RegisterPacketHandler(PacketType.CB_SendGameStatus, (con, packet) => {
+                while (gameForm == null) ;
+
                 var sendGameStatus = (SendGameStatusPacket)packet;
                 gameForm.UpdateGameStatus(sendGameStatus.GameStatus);
             });
@@ -35,10 +39,10 @@ namespace Client
             conClient.RegisterPacketHandler(PacketType.CB_EndGame, (con, packet) => {
                 var endGame = (EndGamePacket)packet;
 
-                GameResultForm resultForm = new GameResultForm(endGame.Ranking);
-                resultForm.StartPosition = FormStartPosition.CenterParent;
-                resultForm.Owner = gameForm;
-                resultForm.Show();
+                if (gameForm != null)
+                {
+                    gameForm.ShowResultForm(endGame.Ranking);
+                }
             });
         }
 

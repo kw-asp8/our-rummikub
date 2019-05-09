@@ -1,244 +1,149 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Server
 {
-    class Server
+    public class Server
     {
-        class Game
+        private ConnectionServer conServer;
+        public Game Game { get; private set; } = new Game();
+
+        public Server()
         {
-            public List<Player> Players { get; private set; } = new List<Player>();
-            public Dictionary<Location, Tile> PreviousTable { get; private set; } = new Dictionary<Location, Tile>();
-            public Dictionary<Location, Tile> Table { get; private set; } = new Dictionary<Location, Tile>();
-            public List<Tile> Dummy { get; private set; } = new List<Tile>();
-            private int currentPlayerNum = 0;
-
-            public Dictionary<Location,Tile> GetTable()
+            conServer = new ConnectionServer(IPAddress.Parse("127.0.0.1"), 7777);
+            conServer.RegisterPacketHandler(PacketType.SB_Login, (connection, packet) =>
             {
-                return new Dictionary<Location, Tile>();
-            }
-            
-            public Game(List<Player> players)
-            {
-                this.Players = players;
-                SetDummy();
-            }
+                var login = (LoginPacket)packet;
 
-            public List<Tile> GetDummy()
-            {
-                return new List<Tile>();
-            }
-
-            public void SetDummy()//13*4*2 + 2
-            {
-                Tile tile;
-                TileColor color = TileColor.RED;
-                var type = Enum.GetValues(color.GetType());
-
-                for (int j = 0; j < 2; j++) {
-                    foreach(TileColor v in type)
-                    {
-                        for (int k = 0; k < 13; k++)
-                        {
-                            tile = new NumberTile(v, k);
-                            Dummy.Add(tile);
-                        }
-                    }
-                }
-
-                for (int i = 0; i < 2; i++)
-                    Dummy.Add(new JokerTile());
-                
-                return;
-            }
-
-            public Player GetCurrentPlayer()
-            {
-                return Players[currentPlayerNum];
-            }
-
-            public Tile TakeTile(Location location)
-            {
-                //양쪽에 타일이 없으면 타일이 하나인 조합 완성
-                return null; //TODO
-            }
-
-            public TileSet TakeTileSet(Location location)
-            {
-                //양쪽에 타일이 하나라도 있는 경우
-                return null; //TODO
-            }
-
-            public void PutTileSet(Location location)
-            {
-                //TODO
-            }
-
-            public List<TileSet> GetTileSets()//타일의 모든 조합을 가져옴
-            {
-                return new List<TileSet>(); //TODO
-            }
-
-            public void Rollback()//rollback 버튼 클릭시
-            {
-                Table = new Dictionary<Location, Tile>(PreviousTable);
-            }
-
-            public void NextTurn()//nextturn 버튼 클릭시
-            {
-                PreviousTable = GetTable();
-                bool hasInvalidSet = true;
-                foreach (TileSet tileSet in GetTileSets())
+                if (Game.Room.Players.Count < Room.MaxPlayers)
                 {
-                    if (!tileSet.IsValid())
-                    {
-                        hasInvalidSet = false;
-                    }
+                    Player player = new Player(connection, login.Nickname);
+                    Game.Room.AddPlayer(player);
+
+                    SendRoomStatus();
+                    SendGameStatus();
+
+                    Console.WriteLine(player.Nickname + " has logged in.");
                 }
-                if (hasInvalidSet)
+                else
                 {
-                    currentPlayerNum++;
-                    if (currentPlayerNum > 4)
-                        currentPlayerNum = 0;
+                    //TODO Send login fail packet
+                    Console.WriteLine(login.Nickname + " has failed to log in: The room is full.");
                 }
-            }
-        }
-
-        class Location
-        {
-            public int X { get; }
-            public int Y { get; }
-
-            public Location(int x, int y)
+            });
+            conServer.RegisterPacketHandler(PacketType.SB_StartGame, (connection, packet) =>
             {
-                this.X = x;
-                this.Y = y;
-            }
-        }
+                var startGame = (StartGamePacket)packet;
+                Player player = Game.PlayerOf(connection);
 
-        class Player
-        {
-            private const int maxTileAmount = 20;
-
-            public string Nickname { get; private set; }
-            public List<Tile> HoldingTiles { get; private set; } = new List<Tile>();
-            public bool HasEnrolled { get; private set; } = false;
-            public List<TileSet> ReleasedTileSets { get; private set; } = new List<TileSet>();
-            //TODO connection
-
-            public Player(string nickname)
-            {
-                this.Nickname = nickname;
-            }
-
-            public int GetTileAmount()
-            {
-                return HoldingTiles.Count;
-            }
-
-            public bool CanTakeTile()
-            {
-                return GetTileAmount() < maxTileAmount;
-            }
-
-            public void SetEnrolled()
-            {
-                HasEnrolled = true;
-            }
-        }
-
-        class TileSet
-        {
-            public List<Tile> Tiles { get; private set; } = new List<Tile>();
-
-            public TileSet(List<Tile> tiles)
-            {
-                this.Tiles = tiles;
-            }
-            public bool Run()
-            {
-                TileColor previousColor = TileColor.RED;
-                TileColor currentColor = TileColor.RED;
-                int jokerNumber1 = 0;
-                int jokerNumber2 = 0;
-
-                if (Tiles.Count < 3) return false;
-                for (int i = 0; i < Tiles.Count; i++)
+                if (player == Game.GetManager())
                 {
-                    Tile tile = Tiles[i];
-                    if (tile is NumberTile)
-                    {
-                        NumberTile numberTile = (NumberTile)tile;
-                        if (Tiles[i - 1] is JokerTile)//전타일이 조커일때
-                            jokerNumber1 = numberTile.Number - 1;
-                        else {
-                            Tile tile2 = Tiles[i - 1];
-                            NumberTile numberTile2 = (NumberTile)tile2;
-                            if (numberTile2.Number != numberTile.Number + 1)
-                                return false;
+                    Game.Start();
+                    SendGameStatus();
+
+                    Console.WriteLine(player.Nickname + " has started the game!");
                 }
-                        if (i==0) previousColor = numberTile.Color;
-                        currentColor = numberTile.Color;
-                    }
-                    else if (tile is JokerTile)
+            });
+            conServer.RegisterPacketHandler(PacketType.SB_NextTurn, (connection, packet) =>
+            {
+                var nextTurn = (NextTurnPacket)packet;
+                Player player = Game.PlayerOf(connection);
+
+                if (player == Game.CurrentPlayer)
+                {
+                    if (!Game.HasAnyInvalidTileSet())
                     {
-                        //다음에 읽은 타일이 조커라면
-                        Tile tile2 = Tiles[i - 1];
-                        NumberTile numberTile2 = (NumberTile)tile2;
-                        jokerNumber2 = numberTile2.Number + 1;
+                        Game.NextTurn();
+                        SendGameStatus();
+
+                        Console.WriteLine("Now " + player.Nickname + "'s turn.");
                     }
-                    if (!Equals(previousColor, currentColor)) return false;
+                    else
+                    {
+                        Console.WriteLine(player.Nickname + " has failed to change turn: There's a invalid tile set.");
+                    }
                 }
-                return true;
-            }
-
-            public bool Group()
+            });
+            conServer.RegisterPacketHandler(PacketType.SB_SendChat, (connection, packet) =>
             {
-                return true;
-            }
+                var sendChatToServer = (SendChatToServerPacket)packet;
+                Player player = Game.PlayerOf(connection);
 
-            public bool IsValid()
+                Console.WriteLine("<" + player.Nickname + ">: " + sendChatToServer.Message);
+                SendChat(player.Nickname, sendChatToServer.Message);
+            });
+
+            conServer.OnDisconnect.Add((connection) =>
             {
-                return !(Run() && Group()); //둘다 참이 아니라면
-            }
+                Player player = Game.PlayerOf(connection);
+                Game.Room.RemovePlayer(player);
+
+                SendRoomStatus();
+                SendGameStatus();
+
+                Console.WriteLine(player.Nickname + " has logged out.");
+            });
         }
 
-        class Tile
+        public void Start()
         {
+            conServer.Start();
         }
 
-        class NumberTile : Tile
+        public void Stop()
         {
-            public TileColor Color { get; private set; }
-            public int Number { get; private set; }
+            conServer.Stop();
+        }
 
-            public NumberTile(TileColor color, int number)
+        public void SendRoomStatus()
+        {
+            RoomStatus roomStatus = Game.Room.ToStatus();
+            var sendRoomStatus = new SendRoomStatusPacket(roomStatus);
+
+            foreach (Connection everyCon in conServer.Connections)
             {
-                this.Color = color;
-                this.Number = number;
+                everyCon.Send(sendRoomStatus);
             }
+        }
 
-            public TileColor getColor()
+        public void SendGameStatus()
+        {
+            GameStatus gameStatus = Game.ToStatus();
+            var sendGameStatus = new SendGameStatusPacket(gameStatus);
+
+            foreach (Connection everyCon in conServer.Connections)
             {
-                return Color;
+                everyCon.Send(sendGameStatus);
             }
         }
 
-        class JokerTile : Tile
+        public void SendChat(string nickname, string message)
         {
+            var sendChatToClient = new SendChatToClientPacket(nickname, message);
+            foreach (Connection everyCon in conServer.Connections)
+            {
+                everyCon.Send(sendChatToClient);
+            }
         }
 
-        enum TileColor
+        public void SendGameOver()
         {
-            RED, YELLOW, BLUE, BLACK
-        }
+            List<PlayerInfo> ranking =
+                (from player in Game.Room.Players
+                 orderby player.Nickname //TODO orderby game.ScoreOf(player)
+                 select player.ToInfo())
+                 .ToList();
+            var endGame = new EndGamePacket(ranking);
 
-        class Manipulation
-        {
-
+            foreach (Connection everyCon in conServer.Connections)
+            {
+                everyCon.Send(endGame);
+            }
         }
     }
 }

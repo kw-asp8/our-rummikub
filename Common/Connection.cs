@@ -52,13 +52,20 @@ namespace Common
         {
             Contract.Requires(packet != null);
 
-            Packet.Serialize(packet).CopyTo(sendBuffer, 0);
-            networkStream.Write(sendBuffer, 0, sendBuffer.Length);
-            networkStream.Flush();
-
-            for (int i = 0; i < BufferSize; i++)
+            try
             {
-                sendBuffer[i] = 0;
+                Packet.Serialize(packet).CopyTo(sendBuffer, 0);
+                networkStream.Write(sendBuffer, 0, sendBuffer.Length);
+                networkStream.Flush();
+
+                for (int i = 0; i < BufferSize; i++)
+                {
+                    sendBuffer[i] = 0;
+                }
+            }
+            catch
+            {
+                Console.WriteLine("Failed to send a packet!");
             }
         }
 
