@@ -170,7 +170,7 @@ namespace Client
 
             if (btn_timer.Text == "0")
             {
-                GameResult dlg = new GameResult();
+                GameResultForm dlg = new GameResultForm();
                 tmrClock.Stop();
 
                 dlg.StartPosition = FormStartPosition.CenterParent;

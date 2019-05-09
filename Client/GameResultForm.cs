@@ -12,9 +12,9 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class GameResult : Form
+    public partial class GameResultForm : Form
     {
-        public GameResult()
+        public GameResultForm()
         {
             InitializeComponent();
             btn_regame.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, btn_regame.Width, btn_regame.Height, 30, 30));

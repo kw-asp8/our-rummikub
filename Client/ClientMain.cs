@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    static class Client
+    static class ClientMain
     {
         /// <summary>
         /// 해당 애플리케이션의 주 진입점입니다.
