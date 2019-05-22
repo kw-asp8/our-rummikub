@@ -175,8 +175,8 @@ namespace Server
         }
         public bool Run()
         {
-            TileColor previousColor = TileColor.RED;
-            TileColor currentColor = TileColor.RED;
+            TileColor beginningColor = null;
+            TileColor currentColor = null;
             int jokerNumber1 = 0;
             int jokerNumber2 = 0;
 
@@ -194,19 +194,21 @@ namespace Server
                         Tile tile2 = Tiles[i - 1];
                         NumberTile numberTile2 = (NumberTile)tile2;
                         if (numberTile2.Number != numberTile.Number + 1)
-                            return false;
+                            return false;//전타일 +1 이 아니면 RUN아님
                     }
-                    if (i == 0) previousColor = numberTile.Color;
+                    if (i == 0) beginningColor = numberTile.Color;
                     currentColor = numberTile.Color;
                 }
                 else if (tile is JokerTile)
                 {
-                    //다음에 읽은 타일이 조커라면
-                    Tile tile2 = Tiles[i - 1];
-                    NumberTile numberTile2 = (NumberTile)tile2;
-                    jokerNumber2 = numberTile2.Number + 1;
+                    if(i!=0){//처음이 조커이면 무시
+                        //지금 읽은 타일이 조커라면
+                        Tile tile2 = Tiles[i - 1];
+                        NumberTile numberTile2 = (NumberTile)tile2;
+                        jokerNumber2 = numberTile2.Number + 1;
+                    }
                 }
-                if (!Equals(previousColor, currentColor)) return false;
+                if (!Equals(beginningColor, currentColor)) return false;
             }
             return true;
         }
