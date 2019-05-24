@@ -11,8 +11,8 @@ namespace Server
     {
         public Room Room { get; private set; }
         public bool IsEnabled { get; set; } = false;
-        public Dictionary<Location, Tile> PreviousTable { get; private set; } = new Dictionary<Location, Tile>();
-        public Dictionary<Location, Tile> Table { get; private set; } = new Dictionary<Location, Tile>();
+        public Tile[,] PreviousTable { get; private set; } = new Tile[20,20];
+        public Tile[,] Table { get; private set; } = new Tile[20,20];
         public List<Tile> Dummy { get; private set; } = new List<Tile>();
         public Player CurrentPlayer { get; private set; }
 
@@ -29,8 +29,8 @@ namespace Server
             {
                 player.ClearGameData();
             }
-            PreviousTable.Clear();
-            Table.Clear();
+            PreviousTable= null;
+            Table = null;
             InitDummy();
         }
 
@@ -115,17 +115,35 @@ namespace Server
 
         public List<TileSet> GetTileSets()//타일의 모든 조합을 가져옴
         {
-            return new List<TileSet>(); //TODO
+            List<Tile> Set = new List<Tile>();
+            List<TileSet> totalSet = new List<TileSet>();
+            for (int i=0;i<=19;i++ )
+            {
+                for(int j = 0; i <= 19; i++)
+                {
+                    if (Table[i,j] != null)
+                        Set.Add(Table[i, j]);
+                    else
+                    {
+                        if (Set.Count() != 0)
+                        {
+                            totalSet.Add(new TileSet(new List<Tile>(Set)));
+                            Set.Clear();
+                        }
+                    }
+                }
+            }
+            return totalSet; //TODO
         }
 
         public void Rollback()//rollback 버튼 클릭시
         {
-            Table = new Dictionary<Location, Tile>(PreviousTable);
+            Table = PreviousTable;
         }
 
         public bool HasAnyInvalidTileSet()
         {
-            PreviousTable = new Dictionary<Location, Tile>(Table);
+            PreviousTable = Table;
             bool hasInvalidSet = false;
             foreach (TileSet tileSet in GetTileSets())
             {
@@ -175,8 +193,8 @@ namespace Server
         }
         public bool Run()
         {
-            TileColor beginningColor = null;
-            TileColor currentColor = null;
+            TileColor beginningColor = TileColor.BLACK;
+            TileColor currentColor = TileColor.BLACK;
             int jokerNumber1 = 0;
             int jokerNumber2 = 0;
 
