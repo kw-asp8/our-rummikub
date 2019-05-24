@@ -175,8 +175,8 @@ namespace Server
         }
         public bool Run()
         {
-            TileColor beginningColor = null;
-            TileColor currentColor = null;
+            TileColor beginningColor;
+            TileColor currentColor;
             int jokerNumber1 = 0;
             int jokerNumber2 = 0;
 
@@ -222,7 +222,8 @@ namespace Server
         {
             return !(Run() && Group()); //둘다 참이 아니라면
         }
-    }
+
+     }
 
     public class Tile
     {

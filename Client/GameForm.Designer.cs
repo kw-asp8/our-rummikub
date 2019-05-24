@@ -74,22 +74,22 @@
             this.Chatting.Controls.Add(this.btn_send);
             this.Chatting.Controls.Add(this.txtbox_chat);
             this.Chatting.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.Chatting.Location = new System.Drawing.Point(0, 508);
+            this.Chatting.Location = new System.Drawing.Point(0, 635);
             this.Chatting.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Chatting.Name = "Chatting";
-            this.Chatting.Size = new System.Drawing.Size(748, 123);
+            this.Chatting.Size = new System.Drawing.Size(855, 154);
             this.Chatting.TabIndex = 0;
             // 
             // txt_log
             // 
             this.txt_log.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(41)))), ((int)(((byte)(41)))), ((int)(((byte)(41)))));
             this.txt_log.ForeColor = System.Drawing.Color.White;
-            this.txt_log.Location = new System.Drawing.Point(11, 4);
+            this.txt_log.Location = new System.Drawing.Point(13, 5);
             this.txt_log.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_log.Multiline = true;
             this.txt_log.Name = "txt_log";
             this.txt_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txt_log.Size = new System.Drawing.Size(728, 76);
+            this.txt_log.Size = new System.Drawing.Size(831, 94);
             this.txt_log.TabIndex = 4;
             // 
             // btn_send
@@ -97,10 +97,10 @@
             this.btn_send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_send.Cursor = System.Windows.Forms.Cursors.PanWest;
             this.btn_send.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_send.Location = new System.Drawing.Point(673, 84);
+            this.btn_send.Location = new System.Drawing.Point(769, 105);
             this.btn_send.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_send.Name = "btn_send";
-            this.btn_send.Size = new System.Drawing.Size(66, 29);
+            this.btn_send.Size = new System.Drawing.Size(75, 36);
             this.btn_send.TabIndex = 3;
             this.btn_send.Text = "전송";
             this.btn_send.UseVisualStyleBackColor = false;
@@ -108,12 +108,12 @@
             // 
             // txtbox_chat
             // 
-            this.txtbox_chat.Location = new System.Drawing.Point(11, 84);
+            this.txtbox_chat.Location = new System.Drawing.Point(13, 105);
             this.txtbox_chat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtbox_chat.Multiline = true;
             this.txtbox_chat.Name = "txtbox_chat";
             this.txtbox_chat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbox_chat.Size = new System.Drawing.Size(656, 30);
+            this.txtbox_chat.Size = new System.Drawing.Size(749, 36);
             this.txtbox_chat.TabIndex = 2;
             // 
             // MainForm
@@ -137,16 +137,17 @@
             this.MainForm.Location = new System.Drawing.Point(0, 0);
             this.MainForm.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MainForm.Name = "MainForm";
-            this.MainForm.Size = new System.Drawing.Size(748, 508);
+            this.MainForm.Size = new System.Drawing.Size(855, 635);
             this.MainForm.TabIndex = 1;
             this.MainForm.MouseDown += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseDown);
             this.MainForm.MouseMove += new System.Windows.Forms.MouseEventHandler(this.MainForm_MouseMove);
             // 
             // btnStart
             // 
-            this.btnStart.Location = new System.Drawing.Point(11, 397);
+            this.btnStart.Location = new System.Drawing.Point(13, 496);
+            this.btnStart.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.btnStart.Name = "btnStart";
-            this.btnStart.Size = new System.Drawing.Size(73, 36);
+            this.btnStart.Size = new System.Drawing.Size(83, 45);
             this.btnStart.TabIndex = 2;
             this.btnStart.Text = "Start Game";
             this.btnStart.UseVisualStyleBackColor = true;
@@ -159,10 +160,10 @@
             this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_return.FlatAppearance.BorderSize = 0;
             this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_return.Location = new System.Drawing.Point(637, 354);
+            this.btn_return.Location = new System.Drawing.Point(728, 442);
             this.btn_return.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_return.Name = "btn_return";
-            this.btn_return.Size = new System.Drawing.Size(102, 79);
+            this.btn_return.Size = new System.Drawing.Size(117, 99);
             this.btn_return.TabIndex = 12;
             this.btn_return.UseVisualStyleBackColor = false;
             this.btn_return.Click += new System.EventHandler(this.Btn_return_Click);
@@ -174,10 +175,10 @@
             this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_complete.FlatAppearance.BorderSize = 0;
             this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_complete.Location = new System.Drawing.Point(636, 288);
+            this.btn_complete.Location = new System.Drawing.Point(727, 360);
             this.btn_complete.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_complete.Name = "btn_complete";
-            this.btn_complete.Size = new System.Drawing.Size(102, 66);
+            this.btn_complete.Size = new System.Drawing.Size(117, 82);
             this.btn_complete.TabIndex = 11;
             this.btn_complete.UseVisualStyleBackColor = false;
             this.btn_complete.Click += new System.EventHandler(this.Btn_complete_Click);
@@ -186,10 +187,10 @@
             // 
             this.panel2.Controls.Add(this.tileTable);
             this.panel2.Controls.Add(this.pictureBox1);
-            this.panel2.Location = new System.Drawing.Point(103, 374);
+            this.panel2.Location = new System.Drawing.Point(118, 468);
             this.panel2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(527, 102);
+            this.panel2.Size = new System.Drawing.Size(602, 128);
             this.panel2.TabIndex = 10;
             // 
             // tileTable
@@ -202,7 +203,7 @@
             this.tileTable.Location = new System.Drawing.Point(0, 0);
             this.tileTable.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.tileTable.Name = "tileTable";
-            this.tileTable.Size = new System.Drawing.Size(527, 102);
+            this.tileTable.Size = new System.Drawing.Size(602, 128);
             this.tileTable.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.tileTable.TabIndex = 1;
             this.tileTable.TabStop = false;
@@ -213,7 +214,7 @@
             this.pictureBox1.Location = new System.Drawing.Point(0, 0);
             this.pictureBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(527, 102);
+            this.pictureBox1.Size = new System.Drawing.Size(602, 128);
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
@@ -222,9 +223,9 @@
             this.lbl_exit.AutoSize = true;
             this.lbl_exit.Font = new System.Drawing.Font("Microsoft JhengHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_exit.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lbl_exit.Location = new System.Drawing.Point(716, 2);
+            this.lbl_exit.Location = new System.Drawing.Point(818, 2);
             this.lbl_exit.Name = "lbl_exit";
-            this.lbl_exit.Size = new System.Drawing.Size(27, 28);
+            this.lbl_exit.Size = new System.Drawing.Size(34, 36);
             this.lbl_exit.TabIndex = 9;
             this.lbl_exit.Text = "X";
             this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
@@ -238,10 +239,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile4.BackColor = System.Drawing.Color.Transparent;
             this.profile4.Image = global::Client.Properties.Resources.프사4;
-            this.profile4.Location = new System.Drawing.Point(6, 288);
+            this.profile4.Location = new System.Drawing.Point(7, 360);
             this.profile4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.profile4.Name = "profile4";
-            this.profile4.Size = new System.Drawing.Size(90, 105);
+            this.profile4.Size = new System.Drawing.Size(103, 100);
             this.profile4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile4.TabIndex = 6;
             this.profile4.TabStop = false;
@@ -253,10 +254,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile3.BackColor = System.Drawing.Color.Transparent;
             this.profile3.Image = global::Client.Properties.Resources.프사3;
-            this.profile3.Location = new System.Drawing.Point(6, 203);
+            this.profile3.Location = new System.Drawing.Point(7, 254);
             this.profile3.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.profile3.Name = "profile3";
-            this.profile3.Size = new System.Drawing.Size(90, 105);
+            this.profile3.Size = new System.Drawing.Size(103, 100);
             this.profile3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile3.TabIndex = 5;
             this.profile3.TabStop = false;
@@ -268,10 +269,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile2.BackColor = System.Drawing.Color.Transparent;
             this.profile2.Image = global::Client.Properties.Resources.프사2;
-            this.profile2.Location = new System.Drawing.Point(6, 118);
+            this.profile2.Location = new System.Drawing.Point(7, 148);
             this.profile2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.profile2.Name = "profile2";
-            this.profile2.Size = new System.Drawing.Size(90, 105);
+            this.profile2.Size = new System.Drawing.Size(103, 100);
             this.profile2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile2.TabIndex = 4;
             this.profile2.TabStop = false;
@@ -283,10 +284,10 @@
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile1.BackColor = System.Drawing.Color.Transparent;
             this.profile1.Image = global::Client.Properties.Resources.프사1;
-            this.profile1.Location = new System.Drawing.Point(6, 34);
+            this.profile1.Location = new System.Drawing.Point(7, 42);
             this.profile1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.profile1.Name = "profile1";
-            this.profile1.Size = new System.Drawing.Size(90, 105);
+            this.profile1.Size = new System.Drawing.Size(103, 100);
             this.profile1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.profile1.TabIndex = 2;
             this.profile1.TabStop = false;
@@ -295,10 +296,10 @@
             // 
             this.panel1.Controls.Add(this.lbl_title);
             this.panel1.Controls.Add(this.Grid_tile);
-            this.panel1.Location = new System.Drawing.Point(103, 34);
+            this.panel1.Location = new System.Drawing.Point(118, 42);
             this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(527, 335);
+            this.panel1.Size = new System.Drawing.Size(602, 419);
             this.panel1.TabIndex = 3;
             // 
             // lbl_title
@@ -311,9 +312,9 @@
             this.lbl_title.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_title.Font = new System.Drawing.Font("Garamond", 30F, System.Drawing.FontStyle.Bold);
             this.lbl_title.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_title.Location = new System.Drawing.Point(151, 135);
+            this.lbl_title.Location = new System.Drawing.Point(173, 169);
             this.lbl_title.Name = "lbl_title";
-            this.lbl_title.Size = new System.Drawing.Size(214, 45);
+            this.lbl_title.Size = new System.Drawing.Size(268, 56);
             this.lbl_title.TabIndex = 1;
             this.lbl_title.Text = "Rummikub";
             this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -329,7 +330,7 @@
             this.Grid_tile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Grid_tile.Name = "Grid_tile";
             this.Grid_tile.RowTemplate.Height = 27;
-            this.Grid_tile.Size = new System.Drawing.Size(527, 335);
+            this.Grid_tile.Size = new System.Drawing.Size(602, 419);
             this.Grid_tile.TabIndex = 0;
             // 
             // btn_sort_col
@@ -341,10 +342,10 @@
             this.btn_sort_col.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_sort_col.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_sort_col.Image = global::Client.Properties.Resources.buttonImage;
-            this.btn_sort_col.Location = new System.Drawing.Point(636, 203);
+            this.btn_sort_col.Location = new System.Drawing.Point(727, 254);
             this.btn_sort_col.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_sort_col.Name = "btn_sort_col";
-            this.btn_sort_col.Size = new System.Drawing.Size(102, 80);
+            this.btn_sort_col.Size = new System.Drawing.Size(117, 100);
             this.btn_sort_col.TabIndex = 2;
             this.btn_sort_col.UseVisualStyleBackColor = false;
             // 
@@ -357,10 +358,10 @@
             this.btn_sort_num.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_sort_num.Font = new System.Drawing.Font("Gadugi", 20F);
             this.btn_sort_num.ForeColor = System.Drawing.Color.Red;
-            this.btn_sort_num.Location = new System.Drawing.Point(636, 118);
+            this.btn_sort_num.Location = new System.Drawing.Point(727, 148);
             this.btn_sort_num.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_sort_num.Name = "btn_sort_num";
-            this.btn_sort_num.Size = new System.Drawing.Size(102, 80);
+            this.btn_sort_num.Size = new System.Drawing.Size(117, 100);
             this.btn_sort_num.TabIndex = 1;
             this.btn_sort_num.Text = "789";
             this.btn_sort_num.UseVisualStyleBackColor = false;
@@ -374,10 +375,10 @@
             this.btn_timer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_timer.Font = new System.Drawing.Font("Gadugi", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_timer.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btn_timer.Location = new System.Drawing.Point(636, 34);
+            this.btn_timer.Location = new System.Drawing.Point(727, 42);
             this.btn_timer.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_timer.Name = "btn_timer";
-            this.btn_timer.Size = new System.Drawing.Size(102, 80);
+            this.btn_timer.Size = new System.Drawing.Size(117, 100);
             this.btn_timer.TabIndex = 0;
             this.btn_timer.Text = "60";
             this.btn_timer.UseVisualStyleBackColor = false;
@@ -400,10 +401,10 @@
             // 
             // GameForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(748, 631);
+            this.ClientSize = new System.Drawing.Size(855, 789);
             this.Controls.Add(this.MainForm);
             this.Controls.Add(this.Chatting);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;

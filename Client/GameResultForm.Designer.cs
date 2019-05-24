@@ -52,9 +52,9 @@
             this.lbl_exit.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbl_exit.Font = new System.Drawing.Font("Microsoft JhengHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_exit.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lbl_exit.Location = new System.Drawing.Point(544, 0);
+            this.lbl_exit.Location = new System.Drawing.Point(619, 0);
             this.lbl_exit.Name = "lbl_exit";
-            this.lbl_exit.Size = new System.Drawing.Size(27, 28);
+            this.lbl_exit.Size = new System.Drawing.Size(34, 36);
             this.lbl_exit.TabIndex = 10;
             this.lbl_exit.Text = "X";
             this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
@@ -66,9 +66,9 @@
             this.lbl_result.AutoSize = true;
             this.lbl_result.Font = new System.Drawing.Font("Cambria", 24F);
             this.lbl_result.ForeColor = System.Drawing.Color.White;
-            this.lbl_result.Location = new System.Drawing.Point(190, 54);
+            this.lbl_result.Location = new System.Drawing.Point(217, 68);
             this.lbl_result.Name = "lbl_result";
-            this.lbl_result.Size = new System.Drawing.Size(190, 37);
+            this.lbl_result.Size = new System.Drawing.Size(234, 47);
             this.lbl_result.TabIndex = 11;
             this.lbl_result.Text = "Game Result";
             // 
@@ -79,9 +79,9 @@
             this.lbl_1.AutoSize = true;
             this.lbl_1.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_1.ForeColor = System.Drawing.Color.White;
-            this.lbl_1.Location = new System.Drawing.Point(127, 120);
+            this.lbl_1.Location = new System.Drawing.Point(145, 150);
             this.lbl_1.Name = "lbl_1";
-            this.lbl_1.Size = new System.Drawing.Size(36, 32);
+            this.lbl_1.Size = new System.Drawing.Size(42, 38);
             this.lbl_1.TabIndex = 12;
             this.lbl_1.Text = "1.";
             // 
@@ -92,9 +92,9 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(127, 168);
+            this.label1.Location = new System.Drawing.Point(145, 210);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(36, 32);
+            this.label1.Size = new System.Drawing.Size(42, 38);
             this.label1.TabIndex = 13;
             this.label1.Text = "2.";
             // 
@@ -105,9 +105,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.White;
-            this.label2.Location = new System.Drawing.Point(127, 216);
+            this.label2.Location = new System.Drawing.Point(145, 270);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(36, 32);
+            this.label2.Size = new System.Drawing.Size(42, 38);
             this.label2.TabIndex = 14;
             this.label2.Text = "3.";
             // 
@@ -118,9 +118,9 @@
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(127, 263);
+            this.label3.Location = new System.Drawing.Point(145, 329);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(36, 32);
+            this.label3.Size = new System.Drawing.Size(42, 38);
             this.label3.TabIndex = 15;
             this.label3.Text = "4.";
             // 
@@ -131,9 +131,9 @@
             this.lbl_first.AutoSize = true;
             this.lbl_first.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_first.ForeColor = System.Drawing.Color.White;
-            this.lbl_first.Location = new System.Drawing.Point(178, 120);
+            this.lbl_first.Location = new System.Drawing.Point(203, 150);
             this.lbl_first.Name = "lbl_first";
-            this.lbl_first.Size = new System.Drawing.Size(0, 32);
+            this.lbl_first.Size = new System.Drawing.Size(0, 38);
             this.lbl_first.TabIndex = 16;
             // 
             // lbl_second
@@ -143,9 +143,9 @@
             this.lbl_second.AutoSize = true;
             this.lbl_second.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_second.ForeColor = System.Drawing.Color.White;
-            this.lbl_second.Location = new System.Drawing.Point(178, 168);
+            this.lbl_second.Location = new System.Drawing.Point(203, 210);
             this.lbl_second.Name = "lbl_second";
-            this.lbl_second.Size = new System.Drawing.Size(0, 32);
+            this.lbl_second.Size = new System.Drawing.Size(0, 38);
             this.lbl_second.TabIndex = 17;
             // 
             // lbl_third
@@ -155,9 +155,9 @@
             this.lbl_third.AutoSize = true;
             this.lbl_third.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_third.ForeColor = System.Drawing.Color.White;
-            this.lbl_third.Location = new System.Drawing.Point(178, 216);
+            this.lbl_third.Location = new System.Drawing.Point(203, 270);
             this.lbl_third.Name = "lbl_third";
-            this.lbl_third.Size = new System.Drawing.Size(0, 32);
+            this.lbl_third.Size = new System.Drawing.Size(0, 38);
             this.lbl_third.TabIndex = 18;
             // 
             // lbl_forth
@@ -167,9 +167,9 @@
             this.lbl_forth.AutoSize = true;
             this.lbl_forth.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_forth.ForeColor = System.Drawing.Color.White;
-            this.lbl_forth.Location = new System.Drawing.Point(178, 263);
+            this.lbl_forth.Location = new System.Drawing.Point(203, 329);
             this.lbl_forth.Name = "lbl_forth";
-            this.lbl_forth.Size = new System.Drawing.Size(0, 32);
+            this.lbl_forth.Size = new System.Drawing.Size(0, 38);
             this.lbl_forth.TabIndex = 19;
             // 
             // lbl_first_score
@@ -179,9 +179,9 @@
             this.lbl_first_score.AutoSize = true;
             this.lbl_first_score.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_first_score.ForeColor = System.Drawing.Color.White;
-            this.lbl_first_score.Location = new System.Drawing.Point(400, 120);
+            this.lbl_first_score.Location = new System.Drawing.Point(457, 150);
             this.lbl_first_score.Name = "lbl_first_score";
-            this.lbl_first_score.Size = new System.Drawing.Size(30, 32);
+            this.lbl_first_score.Size = new System.Drawing.Size(35, 38);
             this.lbl_first_score.TabIndex = 20;
             this.lbl_first_score.Text = "0";
             // 
@@ -192,9 +192,9 @@
             this.lbl_second_score.AutoSize = true;
             this.lbl_second_score.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_second_score.ForeColor = System.Drawing.Color.White;
-            this.lbl_second_score.Location = new System.Drawing.Point(400, 168);
+            this.lbl_second_score.Location = new System.Drawing.Point(457, 210);
             this.lbl_second_score.Name = "lbl_second_score";
-            this.lbl_second_score.Size = new System.Drawing.Size(30, 32);
+            this.lbl_second_score.Size = new System.Drawing.Size(35, 38);
             this.lbl_second_score.TabIndex = 21;
             this.lbl_second_score.Text = "0";
             // 
@@ -205,9 +205,9 @@
             this.lbl_third_score.AutoSize = true;
             this.lbl_third_score.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_third_score.ForeColor = System.Drawing.Color.White;
-            this.lbl_third_score.Location = new System.Drawing.Point(400, 216);
+            this.lbl_third_score.Location = new System.Drawing.Point(457, 270);
             this.lbl_third_score.Name = "lbl_third_score";
-            this.lbl_third_score.Size = new System.Drawing.Size(30, 32);
+            this.lbl_third_score.Size = new System.Drawing.Size(35, 38);
             this.lbl_third_score.TabIndex = 22;
             this.lbl_third_score.Text = "0";
             // 
@@ -218,9 +218,9 @@
             this.lbl_forth_score.AutoSize = true;
             this.lbl_forth_score.Font = new System.Drawing.Font("Cambria", 19.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_forth_score.ForeColor = System.Drawing.Color.White;
-            this.lbl_forth_score.Location = new System.Drawing.Point(400, 263);
+            this.lbl_forth_score.Location = new System.Drawing.Point(457, 329);
             this.lbl_forth_score.Name = "lbl_forth_score";
-            this.lbl_forth_score.Size = new System.Drawing.Size(30, 32);
+            this.lbl_forth_score.Size = new System.Drawing.Size(35, 38);
             this.lbl_forth_score.TabIndex = 23;
             this.lbl_forth_score.Text = "0";
             // 
@@ -231,10 +231,10 @@
             this.btn_regame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_regame.Font = new System.Drawing.Font("Georgia", 17F);
             this.btn_regame.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_regame.Location = new System.Drawing.Point(107, 327);
+            this.btn_regame.Location = new System.Drawing.Point(122, 409);
             this.btn_regame.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_regame.Name = "btn_regame";
-            this.btn_regame.Size = new System.Drawing.Size(121, 50);
+            this.btn_regame.Size = new System.Drawing.Size(138, 62);
             this.btn_regame.TabIndex = 24;
             this.btn_regame.Text = "Regame";
             this.btn_regame.UseVisualStyleBackColor = false;
@@ -246,20 +246,20 @@
             this.btn_main.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_main.Font = new System.Drawing.Font("Georgia", 17F);
             this.btn_main.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.btn_main.Location = new System.Drawing.Point(330, 327);
+            this.btn_main.Location = new System.Drawing.Point(377, 409);
             this.btn_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_main.Name = "btn_main";
-            this.btn_main.Size = new System.Drawing.Size(121, 50);
+            this.btn_main.Size = new System.Drawing.Size(138, 62);
             this.btn_main.TabIndex = 25;
             this.btn_main.Text = "Main";
             this.btn_main.UseVisualStyleBackColor = false;
             // 
             // GameResultForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(120)))), ((int)(((byte)(240)))));
-            this.ClientSize = new System.Drawing.Size(571, 425);
+            this.ClientSize = new System.Drawing.Size(653, 531);
             this.Controls.Add(this.btn_main);
             this.Controls.Add(this.btn_regame);
             this.Controls.Add(this.lbl_forth_score);
