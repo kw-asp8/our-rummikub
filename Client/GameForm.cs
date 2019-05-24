@@ -15,16 +15,18 @@ namespace Client
 {
     public partial class GameForm : Form
     {
+        private List<TileGridPanel> tileGridPanels = new List<TileGridPanel>();
+
         private bool clickPlus = false;
         public Button newButton = new Button();
 
         Timer timer = new Timer();
 
-        private Client client;
+        private GameClient client;
         private RoomStatus roomStatus;
         private GameStatus gameStatus;
 
-        public GameForm(Client client)
+        public GameForm(GameClient client)
         {
             this.client = client;
 
@@ -32,12 +34,18 @@ namespace Client
             btn_timer.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_timer.Width, btn_timer.Height, 15, 15));
             btn_sort_num.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_sort_num.Width, btn_sort_num.Height, 15, 15));
             btn_sort_col.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, btn_sort_col.Width, btn_sort_col.Height, 15, 15));
-            Grid_tile.Region = Region.FromHrgn(CreateRoundRectRgn(2, 2, Grid_tile.Width, Grid_tile.Height, 15, 15));
-            Grid_tile.BorderStyle = BorderStyle.FixedSingle; //border?
             profile1.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile1.Width, profile1.Height, 30, 50));
             profile2.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile2.Width, profile2.Height, 30, 50));
             profile3.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile3.Width, profile3.Height, 30, 50));
             profile4.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, profile4.Width, profile4.Height, 30, 50));
+
+            tileGridPanels.Add(tgpTable);
+            tileGridPanels.Add(tgpHolding);
+
+            tgpTable.TileSize = new Size(27, 36);
+            tgpTable.SetCapacity(20, 10);
+            tgpHolding.TileSize = new Size(36, 48);
+            tgpHolding.SetCapacity(20, 2);
 
             //GameForm form1 = new GameForm();
             //form1.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -227,7 +235,14 @@ namespace Client
 
         private void Btn_complete_Click(object sender, EventArgs e)
         {
-            client.NextTurn();
+            //TODO client.NextTurn();
+            Tile tile = new Tile(tileGridPanels);
+            tile.Size = new Size(40, 40);
+            tile.Location = new Point(100, 100);
+            Random rnd = new Random();
+            tile.BackColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+
+            tgpHolding.PlaceAtFirst(tile);
         }
 
         private void Btn_return_Click(object sender, EventArgs e)

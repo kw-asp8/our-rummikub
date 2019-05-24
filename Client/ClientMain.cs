@@ -11,7 +11,7 @@ namespace Client
         [STAThread]
         static void Main()
         {
-            Client client = new Client();
+            GameClient client = new GameClient();
             client.RunInitialForm();
         }
     }

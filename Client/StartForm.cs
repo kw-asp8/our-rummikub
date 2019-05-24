@@ -15,9 +15,9 @@ namespace Client
         Boolean isMove = false;
         Point fPt;
 
-        private Client client;
+        private GameClient client;
 
-        public StartForm(Client client)
+        public StartForm(GameClient client)
         {
             this.client = client;
             InitializeComponent();

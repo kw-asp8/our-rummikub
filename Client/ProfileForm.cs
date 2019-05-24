@@ -15,9 +15,9 @@ namespace Client
         Boolean isMove = false;
         Point fPt;
 
-        private Client client;
+        private GameClient client;
         
-        public ProfileForm(Client client)
+        public ProfileForm(GameClient client)
         {
             this.client = client;
             InitializeComponent();

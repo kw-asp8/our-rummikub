@@ -47,7 +47,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Client.cs" />
+    <Compile Include="GameClient.cs" />
     <Compile Include="ConnectionClient.cs" />
     <Compile Include="GameForm.cs">
       <SubType>Form</SubType>
@@ -74,6 +74,18 @@
     </Compile>
     <Compile Include="StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tile.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Tile.Designer.cs">
+      <DependentUpon>Tile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="TileGridPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="TileGridPanel.Designer.cs">
+      <DependentUpon>TileGridPanel.cs</DependentUpon>
     </Compile>
     <EmbeddedResource Include="GameForm.resx">
       <DependentUpon>GameForm.cs</DependentUpon>

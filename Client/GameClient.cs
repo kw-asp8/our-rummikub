@@ -9,12 +9,12 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public class Client
+    public class GameClient
     {
         private ConnectionClient conClient = new ConnectionClient();
         private GameForm gameForm;
 
-        public Client()
+        public GameClient()
         {
             conClient.RegisterPacketHandler(PacketType.CB_SendRoomStatus, (con, packet) => {
                 while (gameForm == null) ;
@@ -50,7 +50,7 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartForm(this));
+            Application.Run(new GameForm(this));
         }
 
         public void OpenGameForm()
