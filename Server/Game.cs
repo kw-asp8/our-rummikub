@@ -11,8 +11,8 @@ namespace Server
     {
         public Room Room { get; private set; }
         public bool IsEnabled { get; set; } = false;
-        public Tile[,] PreviousTable { get; private set; } = new Tile[20,20];
-        public Tile[,] Table { get; private set; } = new Tile[20,20];
+        public Dictionary<Location, Tile> PreviousTable { get; private set; } = new Dictionary<Location, Tile>();
+        public Dictionary<Location, Tile> Table { get; private set; } = new Dictionary<Location, Tile>();
         public List<Tile> Dummy { get; private set; } = new List<Tile>();
         public Player CurrentPlayer { get; private set; }
 
@@ -29,8 +29,8 @@ namespace Server
             {
                 player.ClearGameData();
             }
-            PreviousTable= null;
-            Table = null;
+            PreviousTable.Clear();
+            Table.Clear();
             InitDummy();
         }
 
@@ -115,35 +115,17 @@ namespace Server
 
         public List<TileSet> GetTileSets()//타일의 모든 조합을 가져옴
         {
-            List<Tile> Set = new List<Tile>();
-            List<TileSet> totalSet = new List<TileSet>();
-            for (int i=0;i<=19;i++ )
-            {
-                for(int j = 0; i <= 19; i++)
-                {
-                    if (Table[i,j] != null)
-                        Set.Add(Table[i, j]);
-                    else
-                    {
-                        if (Set.Count() != 0)
-                        {
-                            totalSet.Add(new TileSet(new List<Tile>(Set)));
-                            Set.Clear();
-                        }
-                    }
-                }
-            }
-            return totalSet; //TODO
+            return new List<TileSet>(); //TODO
         }
 
         public void Rollback()//rollback 버튼 클릭시
         {
-            Table = PreviousTable;
+            Table = new Dictionary<Location, Tile>(PreviousTable);
         }
 
         public bool HasAnyInvalidTileSet()
         {
-            PreviousTable = Table;
+            PreviousTable = new Dictionary<Location, Tile>(Table);
             bool hasInvalidSet = false;
             foreach (TileSet tileSet in GetTileSets())
             {
@@ -186,15 +168,16 @@ namespace Server
     public class TileSet
     {
         public List<Tile> Tiles { get; private set; } = new List<Tile>();
-
+        
         public TileSet(List<Tile> tiles)
         {
             this.Tiles = tiles;
         }
+        
         public bool Run()
         {
-            TileColor beginningColor = TileColor.BLACK;
-            TileColor currentColor = TileColor.BLACK;
+            TileColor beginningColor=TileColor.BLACK;
+            TileColor currentColor= TileColor.BLACK; 
             int jokerNumber1 = 0;
             int jokerNumber2 = 0;
 
@@ -205,25 +188,49 @@ namespace Server
                 if (tile is NumberTile)
                 {
                     NumberTile numberTile = (NumberTile)tile;
-                    if (Tiles[i - 1] is JokerTile)//전타일이 조커일때
-                        jokerNumber1 = numberTile.Number - 1;
-                    else
+                    if (i !=0)
                     {
-                        Tile tile2 = Tiles[i - 1];
-                        NumberTile numberTile2 = (NumberTile)tile2;
-                        if (numberTile2.Number != numberTile.Number + 1)
-                            return false;//전타일 +1 이 아니면 RUN아님
+                        if (Tiles[i - 1] is JokerTile)//전타일이 조커일때
+                        {
+                            jokerNumber1 = numberTile.Number - 1;
+                            if (i >= 2) {
+                                if (Tiles[i - 2] is JokerTile) {//조커 조커 일 경우
+                                    jokerNumber2 = jokerNumber1 + 1;
+                                }
+                                else
+                                {
+                                    Tile tile2 = Tiles[i - 2];
+                                    NumberTile twotilebefore = (NumberTile)tile2;
+                                    if ((twotilebefore.Number+1)!= jokerNumber1)
+                                        return false;
+                                }
+                            }
+                            beginningColor = numberTile.Color;
+                        }
+                        else
+                        {
+                            Tile tile2 = Tiles[i - 1];
+                            NumberTile numberTile2 = (NumberTile)tile2;
+                            if (numberTile.Number != numberTile2.Number + 1)
+                                return false;//전타일 +1 이 아니면 RUN아님
+                        }
                     }
                     if (i == 0) beginningColor = numberTile.Color;
                     currentColor = numberTile.Color;
                 }
                 else if (tile is JokerTile)
                 {
-                    if(i!=0){//처음이 조커이면 무시
+                    if (i != 0)
+                    {//처음이 조커이면 무시
                         //지금 읽은 타일이 조커라면
                         Tile tile2 = Tiles[i - 1];
-                        NumberTile numberTile2 = (NumberTile)tile2;
-                        jokerNumber2 = numberTile2.Number + 1;
+                        if (tile2 is JokerTile)
+                            jokerNumber2 = jokerNumber1 + 1;
+                        else
+                        {
+                            NumberTile numberTile2 = (NumberTile)tile2;
+                            jokerNumber2 = numberTile2.Number + 1;
+                        }
                     }
                 }
                 if (!Equals(beginningColor, currentColor)) return false;
@@ -233,6 +240,46 @@ namespace Server
 
         public bool Group()
         {
+            List<TileColor> tilesColor = new List<TileColor>();
+            int tileNumber1 = 0;
+            int count_numberTile = 0;
+
+            if (Tiles.Count < 3 || Tiles.Count > 4) return false;
+            //타일의 개수 3개 미만 4개 초과일 경우 바로 false 반환
+
+            for (int i = 0; i < Tiles.Count; i++)
+            {
+                Tile tile = Tiles[i];
+                if (tile is NumberTile)
+                { //조커 타일일 경우 고려x
+                    NumberTile numberTile = (NumberTile)tile;
+                    count_numberTile++;
+
+                    if (tilesColor.Count == 0)
+                    {
+                        tilesColor.Add(numberTile.Color);
+                        tileNumber1 = numberTile.Number;
+                        //처음 타일은 바로 넣기
+                    }
+                    else
+                    {
+                        if (tileNumber1 != numberTile.Number)
+                            return false;
+                        //맨 처음 숫자와 다를 경우 false 반환
+
+                        for (int j = 0; j < count_numberTile-1; j++)
+                        {
+                            //그 전까지의 타일 색상 비교
+                            if (tilesColor[j] == numberTile.Color)
+                                return false;
+                            else
+                            {
+                                tilesColor.Add(numberTile.Color);
+                            }
+                        }
+                    }
+                }
+            }
             return true;
         }
 
