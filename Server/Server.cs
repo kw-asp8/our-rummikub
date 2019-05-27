@@ -113,12 +113,11 @@ namespace Server
 
         public void SendGameStatus()
         {
-            GameStatus gameStatus = Game.ToStatus();
-            var sendGameStatus = new SendGameStatusPacket(gameStatus);
-
-            foreach (Connection everyCon in conServer.Connections)
+            foreach (Player player in Game.Room.Players)
             {
-                everyCon.Send(sendGameStatus);
+                GameStatus gameStatus = Game.StatusFor(player);
+                var sendGameStatus = new SendGameStatusPacket(gameStatus);
+                player.Connection.Send(sendGameStatus);
             }
         }
 

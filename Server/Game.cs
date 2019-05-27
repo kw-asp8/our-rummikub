@@ -164,10 +164,16 @@ namespace Server
             CurrentPlayer = Room.Players[nextIndex];
         }
 
-        public GameStatus ToStatus()
+        public GameStatus StatusFor(Player clientPlayer)
         {
             PlayerInfo currentPlayer = CurrentPlayer != null ? CurrentPlayer.ToInfo() : null;
-            return new GameStatus(IsEnabled, currentPlayer);
+            Dictionary<string, int> holdingTilesNumDic = new Dictionary<string, int>();
+            foreach (Player player in Room.Players)
+            {
+                holdingTilesNumDic[player.Nickname] = player.HoldingTiles.Count;
+            }
+
+            return new GameStatus(IsEnabled, currentPlayer, clientPlayer.HoldingTiles, holdingTilesNumDic);
         }
     }
 
