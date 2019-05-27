@@ -14,7 +14,7 @@ namespace Client
     {
         public Size TileSize { get; set; }
 
-        private Tile[,] tiles;
+        private TileBlock[,] tiles;
 
         public bool OptionRemoveSpaces { get; set; } = false;
 
@@ -27,7 +27,7 @@ namespace Client
         {
             if (tiles == null)
             {
-                tiles = new Tile[verticalCap, horizontalCap];
+                tiles = new TileBlock[verticalCap, horizontalCap];
             }
             else
             {
@@ -57,7 +57,7 @@ namespace Client
                 index.X >= 0 && index.X < tiles.GetLength(1));
         }
 
-        private void AddTile(Tile tile, int i, int j)
+        private void AddTile(TileBlock tile, int i, int j)
         {
             panel.Controls.Add(tile);
             tiles[i, j] = tile;
@@ -72,13 +72,13 @@ namespace Client
             }
         }
 
-        public void PlaceTile(Tile tile, int x, int y)
+        public void PlaceTile(TileBlock tile, int x, int y)
         {
             Point index = LocationToIndex(new Point(x, y));
             AddTile(tile, index.Y, index.X);
         }
 
-        public bool PlaceAtFirst(Tile tile)
+        public bool PlaceAtFirst(TileBlock tile)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
@@ -94,7 +94,7 @@ namespace Client
             return false;
         }
 
-        public void PickupTile(Tile tile)
+        public void PickupTile(TileBlock tile)
         {
             panel.Controls.Remove(tile);
             this.Parent.Controls.Add(tile);

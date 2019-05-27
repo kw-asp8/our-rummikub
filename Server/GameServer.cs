@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 
 namespace Server
 {
-    public class Server
+    public class GameServer
     {
         private ConnectionServer conServer;
         public Game Game { get; private set; } = new Game();
 
-        public Server()
+        public GameServer()
         {
             conServer = new ConnectionServer(IPAddress.Parse("127.0.0.1"), 7777);
             conServer.RegisterPacketHandler(PacketType.SB_Login, (connection, packet) =>

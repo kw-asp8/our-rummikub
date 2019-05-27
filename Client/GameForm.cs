@@ -236,7 +236,7 @@ namespace Client
         private void Btn_complete_Click(object sender, EventArgs e)
         {
             //TODO client.NextTurn();
-            Tile tile = new Tile(tileGridPanels);
+            TileBlock tile = new TileBlock(tileGridPanels);
             tile.Size = new Size(40, 40);
             tile.Location = new Point(100, 100);
             Random rnd = new Random();

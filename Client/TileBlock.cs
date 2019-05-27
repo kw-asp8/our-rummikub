@@ -10,7 +10,7 @@ using System.Windows.Forms;
 
 namespace Client
 {
-    public partial class Tile : UserControl
+    public partial class TileBlock : UserControl
     {
         private List<TileGridPanel> grids = new List<TileGridPanel>();
         private bool isDragging = false;
@@ -20,7 +20,7 @@ namespace Client
 
         public TileGridPanel ContainerGrid { get; set; } = null;
 
-        public Tile(List<TileGridPanel> grids)
+        public TileBlock(List<TileGridPanel> grids)
         {
             InitializeComponent();
             this.grids = grids;

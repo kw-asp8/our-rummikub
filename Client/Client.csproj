@@ -75,11 +75,11 @@
     <Compile Include="StartForm.Designer.cs">
       <DependentUpon>StartForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Tile.cs">
+    <Compile Include="TileBlock.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Tile.Designer.cs">
-      <DependentUpon>Tile.cs</DependentUpon>
+    <Compile Include="TileBlock.Designer.cs">
+      <DependentUpon>TileBlock.cs</DependentUpon>
     </Compile>
     <Compile Include="TileGridPanel.cs">
       <SubType>UserControl</SubType>

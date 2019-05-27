@@ -12,7 +12,7 @@ namespace Server
     {
         static void Main(string[] args)
         {
-            Server server = new Server();
+            GameServer server = new GameServer();
 
             server.Start();
             Console.WriteLine("Server has been started!");
