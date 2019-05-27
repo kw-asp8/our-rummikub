@@ -7,11 +7,14 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
 
 namespace Client
 {
     public partial class TileBlock : UserControl
     {
+        public Tile Tile { get; private set; }
+
         private List<TileGridPanel> grids = new List<TileGridPanel>();
         private bool isDragging = false;
         private Point startPoint;
@@ -20,13 +23,14 @@ namespace Client
 
         public TileGridPanel ContainerGrid { get; set; } = null;
 
-        public TileBlock(List<TileGridPanel> grids)
+        public TileBlock(Tile tile, List<TileGridPanel> grids)
         {
             InitializeComponent();
+            this.Tile = tile;
             this.grids = grids;
         }
 
-        private void Tile_MouseDown(object sender, MouseEventArgs e)
+        private void TileBlock_MouseDown(object sender, MouseEventArgs e)
         {
             isDragging = true;
             startPoint = new Point(e.X, e.Y);
@@ -42,7 +46,7 @@ namespace Client
             this.BringToFront();
         }
 
-        private void Tile_MouseMove(object sender, MouseEventArgs e)
+        private void TileBlock_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
@@ -51,7 +55,7 @@ namespace Client
             }
         }
 
-        private void Tile_MouseUp(object sender, MouseEventArgs e)
+        private void TileBlock_MouseUp(object sender, MouseEventArgs e)
         {
             isDragging = false;
 

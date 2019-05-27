@@ -49,9 +49,9 @@
             this.Controls.Add(this.text);
             this.Name = "Tile";
             this.Size = new System.Drawing.Size(100, 150);
-            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Tile_MouseDown);
-            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Tile_MouseMove);
-            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.Tile_MouseUp);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseDown);
+            this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseMove);
+            this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseUp);
             this.ResumeLayout(false);
             this.PerformLayout();
 
