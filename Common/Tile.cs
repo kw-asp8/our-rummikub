@@ -6,6 +6,7 @@ namespace Common
 {
     public interface Tile { }
 
+    [Serializable]
     public class NumberTile : Tile
     {
         public TileColor Color { get; private set; }
@@ -23,8 +24,10 @@ namespace Common
         }
     }
 
+    [Serializable]
     public class JokerTile : Tile { }
 
+    [Serializable]
     public enum TileColor
     {
         RED, YELLOW, BLUE, BLACK

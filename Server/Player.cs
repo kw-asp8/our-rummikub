@@ -13,7 +13,7 @@ namespace Server
 
         public Connection Connection { get; private set; }
         public string Nickname { get; private set; }
-        public List<Tile> HoldingTiles { get; private set; } = new List<Tile>();
+        public List<Tile> HoldingTiles { get; set; } = new List<Tile>();
         public bool HasEnrolled { get; private set; } = false;
         public List<TileSet> ReleasedTileSets { get; private set; } = new List<TileSet>();
 

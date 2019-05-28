@@ -332,7 +332,6 @@
             this.btn_timer.TabIndex = 0;
             this.btn_timer.Text = "60";
             this.btn_timer.UseVisualStyleBackColor = false;
-            this.btn_timer.Click += new System.EventHandler(this.btn_timer_Click);
             // 
             // imageList1
             // 
@@ -414,9 +413,9 @@
         private System.Windows.Forms.Button btn_return;
         private System.Windows.Forms.Timer tmrClock;
         private System.Windows.Forms.Button btnStart;
-        private TileGridPanel tgpHolding;
+        private Client.TileGridPanel tgpHolding;
         private System.Windows.Forms.Label lbl_title;
-        private TileGridPanel tgpTable;
+        private Client.TileGridPanel tgpTable;
     }
 }
 

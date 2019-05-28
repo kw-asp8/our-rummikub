@@ -10,10 +10,13 @@ namespace Common
     {
         SB_Login = 0,
         SB_StartGame,
+        SB_UpdateTable,
+        SB_UpdatePrivateTiles,
         SB_NextTurn,
         SB_SendChat,
         CB_SendRoomStatus,
         CB_SendGameStatus,
+        CB_SendTable,
         CB_SendChat,
         CB_EndGame
     }
@@ -34,6 +37,34 @@ namespace Common
     {
         public StartGamePacket() : base(PacketType.SB_StartGame)
         {
+        }
+    }
+
+    [Serializable]
+    public class UpdateTablePacket : Packet
+    {
+        public Tile Tile { get; private set; }
+
+        public int I { get; private set; }
+
+        public int J { get; private set; }
+
+        public UpdateTablePacket(Tile tile, int i, int j) : base(PacketType.SB_UpdateTable)
+        {
+            Tile = tile;
+            I = i;
+            J = j;
+        }
+    }
+
+    [Serializable]
+    public class UpdatePrivateTilesPacket : Packet
+    {
+        public List<Tile> HoldingTiles { get; private set; }
+
+        public UpdatePrivateTilesPacket(List<Tile> holdingTiles) : base(PacketType.SB_UpdatePrivateTiles)
+        {
+            HoldingTiles = holdingTiles;
         }
     }
 
@@ -77,6 +108,18 @@ namespace Common
             GameStatus = gameStatus;
         }
     }
+
+    [Serializable]
+    public class SendTablePacket : Packet
+    {
+        public Tile[,] Table { get; private set; }
+
+        public SendTablePacket(Tile[,] table) : base(PacketType.CB_SendTable)
+        {
+            Table = table;
+        }
+    }
+
 
     [Serializable]
     public class SendChatToClientPacket : Packet

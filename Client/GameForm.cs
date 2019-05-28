@@ -16,11 +16,7 @@ namespace Client
     public partial class GameForm : Form
     {
         private List<TileGridPanel> tileGridPanels = new List<TileGridPanel>();
-
-        private bool clickPlus = false;
-        public Button newButton = new Button();
-
-        Timer timer = new Timer();
+        private Timer timer = new Timer();
 
         private GameClient client;
         private RoomStatus roomStatus;
@@ -44,38 +40,13 @@ namespace Client
 
             tgpTable.TileSize = new Size(27, 36);
             tgpTable.SetCapacity(20, 10);
+            tgpTable.OnPlace += (tile, i, j) => client.UpdateTable(tile, i, j);
+            tgpTable.OnPickup += (tile, i, j) => client.UpdateTable(null, i, j);
+
             tgpHolding.TileSize = new Size(36, 48);
             tgpHolding.SetCapacity(20, 2);
-
-            //GameForm form1 = new GameForm();
-            //form1.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-        }
-
-        public class RoundButton : Button
-        {
-            protected override void OnPaint(System.Windows.Forms.PaintEventArgs e)
-            {
-                GraphicsPath grPath = new GraphicsPath();
-                grPath.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
-                this.Region = new System.Drawing.Region(grPath);
-                base.OnPaint(e);
-            }
-        }
-
-        private void btn_timer_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        class ButtonEx : Button
-        {
-            protected override void OnPaint(PaintEventArgs pevent)
-            {
-                GraphicsPath graphics = new GraphicsPath();
-                graphics.AddEllipse(0, 0, ClientSize.Width, ClientSize.Height);
-                this.Region = new System.Drawing.Region(graphics);
-                base.OnPaint(pevent);
-            }
+            tgpHolding.OnPlace += (tile, i, j) => client.UpdatePrivateTiles(tgpHolding.GetTileList());
+            tgpHolding.OnPickup += (tile, i, j) => client.UpdatePrivateTiles(tgpHolding.GetTileList());
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]            //Dll임포트
@@ -119,57 +90,6 @@ namespace Client
             lbl_exit.ForeColor = Color.FromArgb(255, 255, 255);
         }
 
-        //private void btn_plus_Click(object sender, EventArgs e)
-        //{
-        //    if(clickPlus == false)
-        //    {
-        //        btn_plus.Visible = false;
-        //        clickPlus = true;
-        //        this.btn_plus.Click -= new System.EventHandler(this.btn_plus_Click);
-        //        MainForm.Controls.Remove(btn_plus);
-
-        //        MainForm.Controls.Add(btn_complete);
-        //        this.newButton.Click += new System.EventHandler(this.btn_complete_Click);
-        //        btn_complete.Visible = true;
-
-        //        MainForm.Controls.Add(btn_return);
-        //        this.newButton.Click += new System.EventHandler(this.btn_return_Click);
-        //        btn_return.Visible = true;
-        //    }
-        //}
-
-        //private void btn_complete_Click(object sender, EventArgs e)
-        //{
-        //    btn_plus.Visible = true;
-        //    clickPlus = false;
-        //    this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
-        //    MainForm.Controls.Add(btn_plus);
-
-        //    MainForm.Controls.Add(btn_complete);
-        //    this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
-        //    btn_complete.Visible = false;
-
-        //    MainForm.Controls.Add(btn_return);
-        //    this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
-        //    btn_return.Visible = false;
-        //}
-
-        //private void btn_return_Click(object sender, EventArgs e)
-        //{
-        //    btn_plus.Visible = true;
-        //    clickPlus = false;
-        //    this.btn_plus.Click += new System.EventHandler(this.btn_plus_Click);
-        //    MainForm.Controls.Add(btn_plus);
-
-        //    MainForm.Controls.Add(btn_complete);
-        //    this.newButton.Click -= new System.EventHandler(this.btn_complete_Click);
-        //    btn_complete.Visible = false;
-
-        //    MainForm.Controls.Add(btn_return);
-        //    this.newButton.Click -= new System.EventHandler(this.btn_return_Click);
-        //    btn_return.Visible = false;
-        //}
-
         private void lbl_exit_MouseMove(object sender, MouseEventArgs e)
         {
             lbl_exit.ForeColor = Color.FromArgb(102, 102, 102);
@@ -177,15 +97,10 @@ namespace Client
 
         private void tmrClock_Tick(object sender, EventArgs e)
         {
-
-            //btn_timer.Text = (max - int.Parse(tmrClock.ToString())).ToString();
-
-            //int interval = max - int.Parse(tmrClock.ToString());
             btn_timer.Text = (int.Parse(btn_timer.Text) - 1).ToString();
 
             if (btn_timer.Text == "0")
             {
-                //TODO next turn
                 tmrClock.Stop();
             }
         }
@@ -212,6 +127,44 @@ namespace Client
                 else
                     btnStart.Show();
             }));
+        }
+
+        public void UpdateTable(Tile[,] table)
+        {
+            tgpTable.SetCapacity(table.GetLength(1), table.GetLength(0));
+
+            Invoke(new MethodInvoker(() =>
+            {
+                for (int i = 0; i < table.GetLength(0); i++)
+                {
+                    for (int j = 0; j < table.GetLength(1); j++)
+                    {
+                        if (tgpTable.BlockAt(i, j) != null)
+                        {
+                            TileBlock block = tgpTable.PickupTile(i, j);
+                            block.Parent.Controls.Remove(block);
+                        }
+                    }
+                }
+            }));
+
+            Random rnd = new Random();
+            for (int i = 0; i < table.GetLength(0); i++)
+            {
+                for (int j = 0; j < table.GetLength(1); j++)
+                {
+                    Tile tile = table[i, j];
+                    if (tile != null)
+                    {
+                        TileBlock block = new TileBlock(new NumberTile(TileColor.BLACK, 1), tileGridPanels);
+                        block.Size = new Size(40, 40);
+                        block.Location = new Point(100, 100);
+                        block.BackColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
+
+                        Invoke(new MethodInvoker(() => tgpTable.AddTile(block, i, j)));
+                    }
+                }
+            }
         }
 
         public void PrintChatMessage(string playerName, string message)

@@ -7,9 +7,12 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Common;
 
 namespace Client
 {
+    public delegate void InteractionHandler(Tile tile, int i, int j);
+
     public partial class TileGridPanel : UserControl
     {
         public Size TileSize { get; set; }
@@ -18,9 +21,38 @@ namespace Client
 
         public bool OptionRemoveSpaces { get; set; } = false;
 
+        public InteractionHandler OnPlace { get; set; } = (tile, i, j) => { };
+
+        public InteractionHandler OnPickup { get; set; } = (tile, i, j) => { };
+
         public TileGridPanel()
         {
             InitializeComponent();
+        }
+
+        public Tile[,] GetTileTable()
+        {
+            Tile[,] tileTable = new Tile[tiles.GetLength(0), tiles.GetLength(1)];
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    if (tiles[i, j] != null)
+                        tileTable[i, j] = tiles[i, j].Tile;
+                }
+            }
+            return tileTable;
+        }
+
+        public List<Tile> GetTileList()
+        {
+            List<Tile> tileList = new List<Tile>();
+            foreach (TileBlock block in tiles)
+            {
+                if (block != null)
+                    tileList.Add(block.Tile);
+            }
+            return tileList;
         }
 
         public void SetCapacity(int horizontalCap, int verticalCap)
@@ -57,7 +89,7 @@ namespace Client
                 index.X >= 0 && index.X < tiles.GetLength(1));
         }
 
-        private void AddTile(TileBlock tile, int i, int j)
+        public void AddTile(TileBlock tile, int i, int j)
         {
             panel.Controls.Add(tile);
             tiles[i, j] = tile;
@@ -70,6 +102,7 @@ namespace Client
             {
                 RemoveSpaces();
             }
+            OnPlace(tile.Tile, i, j);
         }
 
         public void PlaceTile(TileBlock tile, int x, int y)
@@ -96,8 +129,32 @@ namespace Client
 
         public void PickupTile(TileBlock tile)
         {
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    if (tiles[i, j] == tile)
+                    {
+                        PickupTile(i, j);
+                        return;
+                    }
+                }
+            }
+        }
+
+        public TileBlock BlockAt(int i, int j)
+        {
+            return tiles[i, j];
+        }
+
+        public TileBlock PickupTile(int i, int j)
+        {
+            TileBlock tile = tiles[i, j];
             panel.Controls.Remove(tile);
             this.Parent.Controls.Add(tile);
+            tiles[i, j] = null;
+            OnPickup(tile.Tile, i, j);
+            return tile;
         }
 
         private Point LocationToIndex(Point loc)

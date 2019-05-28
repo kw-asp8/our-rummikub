@@ -28,6 +28,12 @@ namespace Client
                 var sendGameStatus = (SendGameStatusPacket)packet;
                 gameForm.UpdateGameStatus(sendGameStatus.GameStatus);
             });
+            conClient.RegisterPacketHandler(PacketType.CB_SendTable, (con, packet) => {
+                while (gameForm == null) ;
+
+                var sendTable = (SendTablePacket)packet;
+                gameForm.UpdateTable(sendTable.Table);
+            });
             conClient.RegisterPacketHandler(PacketType.CB_SendChat, (con, packet) =>
             {
                 var sendChat = (SendChatToClientPacket)packet;
@@ -50,7 +56,7 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new GameForm(this));
+            Application.Run(new StartForm(this));
         }
 
         public void OpenGameForm()
@@ -72,6 +78,16 @@ namespace Client
         public void StartGame()
         {
             conClient.Connection.Send(new StartGamePacket());
+        }
+
+        public void UpdateTable(Tile tile, int i, int j)
+        {
+            conClient.Connection.Send(new UpdateTablePacket(tile, i, j));
+        }
+
+        public void UpdatePrivateTiles(List<Tile> tiles)
+        {
+            conClient.Connection.Send(new UpdatePrivateTilesPacket(tiles));
         }
 
         public void NextTurn()

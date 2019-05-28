@@ -49,6 +49,26 @@ namespace Server
                     Console.WriteLine(player.Nickname + " has started the game!");
                 }
             });
+            conServer.RegisterPacketHandler(PacketType.SB_UpdateTable, (connection, packet) =>
+            {
+                var updateTable = (UpdateTablePacket)packet;
+                Player player = Game.PlayerOf(connection);
+
+                if (player == Game.CurrentPlayer)
+                {
+                    //TODO verify the table
+                    Game.Table[updateTable.I, updateTable.J] = updateTable.Tile;
+                    SendTable(player);
+                }
+            });
+            conServer.RegisterPacketHandler(PacketType.SB_UpdatePrivateTiles, (connection, packet) =>
+            {
+                var updatePrivateTiles = (UpdatePrivateTilesPacket)packet;
+                Player player = Game.PlayerOf(connection);
+
+                //TODO verify the holding tiles
+                player.HoldingTiles = updatePrivateTiles.HoldingTiles;
+            });
             conServer.RegisterPacketHandler(PacketType.SB_NextTurn, (connection, packet) =>
             {
                 var nextTurn = (NextTurnPacket)packet;
@@ -113,11 +133,23 @@ namespace Server
 
         public void SendGameStatus()
         {
+            GameStatus gameStatus = Game.ToStatus();
+            var sendGameStatus = new SendGameStatusPacket(gameStatus);
+
             foreach (Player player in Game.Room.Players)
             {
-                GameStatus gameStatus = Game.StatusFor(player);
-                var sendGameStatus = new SendGameStatusPacket(gameStatus);
                 player.Connection.Send(sendGameStatus);
+            }
+        }
+
+        public void SendTable(Player excluded = null)
+        {
+            var sendTable = new SendTablePacket(Game.Table);
+
+            foreach (Player player in Game.Room.Players)
+            {
+                if (player != excluded)
+                    player.Connection.Send(sendTable);
             }
         }
 

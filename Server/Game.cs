@@ -11,8 +11,8 @@ namespace Server
     {
         public Room Room { get; private set; }
         public bool IsEnabled { get; set; } = false;
-        public Tile[,] PreviousTable { get; private set; } = new Tile[20,20];
-        public Tile[,] Table { get; private set; } = new Tile[20,20];
+        public Tile[,] PreviousTable { get; private set; } = new Tile[10, 20];
+        public Tile[,] Table { get; set; } = new Tile[10, 20];
         public List<Tile> Dummy { get; private set; } = new List<Tile>();
         public Player CurrentPlayer { get; private set; }
 
@@ -29,8 +29,8 @@ namespace Server
             {
                 player.ClearGameData();
             }
-            PreviousTable=null;
-            Table=null;
+            PreviousTable = new Tile[10, 20];
+            Table = new Tile[10, 20];
             InitDummy();
         }
 
@@ -96,30 +96,13 @@ namespace Server
             return;
         }
 
-        public Tile TakeTile(Location location)
-        {
-            //양쪽에 타일이 없으면 타일이 하나인 조합 완성
-            return null; //TODO
-        }
-
-        public TileSet TakeTileSet(Location location)
-        {
-            //양쪽에 타일이 하나라도 있는 경우
-            return null; //TODO
-        }
-
-        public void PutTileSet(Location location)
-        {
-            //TODO
-        }
-
         public List<TileSet> GetTileSets()//타일의 모든 조합을 가져옴
         {
             List<Tile> Set = new List<Tile>();
             List<TileSet> totalSet = new List<TileSet>();
-            for (int i = 0; i <= 19; i++)
+            for (int i = 0; i < Table.GetLength(0); i++)
             {
-                for (int j = 0; j <= 19; j++)
+                for (int j = 0; j < Table.GetLength(1); j++)
                 {
                     if (Table[i, j] != null)
                         Set.Add(Table[i, j]);
@@ -164,7 +147,7 @@ namespace Server
             CurrentPlayer = Room.Players[nextIndex];
         }
 
-        public GameStatus StatusFor(Player clientPlayer)
+        public GameStatus ToStatus()
         {
             PlayerInfo currentPlayer = CurrentPlayer != null ? CurrentPlayer.ToInfo() : null;
             Dictionary<string, int> holdingTilesNumDic = new Dictionary<string, int>();
@@ -173,7 +156,7 @@ namespace Server
                 holdingTilesNumDic[player.Nickname] = player.HoldingTiles.Count;
             }
 
-            return new GameStatus(IsEnabled, currentPlayer, clientPlayer.HoldingTiles, holdingTilesNumDic);
+            return new GameStatus(IsEnabled, currentPlayer, holdingTilesNumDic);
         }
     }
 
