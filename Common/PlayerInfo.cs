@@ -9,9 +9,12 @@ namespace Common
     {
         public string Nickname { get; private set; }
 
-        public PlayerInfo(string nickname)
+        public int Score { get; private set; }
+
+        public PlayerInfo(string nickname, int score)
         {
             Nickname = nickname;
+            Score = score;
         }
     }
 }

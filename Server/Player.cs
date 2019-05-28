@@ -45,9 +45,16 @@ namespace Server
             HasEnrolled = true;
         }
 
+        public int GetScore()
+        {
+            return (from tile in HoldingTiles
+                    select (tile is JokerTile) ? 30 : (tile as NumberTile).Number)
+                    .Sum();
+        }
+
         public PlayerInfo ToInfo()
         {
-            return new PlayerInfo(Nickname);
+            return new PlayerInfo(Nickname, GetScore());
         }
     }
 }
