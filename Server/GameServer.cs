@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace Server
@@ -12,6 +13,8 @@ namespace Server
     {
         private ConnectionServer conServer;
         public Game Game { get; private set; } = new Game();
+
+        private CancellationTokenSource turnTimer;
 
         public GameServer()
         {
@@ -47,6 +50,7 @@ namespace Server
                     SendGameStatus();
 
                     Console.WriteLine(player.Nickname + " has started the game!");
+                    InitTurnTimer();
                 }
             });
             conServer.RegisterPacketHandler(PacketType.SB_UpdateTable, (connection, packet) =>
@@ -78,8 +82,11 @@ namespace Server
                 {
                     if (!Game.HasAnyInvalidTileSet())
                     {
+                        CancelTurnTimer();
                         Game.NextTurn();
                         SendGameStatus();
+
+                        InitTurnTimer();
 
                         Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
                     }
@@ -118,6 +125,29 @@ namespace Server
         public void Stop()
         {
             conServer.Stop();
+        }
+
+        public void CancelTurnTimer()
+        {
+            if (turnTimer != null)
+            {
+                turnTimer.Cancel();
+                turnTimer = null;
+            }
+        }
+
+        public void InitTurnTimer()
+        {
+            turnTimer = new CancellationTokenSource();
+            CancellationToken token = turnTimer.Token;
+            Task.Factory.StartNew(() =>
+            {
+                Thread.Sleep(60 * 1000);
+                Game.NextTurn();
+                SendGameStatus(); //TODO 마우스에 집어져 있는 타일 제거
+
+                Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
+            }, token);
         }
 
         public void SendRoomStatus()

@@ -30,6 +30,7 @@ namespace Server
                         return;
                     case "end":
                         server.Game.End();
+                        server.CancelTurnTimer();
                         server.SendGameOver();
                         Console.WriteLine("The game has been ended.");
                         break;
