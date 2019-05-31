@@ -1,13 +1,7 @@
-﻿using System;
+﻿using Common;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Drawing;
-using System.Data;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using Common;
 
 namespace Client
 {
@@ -67,14 +61,67 @@ namespace Client
             }
         }
 
-        public void SortAscending()
+        public void SortAscending()//TODO 오름차순으로 타일 정렬
         {
-            //TODO 오름차순으로 타일 정렬
+            List<TileBlock> tileAcenList = new List<TileBlock>();
+
+            for (int i = 0; i < tiles.GetLength(0); i++)//tiles의 숫자타일들 list에 추가
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    TileBlock block = tiles[i, j];
+
+                    if (block.Tile is NumberTile)
+                    {
+                        tileAcenList.Add(block);
+                    }
+                }
+            }
+
+            //숫자기준으로 오름차순으로 정렬
+            tileAcenList.Sort((TileBlock block1, TileBlock block2) =>
+            {
+                return ((NumberTile)block1.Tile).Number.CompareTo(((NumberTile)block2.Tile).Number);
+            });
+
+            for (int i = 0; i < tiles.GetLength(0); i++)//tiles의 조커들 list 마지막에 추가
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    TileBlock block = tiles[i, j];
+                    if (block.Tile is JokerTile)
+                    {
+                        tileAcenList.Add(block);
+                    }
+                }
+            }
+
+            int i = 0;
+            int j = 0;
+
+            foreach (TileBlock block in tileAcenList)
+            {
+                tiles[i, j] = block;
+                tiles[i, j].Location = new Point(j * TileSize.Width, i * TileSize.Height);
+
+                j++;
+                if (j >= tiles.GetLength(0))
+                {
+                    j = 0;
+                    i++;
+
+                    if (i >= tiles.GetLength(1))
+                    {
+                        break;
+                    }
+                }
+            }
         }
 
         public void GroupAsNumber()
         {
             //TODO 같은 숫자의 타일끼리 모아서 정렬
+
         }
 
         public void RemoveSpaces()
