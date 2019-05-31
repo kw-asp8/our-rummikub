@@ -28,37 +28,43 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.text = new System.Windows.Forms.Label();
+            this.lbl_num = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // text
+            // lbl_num
             // 
-            this.text.AutoSize = true;
-            this.text.Location = new System.Drawing.Point(34, 62);
-            this.text.Name = "text";
-            this.text.Size = new System.Drawing.Size(25, 12);
-            this.text.TabIndex = 0;
-            this.text.Text = "test";
-            this.text.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_num.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.lbl_num.BackColor = System.Drawing.Color.Transparent;
+            this.lbl_num.Font = new System.Drawing.Font("함초롬돋움", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_num.Location = new System.Drawing.Point(0, 0);
+            this.lbl_num.Margin = new System.Windows.Forms.Padding(0);
+            this.lbl_num.Name = "lbl_num";
+            this.lbl_num.Size = new System.Drawing.Size(27, 36);
+            this.lbl_num.TabIndex = 0;
+            this.lbl_num.Text = "J";
+            this.lbl_num.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_num.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbl_num_MouseDown);
+            this.lbl_num.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_num_MouseMove);
+            this.lbl_num.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lbl_num_MouseUp);
             // 
-            // Tile
+            // TileBlock
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.Controls.Add(this.text);
-            this.Name = "Tile";
-            this.Size = new System.Drawing.Size(100, 150);
+            this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.Controls.Add(this.lbl_num);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.Name = "TileBlock";
+            this.Size = new System.Drawing.Size(27, 36);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseUp);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Label text;
+        private System.Windows.Forms.Label lbl_num;
     }
 }

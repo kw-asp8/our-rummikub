@@ -47,6 +47,11 @@ namespace Client
             tgpHolding.SetCapacity(20, 2);
             tgpHolding.OnPlace += (tile, i, j) => client.UpdatePrivateTiles(tgpHolding.GetTileList());
             tgpHolding.OnPickup += (tile, i, j) => client.UpdatePrivateTiles(tgpHolding.GetTileList());
+
+            profile1.Visible = false;
+            profile2.Visible = false;
+            profile3.Visible = false;
+            profile4.Visible = false;
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]            //Dll임포트
@@ -113,7 +118,70 @@ namespace Client
         public void UpdateRoomStatus(RoomStatus roomStatus)
         {
             this.roomStatus = roomStatus;
+           
             //TODO Update the form
+            for (int i = 0; i < 4; i++)
+            {
+                switch(i)
+                {
+                    case 0:
+                        if (i < roomStatus.Players.Count)
+                        {
+                            profile1.Visible = true;
+                            nickname1.Text = roomStatus.Players[0].Nickname;
+                            remain1.Text = roomStatus.Players[0].TileAmount.ToString();
+                        }
+                        else
+                        {
+                            profile1.Visible = false;
+                            nickname1.Text = "";
+                            remain1.Text = "";
+                        }
+                        break;
+                    case 1:
+                        if (i < roomStatus.Players.Count)
+                        {
+                            profile2.Visible = true;
+                            nickname2.Text = roomStatus.Players[1].Nickname;
+                            remain2.Text = roomStatus.Players[1].TileAmount.ToString();
+                        }
+                        else
+                        {
+                            profile2.Visible = false;
+                            nickname2.Text = "";
+                            remain2.Text = "";
+                        }
+                        break;
+                    case 2:
+                        if (i < roomStatus.Players.Count)
+                        {
+                            profile3.Visible = true;
+                            nickname3.Text = roomStatus.Players[2].Nickname;
+                            remain3.Text = roomStatus.Players[2].TileAmount.ToString();
+                        }
+                        else
+                        {
+                            profile3.Visible = false;
+                            nickname3.Text = "";
+                            remain3.Text = "";
+                        }
+                        break;
+                    case 3:
+                        if (i < roomStatus.Players.Count)
+                        {
+                            profile4.Visible = true;
+                            nickname4.Text = roomStatus.Players[3].Nickname;
+                            remain4.Text = roomStatus.Players[3].TileAmount.ToString();
+                        }
+                        else
+                        {
+                            profile4.Visible = false;
+                            nickname4.Text = "";
+                            remain4.Text = "";
+                        }
+                        break;
+                }
+            }
         }
 
         public void UpdateGameStatus(GameStatus gameStatus)
@@ -147,8 +215,7 @@ namespace Client
                     }
                 }
             }));
-
-            Random rnd = new Random();
+            
             for (int i = 0; i < table.GetLength(0); i++)
             {
                 for (int j = 0; j < table.GetLength(1); j++)
@@ -159,7 +226,6 @@ namespace Client
                         TileBlock block = new TileBlock(new NumberTile(TileColor.BLACK, 1), tileGridPanels);
                         block.Size = new Size(40, 40);
                         block.Location = new Point(100, 100);
-                        block.BackColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
 
                         Invoke(new MethodInvoker(() => tgpTable.AddTile(block, i, j)));
                     }
@@ -189,11 +255,9 @@ namespace Client
         private void Btn_complete_Click(object sender, EventArgs e)
         {
             //TODO client.NextTurn();
-            TileBlock tile = new TileBlock(new NumberTile(TileColor.BLACK, 1), tileGridPanels);
+            TileBlock tile = new TileBlock(new JokerTile(TileColor.BLACK), tileGridPanels);
             tile.Size = new Size(40, 40);
             tile.Location = new Point(100, 100);
-            Random rnd = new Random();
-            tile.BackColor = Color.FromArgb(rnd.Next(256), rnd.Next(256), rnd.Next(256));
 
             tgpHolding.PlaceAtFirst(tile);
         }

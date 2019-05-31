@@ -28,6 +28,42 @@ namespace Client
             InitializeComponent();
             this.Tile = tile;
             this.grids = grids;
+            if (Tile is NumberTile)
+            {
+                lbl_num.Text = (((NumberTile)Tile).Number).ToString();
+                TileColor color = ((NumberTile)Tile).getColor();
+
+                switch(color.ToString())
+                {
+                    case "RED":
+                        lbl_num.ForeColor = Color.Red;
+                        break;
+                    case "YELLOW":
+                        lbl_num.ForeColor = Color.Yellow;
+                        break;
+                    case "BLUE":
+                        lbl_num.ForeColor = Color.Blue;
+                        break;
+                    case "BLACK":
+                        lbl_num.ForeColor = Color.Black;
+                        break;
+                }
+            }
+            else if (Tile is JokerTile)
+            {
+                lbl_num.Text = "J";
+                TileColor color = ((JokerTile)Tile).getColor();
+
+                switch(color.ToString())
+                {
+                    case "RED":
+                        lbl_num.ForeColor = Color.Red;
+                        break;
+                    case "BLACK":
+                        lbl_num.ForeColor = Color.Black;
+                        break;
+                }
+            }
         }
 
         private void TileBlock_MouseDown(object sender, MouseEventArgs e)
@@ -88,6 +124,21 @@ namespace Client
             if (this.Right < panel.Left || this.Left > panel.Right) return false;
             if (this.Bottom < panel.Top || this.Top > panel.Bottom) return false;
             return true;
+        }
+
+        private void lbl_num_MouseDown(object sender, MouseEventArgs e)
+        {
+            TileBlock_MouseDown(sender, e);
+        }
+
+        private void lbl_num_MouseUp(object sender, MouseEventArgs e)
+        {
+            TileBlock_MouseUp(sender, e);
+        }
+
+        private void lbl_num_MouseMove(object sender, MouseEventArgs e)
+        {
+            TileBlock_MouseMove(sender, e);
         }
     }
 }

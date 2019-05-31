@@ -54,7 +54,7 @@ namespace Server
 
         public PlayerInfo ToInfo()
         {
-            return new PlayerInfo(Nickname, GetScore());
+            return new PlayerInfo(Nickname, GetScore(), HoldingTiles.Count);
         }
     }
 }

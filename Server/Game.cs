@@ -90,8 +90,8 @@ namespace Server
                 }
             }
 
-            for (int i = 0; i < 2; i++)
-                Dummy.Add(new JokerTile());
+            Dummy.Add(new JokerTile(TileColor.RED));
+            Dummy.Add(new JokerTile(TileColor.BLACK));
 
             return;
         }

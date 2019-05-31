@@ -25,7 +25,19 @@ namespace Common
     }
 
     [Serializable]
-    public class JokerTile : Tile { }
+    public class JokerTile : Tile {
+        public TileColor Color { get; private set; }
+
+        public JokerTile(TileColor color)
+        {
+            this.Color = color;
+        }
+
+        public TileColor getColor()
+        {
+            return Color;
+        }
+    }
 
     [Serializable]
     public enum TileColor
