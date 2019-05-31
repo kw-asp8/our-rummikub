@@ -96,21 +96,21 @@ namespace Client
                 }
             }
 
-            int i = 0;
-            int j = 0;
+            int m = 0;
+            int n = 0;
 
             foreach (TileBlock block in tileAcenList)
             {
-                tiles[i, j] = block;
-                tiles[i, j].Location = new Point(j * TileSize.Width, i * TileSize.Height);
+                tiles[m, n] = block;
+                tiles[m, n].Location = new Point(n* TileSize.Width, m* TileSize.Height);
 
-                j++;
-                if (j >= tiles.GetLength(0))
+                n++;
+                if (n >= tiles.GetLength(0))
                 {
-                    j = 0;
-                    i++;
+                    n = 0;
+                    m++;
 
-                    if (i >= tiles.GetLength(1))
+                    if (n >= tiles.GetLength(1))
                     {
                         break;
                     }
@@ -118,9 +118,91 @@ namespace Client
             }
         }
 
-        public void GroupAsNumber()
+        public void GroupAsNumber()//TODO 같은 숫자의 타일끼리 모아서 정렬
         {
-            //TODO 같은 숫자의 타일끼리 모아서 정렬
+            //색깔별로 리스트에 넣고 각각 정렬하고 하나의 리스트tileAcenList에 합침
+
+            List<TileBlock> tileAcenList = new List<TileBlock>();
+            List<TileBlock> tileBlackList = new List<TileBlock>();
+            List<TileBlock> tileRedList = new List<TileBlock>();
+            List<TileBlock> tileBlueList = new List<TileBlock>();
+            List<TileBlock> tileYellowList = new List<TileBlock>();
+
+
+            for (int i = 0; i < tiles.GetLength(0); i++)//tiles의 숫자타일들을 각 색깔list에 추가
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    TileBlock block = tiles[i, j];
+
+                    if (block.Tile is NumberTile)
+                    {
+                        if (((NumberTile)block.Tile).Color == TileColor.BLACK)
+                            tileBlackList.Add(block);
+                        else if (((NumberTile)block.Tile).Color == TileColor.RED)
+                            tileRedList.Add(block);
+                        else if (((NumberTile)block.Tile).Color == TileColor.BLUE)
+                            tileBlueList.Add(block);
+                        else if (((NumberTile)block.Tile).Color == TileColor.YELLOW)
+                            tileYellowList.Add(block);
+                    }
+                }
+            }
+
+            //숫자기준으로 오름차순으로 정렬
+            tileBlackList.Sort((TileBlock block1, TileBlock block2) =>
+            {
+                return ((NumberTile)block1.Tile).Number.CompareTo(((NumberTile)block2.Tile).Number);
+            });
+            tileRedList.Sort((TileBlock block1, TileBlock block2) =>
+            {
+                return ((NumberTile)block1.Tile).Number.CompareTo(((NumberTile)block2.Tile).Number);
+            });
+            tileBlueList.Sort((TileBlock block1, TileBlock block2) =>
+            {
+                return ((NumberTile)block1.Tile).Number.CompareTo(((NumberTile)block2.Tile).Number);
+            });
+            tileYellowList.Sort((TileBlock block1, TileBlock block2) =>
+            {
+                return ((NumberTile)block1.Tile).Number.CompareTo(((NumberTile)block2.Tile).Number);
+            });
+
+            foreach (TileBlock i in tileBlackList)
+                tileAcenList.Add(i);
+            foreach (TileBlock i in tileRedList)
+                tileAcenList.Add(i);
+            foreach (TileBlock i in tileBlueList)
+                tileAcenList.Add(i);
+            foreach (TileBlock i in tileYellowList)
+                tileAcenList.Add(i);
+
+            for (int i = 0; i < tiles.GetLength(0); i++)//tiles의 조커들 list 마지막에 추가
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    TileBlock block = tiles[i, j];
+                    if (block.Tile is JokerTile)
+                        tileAcenList.Add(block);
+                }
+            }
+
+            int m = 0;
+            int n = 0;
+
+            foreach (TileBlock block in tileAcenList)
+            {
+                tiles[m, n] = block;
+                tiles[m, n].Location = new Point(n * TileSize.Width, m * TileSize.Height);
+
+                n++;
+                if (n >= tiles.GetLength(0))
+                {
+                    n = 0;
+                    m++;
+                    if (n >= tiles.GetLength(1))
+                        break;
+                }
+            }
 
         }
 
