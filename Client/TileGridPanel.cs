@@ -12,6 +12,7 @@ namespace Client
         public Size TileSize { get; set; }
 
         private TileBlock[,] tiles;
+        private TileBlock[,] oldTiles;
 
         public bool OptionRemoveSpaces { get; set; } = false;
 
@@ -55,9 +56,46 @@ namespace Client
             {
                 tiles = new TileBlock[verticalCap, horizontalCap];
             }
-            else
+            else//TODO 크기 조정
             {
-                //TODO 크기 조정
+                //기존 판을 기억하여 새로운 판에다가 있던 타일들 위치만 바꿔서 넣기
+
+                oldTiles = new TileBlock[tiles.GetLength(0), tiles.GetLength(1)];
+
+                for (int i = 0; i < tiles.GetLength(0); i++)//기존 판 내용 복사
+                {
+                    for (int j = 0; j < tiles.GetLength(1); j++)
+                    {
+                        oldTiles[i,j] = tiles[i,j];
+                    }
+                }
+
+                tiles = new TileBlock[verticalCap, horizontalCap];//기존 판 확장
+
+                int disVer = (verticalCap - oldTiles.GetLength(0)) / 2;
+                int disHor = (horizontalCap - oldTiles.GetLength(1)) / 2;
+
+                for (int i = disVer; i < verticalCap - disVer; i++){
+                    for (int j = disHor; j < horizontalCap - disHor; j++){
+                        tiles[i, j] = oldTiles[i - disVer, j - disHor];
+                        tiles[i, j].Location=new Point(j * TileSize.Width, i * TileSize.Height);
+                    }
+                }
+
+
+                //타일크기
+                this.TileSize = new Size(this.Width / horizontalCap, this.Height/verticalCap);
+                for (int i = 0; i < tiles.GetLength(0); i++)//타일들의 실제 크기 조정
+                {
+                    for (int j = 0; j < tiles.GetLength(1); j++)
+                    {
+                        TileBlock block = tiles[i, j];
+                        if (block != null)//빈칸인 경우에?
+                        {
+                            block.Size = this.TileSize;
+                        }
+                    }
+                }
             }
         }
 
