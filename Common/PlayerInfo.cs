@@ -11,10 +11,13 @@ namespace Common
 
         public int Score { get; private set; }
 
-        public PlayerInfo(string nickname, int score)
+        public int TileAmount { get; private set; }
+
+        public PlayerInfo(string nickname, int score, int tileAmount)
         {
             Nickname = nickname;
             Score = score;
+            TileAmount = tileAmount;
         }
     }
 }
