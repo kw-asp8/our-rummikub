@@ -70,10 +70,10 @@ namespace Client
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     TileBlock block = tiles[i, j];
-
-                    if (block.Tile is NumberTile)
+                    if (block != null)
                     {
-                        tileAcenList.Add(block);
+                        if (block.Tile is NumberTile)
+                            tileAcenList.Add(block);
                     }
                 }
             }
@@ -89,9 +89,10 @@ namespace Client
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     TileBlock block = tiles[i, j];
-                    if (block.Tile is JokerTile)
+                    if (block != null)
                     {
-                        tileAcenList.Add(block);
+                        if (block.Tile is JokerTile)
+                            tileAcenList.Add(block);
                     }
                 }
             }
@@ -134,17 +135,19 @@ namespace Client
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     TileBlock block = tiles[i, j];
-
-                    if (block.Tile is NumberTile)
+                    if (block != null)
                     {
-                        if (((NumberTile)block.Tile).Color == TileColor.BLACK)
-                            tileBlackList.Add(block);
-                        else if (((NumberTile)block.Tile).Color == TileColor.RED)
-                            tileRedList.Add(block);
-                        else if (((NumberTile)block.Tile).Color == TileColor.BLUE)
-                            tileBlueList.Add(block);
-                        else if (((NumberTile)block.Tile).Color == TileColor.YELLOW)
-                            tileYellowList.Add(block);
+                        if (block.Tile is NumberTile)
+                        {
+                            if (((NumberTile)block.Tile).Color == TileColor.BLACK)
+                                tileBlackList.Add(block);
+                            else if (((NumberTile)block.Tile).Color == TileColor.RED)
+                                tileRedList.Add(block);
+                            else if (((NumberTile)block.Tile).Color == TileColor.BLUE)
+                                tileBlueList.Add(block);
+                            else if (((NumberTile)block.Tile).Color == TileColor.YELLOW)
+                                tileYellowList.Add(block);
+                        }
                     }
                 }
             }
@@ -181,8 +184,10 @@ namespace Client
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     TileBlock block = tiles[i, j];
-                    if (block.Tile is JokerTile)
-                        tileAcenList.Add(block);
+                    if (block != null) { 
+                        if (block.Tile is JokerTile)
+                             tileAcenList.Add(block);
+                    }
                 }
             }
 
@@ -206,9 +211,38 @@ namespace Client
 
         }
 
-        public void RemoveSpaces()
+        public void RemoveSpaces()//TODO 타일과 타일 사이의 빈 공간들을 제거하여 정렬
         {
-            //TODO 타일과 타일 사이의 빈 공간들을 제거하여 정렬
+            List<TileBlock> tileBlockList = new List<TileBlock>();
+
+            for (int i = 0; i < tiles.GetLength(0); i++)//tiles의 모든 타일 list에 추가
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    TileBlock block = tiles[i, j];
+
+                    if (block != null)
+                        tileBlockList.Add(block);
+                }
+            }
+
+            int m = 0;
+            int n = 0;
+            foreach (TileBlock block in tileBlockList)
+            {
+                tiles[m, n] = block;
+                tiles[m, n].Location = new Point(n * TileSize.Width, m * TileSize.Height);
+
+                n++;
+                if (n >= tiles.GetLength(0))
+                {
+                    n = 0;
+                    m++;
+
+                    if (n >= tiles.GetLength(1))
+                        break;
+                }
+            }
         }
 
         public bool CanPlaceAt(int x, int y)
