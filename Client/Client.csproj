@@ -150,16 +150,16 @@
     <None Include="Resources\return_button.png" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Common\Common.csproj">
-      <Project>{c7dbef28-ff8f-437c-ac1c-592a01156347}</Project>
-      <Name>Common</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Resources\777buton.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Resources\buttonImage.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Common\Common.csproj">
+      <Project>{5a9a81e6-9bbd-4f86-9eba-f71c1b5523f9}</Project>
+      <Name>Common</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
