@@ -104,6 +104,11 @@ namespace Client
             conClient.Connection.Send(new UpdatePrivateTilesPacket(tiles));
         }
 
+        public void RequestRollback()
+        {
+            conClient.Connection.Send(new RequestRollbackPacket());
+        }
+
         public void NextTurn()
         {
             conClient.Connection.Send(new NextTurnPacket());

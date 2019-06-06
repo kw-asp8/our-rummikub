@@ -12,6 +12,7 @@ namespace Common
         SB_StartGame,
         SB_UpdateTable,
         SB_UpdatePrivateTiles,
+        SB_RequestRollback,
         SB_NextTurn,
         SB_SendChat,
         CB_SendRoomStatus,
@@ -65,6 +66,14 @@ namespace Common
         public UpdatePrivateTilesPacket(List<Tile> holdingTiles) : base(PacketType.SB_UpdatePrivateTiles)
         {
             HoldingTiles = holdingTiles;
+        }
+    }
+
+    [Serializable]
+    public class RequestRollbackPacket : Packet
+    {
+        public RequestRollbackPacket() : base(PacketType.SB_RequestRollback)
+        {
         }
     }
 

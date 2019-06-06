@@ -259,17 +259,19 @@ namespace Client
 
         private void Btn_complete_Click(object sender, EventArgs e)
         {
-            //TODO client.NextTurn();
+            client.NextTurn();
+            /*
             TileBlock tile = new TileBlock(new JokerTile(TileColor.BLACK), tileGridPanels);
             tile.Size = new Size(40, 40);
             tile.Location = new Point(100, 100);
 
             tgpHolding.PlaceAtFirst(tile);
+            */
         }
 
         private void Btn_return_Click(object sender, EventArgs e)
         {
-            //TODO Undo the changes
+            client.RequestRollback();
         }
 
         private void BtnStart_Click(object sender, EventArgs e)

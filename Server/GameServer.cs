@@ -73,6 +73,19 @@ namespace Server
                 //TODO verify the holding tiles
                 player.HoldingTiles = updatePrivateTiles.HoldingTiles;
             });
+            conServer.RegisterPacketHandler(PacketType.SB_RequestRollback, (connection, packet) =>
+            {
+                Player player = Game.PlayerOf(connection);
+
+                if (player == Game.CurrentPlayer)
+                {
+                    Game.Rollback();
+
+                    SendGameStatus();
+
+                    Console.WriteLine(Game.CurrentPlayer.Nickname + " has rollbacked the table.");
+                }
+            });
             conServer.RegisterPacketHandler(PacketType.SB_NextTurn, (connection, packet) =>
             {
                 var nextTurn = (NextTurnPacket)packet;
