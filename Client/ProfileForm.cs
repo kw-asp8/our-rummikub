@@ -22,6 +22,18 @@ namespace Client
             this.client = client;
             InitializeComponent();
         }
+
+        public void UpdateLoginStatus(bool success)
+        {
+            if(success)
+            {
+                this.Close();
+                client.OpenGameForm();
+            }
+            else
+                textBox1.Clear();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -48,8 +60,6 @@ namespace Client
         {
             client.Connect();
             client.Login(textBox1.Text);
-            this.Close();
-            client.OpenGameForm();
         }
 
         private void ProfileForm_Load(object sender, EventArgs e)

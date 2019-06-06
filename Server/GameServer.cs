@@ -22,20 +22,36 @@ namespace Server
             conServer.RegisterPacketHandler(PacketType.SB_Login, (connection, packet) =>
             {
                 var login = (LoginPacket)packet;
+                bool success = true;
+                Player player = new Player(connection, login.Nickname);
 
                 if (Game.Room.Players.Count < Room.MaxPlayers)
                 {
-                    Player player = new Player(connection, login.Nickname);
-                    Game.Room.AddPlayer(player);
+                    foreach (Player p in Game.Room.Players)
+                    {
+                        if (player.Nickname == p.Nickname)
+                        {
+                            success = false;
+                            Console.WriteLine(login.Nickname + " has failed to log in: Already exists nickname.");
+                            break;
+                        }
+                    }
 
-                    SendRoomStatus();
-                    SendGameStatus();
-
-                    Console.WriteLine(player.Nickname + " has logged in.");
+                    var sendLoginStatus = new SendLoginPacket(success);
+                    player.Connection.Send(sendLoginStatus);
+                    if (success)
+                    {
+                        Game.Room.AddPlayer(player);
+                        Console.WriteLine(player.Nickname + " has logged in.");
+                        SendRoomStatus();
+                        SendGameStatus();
+                    }
                 }
-                else
+                else//TODO Send login fail packet
                 {
-                    //TODO Send login fail packet
+                    success = false;
+                    var sendLoginStatus = new SendLoginPacket(success);
+                    player.Connection.Send(sendLoginStatus);
                     Console.WriteLine(login.Nickname + " has failed to log in: The room is full.");
                 }
             });

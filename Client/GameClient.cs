@@ -13,9 +13,17 @@ namespace Client
     {
         private ConnectionClient conClient = new ConnectionClient();
         private GameForm gameForm;
+        public ProfileForm profileForm;
 
         public GameClient()
         {
+            conClient.RegisterPacketHandler(PacketType.CB_Login, (con, packet) => {
+                var sendLoginStatus = (SendLoginPacket)packet;
+                profileForm.Invoke(new MethodInvoker(() =>
+                {
+                    profileForm.UpdateLoginStatus(sendLoginStatus.Success);
+                }));
+            });
             conClient.RegisterPacketHandler(PacketType.CB_SendRoomStatus, (con, packet) => {
                 while (gameForm == null || !gameForm.IsHandleCreated) ;
 
