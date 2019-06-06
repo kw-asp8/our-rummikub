@@ -32,6 +32,22 @@ namespace Server
             PreviousTable = new Tile[10, 20];
             Table = new Tile[10, 20];
             InitDummy();
+            ShuffleDummy();
+        }
+
+        private void ShuffleDummy()
+        {
+            Random random = new Random();
+            int n = Dummy.Count;
+
+            for (int i = Dummy.Count - 1; i > 1; i--)
+            {
+                int rnd = random.Next(i + 1);
+
+                Tile value = Dummy[rnd];
+                Dummy[rnd] = Dummy[i];
+                Dummy[i] = value;
+            }
         }
 
         public void Start()
@@ -39,11 +55,26 @@ namespace Server
             ClearGameData();
             CurrentPlayer = Room.Players[0];
             IsEnabled = true;
+
+            foreach (Player player in Room.Players)
+            {
+                for (int i = 0; i < 14; i++)
+                {
+                    player.HoldingTiles.Add(PopDummy());
+                }
+            }
         }
         
         public void End()
         {
             IsEnabled = false;
+        }
+
+        public Tile PopDummy()
+        {
+            Tile tile = Dummy[0];
+            Dummy.RemoveAt(0);
+            return tile;
         }
 
         public Player PlayerOf(Connection connection)
@@ -82,7 +113,7 @@ namespace Server
             {
                 foreach (TileColor v in type)
                 {
-                    for (int k = 0; k < 13; k++)
+                    for (int k = 1; k <= 12; k++)
                     {
                         tile = new NumberTile(v, k);
                         Dummy.Add(tile);

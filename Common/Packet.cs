@@ -20,6 +20,7 @@ namespace Common
         CB_SendRoomStatus,
         CB_SendGameStatus,
         CB_SendTable,
+        CB_SendPrivateTiles,
         CB_SendChat,
         CB_EndGame
     }
@@ -143,6 +144,17 @@ namespace Common
         }
     }
 
+
+    [Serializable]
+    public class SendPrivateTilesPacket : Packet
+    {
+        public List<Tile> HoldingTiles { get; private set; }
+
+        public SendPrivateTilesPacket(List<Tile> holdingTiles) : base(PacketType.CB_SendPrivateTiles)
+        {
+            HoldingTiles = holdingTiles;
+        }
+    }
 
     [Serializable]
     public class SendChatToClientPacket : Packet

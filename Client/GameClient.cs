@@ -57,6 +57,12 @@ namespace Client
                 var sendTable = (SendTablePacket)packet;
                 gameForm.UpdateTable(sendTable.Table);
             });
+            conClient.RegisterPacketHandler(PacketType.CB_SendPrivateTiles, (con, packet) => {
+                while (gameForm == null) ;
+
+                var sendPrivateTiles = (SendPrivateTilesPacket)packet;
+                gameForm.UpdatePrivateTiles(sendPrivateTiles.HoldingTiles);
+            });
             conClient.RegisterPacketHandler(PacketType.CB_SendChat, (con, packet) =>
             {
                 var sendChat = (SendChatToClientPacket)packet;

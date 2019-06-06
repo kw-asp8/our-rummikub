@@ -208,9 +208,9 @@ namespace Client
 
             Invoke(new MethodInvoker(() =>
             {
-                for (int i = 0; i < table.GetLength(0); i++)
+                for (int i = 0; i < tgpTable.GetTileTable().GetLength(0); i++)
                 {
-                    for (int j = 0; j < table.GetLength(1); j++)
+                    for (int j = 0; j < tgpTable.GetTileTable().GetLength(1); j++)
                     {
                         if (tgpTable.BlockAt(i, j) != null)
                         {
@@ -236,6 +236,35 @@ namespace Client
                     }
                 }
             }
+        }
+
+        public void UpdatePrivateTiles(List<Tile> privateTiles)
+        {
+            Invoke(new MethodInvoker(() =>
+            {
+                for (int i = 0; i < tgpHolding.GetTileTable().GetLength(0); i++)
+                {
+                    for (int j = 0; j < tgpHolding.GetTileTable().GetLength(1); j++)
+                    {
+                        if (tgpTable.BlockAt(i, j) != null)
+                        {
+                            TileBlock block = tgpTable.PickupTile(i, j);
+                            block.Parent.Controls.Remove(block);
+                        }
+                    }
+                }
+            }));
+            Invoke(new MethodInvoker(() =>
+            {
+                foreach (Tile tile in privateTiles)
+                {
+                    TileBlock block = new TileBlock(tile, tileGridPanels);
+                    block.Size = new Size(40, 40);
+                    block.Location = new Point(100, 100);
+
+                    tgpHolding.PlaceAtFirst(block);
+                }
+            }));
         }
 
         public void PrintChatMessage(string playerName, string message)

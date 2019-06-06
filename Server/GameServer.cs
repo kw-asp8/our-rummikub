@@ -68,6 +68,11 @@ namespace Server
 
                     Console.WriteLine(player.Nickname + " has started the game!");
                     InitTurnTimer();
+
+                    foreach (Player everyone in Game.Room.Players)
+                    {
+                        everyone.Connection.Send(new SendPrivateTilesPacket(everyone.HoldingTiles));
+                    }
                 }
             });
             conServer.RegisterPacketHandler(PacketType.SB_UpdateTable, (connection, packet) =>
