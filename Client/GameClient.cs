@@ -12,10 +12,19 @@ namespace Client
     public class GameClient
     {
         private ConnectionClient conClient = new ConnectionClient();
+        private StartForm startForm;
         private GameForm gameForm;
+        public ProfileForm profileForm;
 
         public GameClient()
         {
+            conClient.RegisterPacketHandler(PacketType.CB_Login, (con, packet) => {
+                var sendLoginStatus = (SendLoginPacket)packet;
+                profileForm.Invoke(new MethodInvoker(() =>
+                {
+                    profileForm.UpdateLoginStatus(sendLoginStatus.Success);
+                }));
+            });
             conClient.RegisterPacketHandler(PacketType.CB_SendRoomStatus, (con, packet) => {
                 while (gameForm == null || !gameForm.IsHandleCreated) ;
 
@@ -59,18 +68,29 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartForm(this));
+
+            startForm = new StartForm(this);
+            Application.Run(startForm);
         }
 
         public void OpenGameForm()
         {
             this.gameForm = new GameForm(this);
+
+            startForm.Hide();
+            gameForm.FormClosing += (sender, e) =>
+            {
+                conClient.Disconnect();
+                startForm.Show();
+            };
+
             gameForm.Show();
         }
 
         public void Connect()
         {
-            conClient.Connect(IPAddress.Parse("127.0.0.1"), 7777);
+            conClient.Connect(IPAddress.Parse(Properties.Settings.Default.ip), 
+                Int32.Parse(Properties.Settings.Default.port));
         }
 
         public void Login(string nickname)
@@ -91,6 +111,11 @@ namespace Client
         public void UpdatePrivateTiles(List<Tile> tiles)
         {
             conClient.Connection.Send(new UpdatePrivateTilesPacket(tiles));
+        }
+
+        public void RequestRollback()
+        {
+            conClient.Connection.Send(new RequestRollbackPacket());
         }
 
         public void NextTurn()

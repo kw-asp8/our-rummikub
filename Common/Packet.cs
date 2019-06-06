@@ -12,8 +12,11 @@ namespace Common
         SB_StartGame,
         SB_UpdateTable,
         SB_UpdatePrivateTiles,
+        SB_RequestRollback,
         SB_NextTurn,
         SB_SendChat,
+
+        CB_Login,
         CB_SendRoomStatus,
         CB_SendGameStatus,
         CB_SendTable,
@@ -69,6 +72,14 @@ namespace Common
     }
 
     [Serializable]
+    public class RequestRollbackPacket : Packet
+    {
+        public RequestRollbackPacket() : base(PacketType.SB_RequestRollback)
+        {
+        }
+    }
+
+    [Serializable]
     public class NextTurnPacket : Packet
     {
         public NextTurnPacket() : base(PacketType.SB_NextTurn)
@@ -84,6 +95,18 @@ namespace Common
         public SendChatToServerPacket(string message) : base(PacketType.SB_SendChat)
         {
             this.Message = message;
+        }
+    }
+
+
+    [Serializable]
+    public class SendLoginPacket : Packet
+    {
+        public bool Success { get; private set; }
+
+        public SendLoginPacket(bool success) : base(PacketType.CB_Login)
+        {
+            Success = success;
         }
     }
 

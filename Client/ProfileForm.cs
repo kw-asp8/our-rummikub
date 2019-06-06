@@ -22,6 +22,18 @@ namespace Client
             this.client = client;
             InitializeComponent();
         }
+
+        public void UpdateLoginStatus(bool success)
+        {
+            if(success)
+            {
+                this.Close();
+                client.OpenGameForm();
+            }
+            else
+                textBox1.Clear();
+        }
+
         private void button3_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -48,13 +60,6 @@ namespace Client
         {
             client.Connect();
             client.Login(textBox1.Text);
-            this.Close();
-            client.OpenGameForm();
-        }
-
-        private void ProfileForm_Load(object sender, EventArgs e)
-        {
-
         }
 
         private void lbl_exit_Click(object sender, EventArgs e)
@@ -62,9 +67,15 @@ namespace Client
             this.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                client.Connect();
+                client.Login(textBox1.Text);
+                this.Close();
+                client.OpenGameForm();
+            }
         }
     }
 }

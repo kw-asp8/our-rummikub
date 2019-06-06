@@ -18,24 +18,41 @@ namespace Server
 
         public GameServer()
         {
-            conServer = new ConnectionServer(IPAddress.Parse("127.0.0.1"), 7777);
+            conServer = new ConnectionServer(IPAddress.Parse(Properties.Settings.Default.ip),
+                Int32.Parse(Properties.Settings.Default.port));
             conServer.RegisterPacketHandler(PacketType.SB_Login, (connection, packet) =>
             {
                 var login = (LoginPacket)packet;
+                bool success = true;
+                Player player = new Player(connection, login.Nickname);
 
                 if (Game.Room.Players.Count < Room.MaxPlayers)
                 {
-                    Player player = new Player(connection, login.Nickname);
-                    Game.Room.AddPlayer(player);
+                    foreach (Player p in Game.Room.Players)
+                    {
+                        if (player.Nickname == p.Nickname)
+                        {
+                            success = false;
+                            Console.WriteLine(login.Nickname + " has failed to log in: Already exists nickname.");
+                            break;
+                        }
+                    }
 
-                    SendRoomStatus();
-                    SendGameStatus();
-
-                    Console.WriteLine(player.Nickname + " has logged in.");
+                    var sendLoginStatus = new SendLoginPacket(success);
+                    player.Connection.Send(sendLoginStatus);
+                    if (success)
+                    {
+                        Game.Room.AddPlayer(player);
+                        Console.WriteLine(player.Nickname + " has logged in.");
+                        SendRoomStatus();
+                        SendGameStatus();
+                    }
                 }
-                else
+                else//TODO Send login fail packet
                 {
-                    //TODO Send login fail packet
+                    success = false;
+                    var sendLoginStatus = new SendLoginPacket(success);
+                    player.Connection.Send(sendLoginStatus);
                     Console.WriteLine(login.Nickname + " has failed to log in: The room is full.");
                 }
             });
@@ -72,6 +89,19 @@ namespace Server
 
                 //TODO verify the holding tiles
                 player.HoldingTiles = updatePrivateTiles.HoldingTiles;
+            });
+            conServer.RegisterPacketHandler(PacketType.SB_RequestRollback, (connection, packet) =>
+            {
+                Player player = Game.PlayerOf(connection);
+
+                if (player == Game.CurrentPlayer)
+                {
+                    Game.Rollback();
+
+                    SendGameStatus();
+
+                    Console.WriteLine(Game.CurrentPlayer.Nickname + " has rollbacked the table.");
+                }
             });
             conServer.RegisterPacketHandler(PacketType.SB_NextTurn, (connection, packet) =>
             {

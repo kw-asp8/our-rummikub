@@ -19,5 +19,16 @@ namespace Common
             Score = score;
             TileAmount = tileAmount;
         }
+
+        public override bool Equals(object obj)
+        {
+            return obj is PlayerInfo info &&
+                   Nickname == info.Nickname;
+        }
+
+        public override int GetHashCode()
+        {
+            return -739948555 + EqualityComparer<string>.Default.GetHashCode(Nickname);
+        }
     }
 }

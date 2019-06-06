@@ -16,7 +16,6 @@ namespace Client
     public partial class GameForm : Form
     {
         private List<TileGridPanel> tileGridPanels = new List<TileGridPanel>();
-        private Timer timer = new Timer();
 
         private GameClient client;
         private RoomStatus roomStatus;
@@ -87,7 +86,7 @@ namespace Client
 
         private void lbl_exit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void lbl_exit_MouseLeave(object sender, EventArgs e)
@@ -112,7 +111,6 @@ namespace Client
 
         private void GameForm_Load(object sender, EventArgs e)
         {
-            tmrClock.Start();
         }
 
         public void UpdateRoomStatus(RoomStatus roomStatus)
@@ -186,6 +184,13 @@ namespace Client
 
         public void UpdateGameStatus(GameStatus gameStatus)
         {
+            if (this.gameStatus != null && this.gameStatus.CurrentPlayer != gameStatus.CurrentPlayer)
+            {
+                tmrClock.Stop();
+                btn_timer.Text = "60";
+                tmrClock.Start();
+            }
+
             this.gameStatus = gameStatus;
 
             Invoke(new MethodInvoker(delegate ()
@@ -254,17 +259,19 @@ namespace Client
 
         private void Btn_complete_Click(object sender, EventArgs e)
         {
-            //TODO client.NextTurn();
+            client.NextTurn();
+            /*
             TileBlock tile = new TileBlock(new JokerTile(TileColor.BLACK), tileGridPanels);
             tile.Size = new Size(40, 40);
             tile.Location = new Point(100, 100);
 
             tgpHolding.PlaceAtFirst(tile);
+            */
         }
 
         private void Btn_return_Click(object sender, EventArgs e)
         {
-            //TODO Undo the changes
+            client.RequestRollback();
         }
 
         private void BtnStart_Click(object sender, EventArgs e)
@@ -285,6 +292,7 @@ namespace Client
         {
             if (e.KeyCode == Keys.Enter) // 엔터키 눌렀을 때
             {
+                e.SuppressKeyPress = true;
                 client.SendChat(txtbox_chat.Text);
                 txtbox_chat.Clear();
             }
