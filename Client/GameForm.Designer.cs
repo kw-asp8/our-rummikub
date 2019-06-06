@@ -99,10 +99,10 @@
             this.btn_send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_send.Cursor = System.Windows.Forms.Cursors.PanWest;
             this.btn_send.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_send.Location = new System.Drawing.Point(673, 91);
+            this.btn_send.Location = new System.Drawing.Point(769, 122);
             this.btn_send.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_send.Name = "btn_send";
-            this.btn_send.Size = new System.Drawing.Size(66, 29);
+            this.btn_send.Size = new System.Drawing.Size(75, 28);
             this.btn_send.TabIndex = 3;
             this.btn_send.Text = "전송";
             this.btn_send.UseVisualStyleBackColor = false;
@@ -111,12 +111,11 @@
             // txtbox_chat
             // 
             this.txtbox_chat.AcceptsReturn = true;
-            this.txtbox_chat.Location = new System.Drawing.Point(10, 91);
+            this.txtbox_chat.Location = new System.Drawing.Point(14, 122);
             this.txtbox_chat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtbox_chat.Multiline = true;
             this.txtbox_chat.Name = "txtbox_chat";
             this.txtbox_chat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbox_chat.Size = new System.Drawing.Size(656, 30);
+            this.txtbox_chat.Size = new System.Drawing.Size(749, 25);
             this.txtbox_chat.TabIndex = 2;
             this.txtbox_chat.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtbox_chat_KeyUp);
             // 
@@ -222,13 +221,13 @@
             // 
             // tgpHolding
             // 
-            this.tgpHolding.Location = new System.Drawing.Point(102, 400);
-            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tgpHolding.Location = new System.Drawing.Point(117, 500);
+            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tgpHolding.Name = "tgpHolding";
             this.tgpHolding.OnPickup = null;
             this.tgpHolding.OnPlace = null;
             this.tgpHolding.OptionRemoveSpaces = false;
-            this.tgpHolding.Size = new System.Drawing.Size(540, 96);
+            this.tgpHolding.Size = new System.Drawing.Size(617, 120);
             this.tgpHolding.TabIndex = 13;
             this.tgpHolding.TileSize = new System.Drawing.Size(0, 0);
             // 
@@ -265,13 +264,13 @@
             // 
             // tgpTable
             // 
-            this.tgpTable.Location = new System.Drawing.Point(102, 34);
-            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.tgpTable.Location = new System.Drawing.Point(117, 42);
+            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
             this.tgpTable.Name = "tgpTable";
             this.tgpTable.OnPickup = null;
             this.tgpTable.OnPlace = null;
             this.tgpTable.OptionRemoveSpaces = false;
-            this.tgpTable.Size = new System.Drawing.Size(540, 360);
+            this.tgpTable.Size = new System.Drawing.Size(617, 450);
             this.tgpTable.TabIndex = 2;
             this.tgpTable.TileSize = new System.Drawing.Size(0, 0);
             // 

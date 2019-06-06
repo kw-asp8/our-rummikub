@@ -292,6 +292,7 @@ namespace Client
         {
             if (e.KeyCode == Keys.Enter) // 엔터키 눌렀을 때
             {
+                e.SuppressKeyPress = true;
                 client.SendChat(txtbox_chat.Text);
                 txtbox_chat.Clear();
             }
