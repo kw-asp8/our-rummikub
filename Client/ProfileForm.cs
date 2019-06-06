@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Common;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -74,6 +75,7 @@ namespace Client
                 client.Connect();
                 client.Login(textBox1.Text);
                 this.Close();
+                client.Player = new PlayerInfo(textBox1.Text, 0, 0);
                 client.OpenGameForm();
             }
         }

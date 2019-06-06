@@ -15,6 +15,7 @@ namespace Client
         private StartForm startForm;
         private GameForm gameForm;
         public ProfileForm profileForm;
+        public PlayerInfo Player;
 
         public GameClient()
         {
@@ -29,6 +30,15 @@ namespace Client
                 while (gameForm == null || !gameForm.IsHandleCreated) ;
 
                 var sendRoomStatus = (SendRoomStatusPacket)packet;
+
+                foreach (PlayerInfo info in sendRoomStatus.RoomStatus.Players)
+                {
+                    if (info == Player)
+                    {
+                        Player = info;
+                    }
+                }
+
                 gameForm.Invoke(new MethodInvoker(() =>
                 {
                     gameForm.UpdateRoomStatus(sendRoomStatus.RoomStatus);
@@ -38,6 +48,7 @@ namespace Client
                 while (gameForm == null) ;
 
                 var sendGameStatus = (SendGameStatusPacket)packet;
+
                 gameForm.UpdateGameStatus(sendGameStatus.GameStatus);
             });
             conClient.RegisterPacketHandler(PacketType.CB_SendTable, (con, packet) => {
