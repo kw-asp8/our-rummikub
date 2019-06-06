@@ -73,6 +73,7 @@ namespace Client
             {
                 if (ContainerGrid != null)
                 {
+                    tileblockset = null;
                     leftblock = null;
                     isDragging = true;
                         prevLocation = new Point(ContainerGrid.Left + Location.X, ContainerGrid.Top + Location.Y);
@@ -136,7 +137,11 @@ namespace Client
                 TileGridPanel grid = FindTileGrid();
                 if (grid != null)
                 {
-                    grid.PlaceTile(this, Left, Top);
+                    if (!grid.PlaceTile(this, Left, Top))
+                    {
+                        Location = prevLocation;
+                        prevGrid.PlaceTile(this, Left, Top);
+                    }
                 }
                 else
                 {
@@ -152,7 +157,11 @@ namespace Client
                     TileGridPanel grid = t.FindTileGrid();
                     if (grid != null)
                     {
-                        grid.PlaceTile(t, t.Left, t.Top);
+                        if (!grid.PlaceTile(t, t.Left, t.Top))
+                        {
+                            t.Location = t.prevLocation;
+                            t.prevGrid.PlaceTile(t, t.Left, t.Top);
+                        }
                     }
                     else
                     {
@@ -163,15 +172,15 @@ namespace Client
             }
             
         }
-        public bool isPlaceable()
-        {
-            for (int i = 1; i < tileblockset.Count(); i++)
-            {
-                if (tileblockset[i].FindTileGrid().isPlaceable(tileblockset[i]) == false)
-                    return false;
-            }
-            return true;
-        }
+        //public bool isPlaceable()
+        //{
+        //    for (int i = 1; i < tileblockset.Count(); i++)
+        //    {
+        //        if (tileblockset[i].FindTileGrid().isPlaceable(tileblockset[i]) == false)
+        //            return false;
+        //    }
+        //    return true;
+        //}
         private TileGridPanel FindTileGrid()
         {
             foreach (TileGridPanel grid in grids)

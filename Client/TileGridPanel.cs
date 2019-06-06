@@ -298,19 +298,27 @@ namespace Client
             }
             OnPlace(tile.Tile, i, j);
         }
-        public bool isPlaceable(TileBlock tile)
+        public bool isPlaceable(Point index,int Size)
         {
-            Point index = LocationToIndex(new Point(tile.Left, tile.Top));
-            if (tiles[index.Y,index.X] == null)
-                return true;
-            else
-                return false;
+            for(int i=0;i<Size;i++)
+            {
+                try
+                {
+                    if (tiles[index.Y, index.X + i] != null)
+                        return false;
+                }
+                catch(System.Exception e)
+                {
+                    return false;
+                }
+            }
+            return true;
             
         }
         public bool PlaceTile(TileBlock tile, int x, int y)
         {
             Point index = LocationToIndex(new Point(x, y));
-            if (tile.leftblock != null)
+            if (tile.leftblock != null )
             {
                 for (int i = 0; i < tiles.GetLength(0); i++)
                 {
@@ -329,8 +337,18 @@ namespace Client
             {
                 if (tiles[index.Y, index.X] == null)
                 {
-                    AddTile(tile, index.Y, index.X);
-                    return true;
+                    if (tile.tileblockset!=null && tile.tileblockset.Count > 0 && isPlaceable(index, tile.tileblockset.Count))
+                    {
+                        AddTile(tile, index.Y, index.X);
+                        return true;
+                    }
+                    else if (tile.tileblockset == null)
+                    {
+                        AddTile(tile, index.Y, index.X);
+                        return true;
+                    }
+                    else
+                        return false;
                 }
                 else
                 {
@@ -359,14 +377,14 @@ namespace Client
             {
                 if (tiles[index.Y, index.X] == null)
                 {
-                    if (tile.tileblockset.Count>0 && tile.isPlaceable())
+                    if (tile.tileblockset != null && tile.tileblockset.Count>0 && isPlaceable(index,tile.tileblockset.Count))
                     {
-                        AddTile(tile, index.X, index.Y);
+                        AddTile(tile, index.Y, index.X);
                         return true;
                     }
-                    else if (tile.tileblockset.Count == 0)
+                    else if (tile.tileblockset == null)
                     {
-                        AddTile(tile, index.X, index.Y);
+                        AddTile(tile, index.Y, index.X);
                         return true;
                     }
                     else
