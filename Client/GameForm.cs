@@ -118,11 +118,11 @@ namespace Client
         public void UpdateRoomStatus(RoomStatus roomStatus)
         {
             this.roomStatus = roomStatus;
-           
+
             //TODO Update the form
             for (int i = 0; i < 4; i++)
             {
-                switch(i)
+                switch (i)
                 {
                     case 0:
                         if (i < roomStatus.Players.Count)
@@ -215,7 +215,7 @@ namespace Client
                     }
                 }
             }));
-            
+
             for (int i = 0; i < table.GetLength(0); i++)
             {
                 for (int j = 0; j < table.GetLength(1); j++)
@@ -279,6 +279,15 @@ namespace Client
         {
             client.SendChat(txtbox_chat.Text);
             txtbox_chat.Clear();
+        }
+
+        private void txtbox_chat_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) // 엔터키 눌렀을 때
+            {
+                client.SendChat(txtbox_chat.Text);
+                txtbox_chat.Clear();
+            }
         }
     }
 }

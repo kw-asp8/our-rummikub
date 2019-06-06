@@ -71,7 +71,29 @@ namespace Client
 
         private void GameResult_Load(object sender, EventArgs e)
         {
-
+            lbl_first.Text = ranking[0].Nickname;
+            for (int i = 0; i < ranking.Count; i++)
+            {
+                switch (i)
+                {
+                    case 0:
+                        lbl_first.Text = ranking[i].Nickname;
+                        lbl_first_score.Text = ranking[i].Score.ToString();
+                        break;
+                    case 1:
+                        lbl_second.Text = ranking[i].Nickname;
+                        lbl_second_score.Text = ranking[i].Score.ToString();
+                        break;
+                    case 2:
+                        lbl_third.Text = ranking[i].Nickname;
+                        lbl_third_score.Text = ranking[i].Score.ToString();
+                        break;
+                    case 3:
+                        lbl_forth.Text = ranking[i].Nickname;
+                        lbl_forth_score.Text = ranking[i].Score.ToString();
+                        break;
+                }
+            }
         }
     }
 }
