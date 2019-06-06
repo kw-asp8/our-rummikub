@@ -87,7 +87,7 @@ namespace Client
 
         private void lbl_exit_Click(object sender, EventArgs e)
         {
-            Application.Exit();
+            this.Close();
         }
 
         private void lbl_exit_MouseLeave(object sender, EventArgs e)

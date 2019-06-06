@@ -12,6 +12,7 @@ namespace Client
     public class GameClient
     {
         private ConnectionClient conClient = new ConnectionClient();
+        private StartForm startForm;
         private GameForm gameForm;
 
         public GameClient()
@@ -59,12 +60,22 @@ namespace Client
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new StartForm(this));
+
+            startForm = new StartForm(this);
+            Application.Run(startForm);
         }
 
         public void OpenGameForm()
         {
             this.gameForm = new GameForm(this);
+
+            startForm.Hide();
+            gameForm.FormClosing += (sender, e) =>
+            {
+                conClient.Disconnect();
+                startForm.Show();
+            };
+
             gameForm.Show();
         }
 
