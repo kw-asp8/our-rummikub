@@ -43,8 +43,10 @@
             this.nickname3 = new System.Windows.Forms.Label();
             this.nickname2 = new System.Windows.Forms.Label();
             this.nickname1 = new System.Windows.Forms.Label();
+            this.tgpHolding = new Client.TileGridPanel();
             this.tileTable = new System.Windows.Forms.PictureBox();
             this.lbl_title = new System.Windows.Forms.Label();
+            this.tgpTable = new Client.TileGridPanel();
             this.btnStart = new System.Windows.Forms.Button();
             this.btn_return = new System.Windows.Forms.Button();
             this.btn_complete = new System.Windows.Forms.Button();
@@ -58,8 +60,6 @@
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
-            this.tgpHolding = new Client.TileGridPanel();
-            this.tgpTable = new Client.TileGridPanel();
             this.Chatting.SuspendLayout();
             this.MainForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
@@ -99,10 +99,10 @@
             this.btn_send.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(224)))), ((int)(((byte)(224)))), ((int)(((byte)(224)))));
             this.btn_send.Cursor = System.Windows.Forms.Cursors.PanWest;
             this.btn_send.Font = new System.Drawing.Font("맑은 고딕", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.btn_send.Location = new System.Drawing.Point(769, 114);
+            this.btn_send.Location = new System.Drawing.Point(769, 122);
             this.btn_send.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_send.Name = "btn_send";
-            this.btn_send.Size = new System.Drawing.Size(75, 36);
+            this.btn_send.Size = new System.Drawing.Size(75, 28);
             this.btn_send.TabIndex = 3;
             this.btn_send.Text = "전송";
             this.btn_send.UseVisualStyleBackColor = false;
@@ -111,12 +111,11 @@
             // txtbox_chat
             // 
             this.txtbox_chat.AcceptsReturn = true;
-            this.txtbox_chat.Location = new System.Drawing.Point(12, 114);
+            this.txtbox_chat.Location = new System.Drawing.Point(14, 122);
             this.txtbox_chat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtbox_chat.Multiline = true;
             this.txtbox_chat.Name = "txtbox_chat";
             this.txtbox_chat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbox_chat.Size = new System.Drawing.Size(749, 36);
+            this.txtbox_chat.Size = new System.Drawing.Size(749, 25);
             this.txtbox_chat.TabIndex = 2;
             this.txtbox_chat.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtbox_chat_KeyUp);
             // 
@@ -220,6 +219,18 @@
             this.nickname1.TabIndex = 14;
             this.nickname1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
+            // tgpHolding
+            // 
+            this.tgpHolding.Location = new System.Drawing.Point(117, 500);
+            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tgpHolding.Name = "tgpHolding";
+            this.tgpHolding.OnPickup = null;
+            this.tgpHolding.OnPlace = null;
+            this.tgpHolding.OptionRemoveSpaces = false;
+            this.tgpHolding.Size = new System.Drawing.Size(617, 120);
+            this.tgpHolding.TabIndex = 13;
+            this.tgpHolding.TileSize = new System.Drawing.Size(0, 0);
+            // 
             // tileTable
             // 
             this.tileTable.BackColor = System.Drawing.Color.Transparent;
@@ -236,8 +247,8 @@
             // 
             // lbl_title
             // 
-            this.lbl_title.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.lbl_title.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.lbl_title.AutoSize = true;
             this.lbl_title.BackColor = System.Drawing.Color.Navy;
@@ -250,6 +261,18 @@
             this.lbl_title.TabIndex = 1;
             this.lbl_title.Text = "Rummikub";
             this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // tgpTable
+            // 
+            this.tgpTable.Location = new System.Drawing.Point(117, 42);
+            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tgpTable.Name = "tgpTable";
+            this.tgpTable.OnPickup = null;
+            this.tgpTable.OnPlace = null;
+            this.tgpTable.OptionRemoveSpaces = false;
+            this.tgpTable.Size = new System.Drawing.Size(617, 450);
+            this.tgpTable.TabIndex = 2;
+            this.tgpTable.TileSize = new System.Drawing.Size(0, 0);
             // 
             // btnStart
             // 
@@ -308,8 +331,8 @@
             // 
             // profile4
             // 
-            this.profile4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.profile4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile4.BackColor = System.Drawing.Color.Transparent;
             this.profile4.Image = global::Client.Properties.Resources.프사4;
@@ -323,8 +346,8 @@
             // 
             // profile3
             // 
-            this.profile3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.profile3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile3.BackColor = System.Drawing.Color.Transparent;
             this.profile3.Image = global::Client.Properties.Resources.프사3;
@@ -338,8 +361,8 @@
             // 
             // profile2
             // 
-            this.profile2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.profile2.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile2.BackColor = System.Drawing.Color.Transparent;
             this.profile2.Image = global::Client.Properties.Resources.프사2;
@@ -353,8 +376,8 @@
             // 
             // profile1
             // 
-            this.profile1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom)
-            | System.Windows.Forms.AnchorStyles.Left)
+            this.profile1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.profile1.BackColor = System.Drawing.Color.Transparent;
             this.profile1.Image = global::Client.Properties.Resources.프사1;
@@ -430,30 +453,6 @@
             // 
             this.tmrClock.Interval = 1000;
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
-            // 
-            // tgpHolding
-            // 
-            this.tgpHolding.Location = new System.Drawing.Point(117, 500);
-            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.tgpHolding.Name = "tgpHolding";
-            this.tgpHolding.OnPickup = null;
-            this.tgpHolding.OnPlace = null;
-            this.tgpHolding.OptionRemoveSpaces = false;
-            this.tgpHolding.Size = new System.Drawing.Size(617, 120);
-            this.tgpHolding.TabIndex = 13;
-            this.tgpHolding.TileSize = new System.Drawing.Size(0, 0);
-            // 
-            // tgpTable
-            // 
-            this.tgpTable.Location = new System.Drawing.Point(117, 42);
-            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.tgpTable.Name = "tgpTable";
-            this.tgpTable.OnPickup = null;
-            this.tgpTable.OnPlace = null;
-            this.tgpTable.OptionRemoveSpaces = false;
-            this.tgpTable.Size = new System.Drawing.Size(617, 450);
-            this.tgpTable.TabIndex = 2;
-            this.tgpTable.TileSize = new System.Drawing.Size(0, 0);
             // 
             // GameForm
             // 

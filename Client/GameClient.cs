@@ -70,7 +70,8 @@ namespace Client
 
         public void Connect()
         {
-            conClient.Connect(IPAddress.Parse("127.0.0.1"), 7777);
+            conClient.Connect(IPAddress.Parse(Properties.Settings.Default.ip), 
+                Int32.Parse(Properties.Settings.Default.port));
         }
 
         public void Login(string nickname)

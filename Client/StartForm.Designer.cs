@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             this.label1 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
+            this.btn_profile = new System.Windows.Forms.Button();
             this.lbl_exit = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
@@ -39,26 +39,26 @@
             // 
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.SystemColors.Highlight;
-            this.label1.Font = new System.Drawing.Font("나눔명조", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 40F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.Red;
             this.label1.Location = new System.Drawing.Point(152, 136);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(366, 77);
+            this.label1.Size = new System.Drawing.Size(352, 76);
             this.label1.TabIndex = 0;
             this.label1.Text = "Rummikub";
             // 
-            // button2
+            // btn_profile
             // 
-            this.button2.BackColor = System.Drawing.Color.Goldenrod;
-            this.button2.Font = new System.Drawing.Font("나눔바른고딕", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.button2.ForeColor = System.Drawing.Color.Red;
-            this.button2.Location = new System.Drawing.Point(228, 364);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(202, 75);
-            this.button2.TabIndex = 2;
-            this.button2.Text = "PROFILE";
-            this.button2.UseVisualStyleBackColor = false;
-            this.button2.Click += new System.EventHandler(this.button2_Click);
+            this.btn_profile.BackColor = System.Drawing.Color.Goldenrod;
+            this.btn_profile.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
+            this.btn_profile.ForeColor = System.Drawing.Color.Red;
+            this.btn_profile.Location = new System.Drawing.Point(228, 364);
+            this.btn_profile.Name = "btn_profile";
+            this.btn_profile.Size = new System.Drawing.Size(202, 75);
+            this.btn_profile.TabIndex = 2;
+            this.btn_profile.Text = "PROFILE";
+            this.btn_profile.UseVisualStyleBackColor = false;
+            this.btn_profile.Click += new System.EventHandler(this.button2_Click);
             // 
             // lbl_exit
             // 
@@ -93,14 +93,13 @@
             this.ClientSize = new System.Drawing.Size(698, 561);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btn_profile);
             this.Controls.Add(this.label1);
             this.ForeColor = System.Drawing.Color.LightBlue;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "StartForm";
             this.SizeGripStyle = System.Windows.Forms.SizeGripStyle.Hide;
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.StartForm_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.ResumeLayout(false);
@@ -111,7 +110,7 @@
         #endregion
 
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btn_profile;
         private System.Windows.Forms.Label lbl_exit;
         private System.Windows.Forms.Panel panel1;
     }
