@@ -36,16 +36,20 @@
             this.panel.BackColor = System.Drawing.SystemColors.ControlDark;
             this.panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel.Location = new System.Drawing.Point(0, 0);
+            this.panel.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.panel.Name = "panel";
-            this.panel.Size = new System.Drawing.Size(150, 150);
+            this.panel.Size = new System.Drawing.Size(171, 188);
             this.panel.TabIndex = 0;
             // 
             // TileGridPanel
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.panel);
+            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TileGridPanel";
+            this.Size = new System.Drawing.Size(171, 188);
+            this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TileGridPanel_MouseDown);
             this.ResumeLayout(false);
 
         }

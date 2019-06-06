@@ -14,14 +14,15 @@ namespace Client
     public partial class TileBlock : UserControl
     {
         public Tile Tile { get; private set; }
-
+        public TileBlock leftblock = null;
         private List<TileGridPanel> grids = new List<TileGridPanel>();
         private bool isDragging = false;
-        private Point startPoint;
-        private Point prevLocation;
-        private TileGridPanel prevGrid;
+        public Point startPoint;
+        public Point prevLocation;
+        public List<TileBlock> tileblockset = new List<TileBlock>();
+        public TileGridPanel prevGrid;
 
-        public TileGridPanel ContainerGrid { get; set; } = null;
+        public TileGridPanel ContainerGrid { get; set; }
 
         public TileBlock(Tile tile, List<TileGridPanel> grids)
         {
@@ -66,47 +67,111 @@ namespace Client
             }
         }
 
-        private void TileBlock_MouseDown(object sender, MouseEventArgs e)
+        public void TileBlock_MouseDown(object sender, MouseEventArgs e)
         {
-            isDragging = true;
-            startPoint = new Point(e.X, e.Y);
-            prevGrid = ContainerGrid;
-            prevLocation = new Point(ContainerGrid.Left + Location.X, ContainerGrid.Top + Location.Y);
-
-            if (ContainerGrid != null)
+            if(e.Button == MouseButtons.Left)
             {
-                ContainerGrid.PickupTile(this);
-                ContainerGrid = null;
+                if (ContainerGrid != null)
+                {
+                    leftblock = null;
+                    isDragging = true;
+                        prevLocation = new Point(ContainerGrid.Left + Location.X, ContainerGrid.Top + Location.Y);
+                        prevGrid = ContainerGrid;
+                        startPoint = new Point(e.X, e.Y);
+                        ContainerGrid.PickupTile(this);
+                        ContainerGrid = null;
+                }
+                BringToFront();
             }
+            else
+            {
+                tileblockset = this.ContainerGrid.FindTileSet(this);
+                if (ContainerGrid != null)
+                {
+                    foreach (TileBlock t in tileblockset)
+                    {
+                        t.tileblockset = tileblockset;
+                        t.isDragging = true;
+                        t.prevLocation = new Point(t.ContainerGrid.Left + t.Location.X, t.ContainerGrid.Top + t.Location.Y);
+                        t.prevGrid = t.ContainerGrid;
+                        t.startPoint = new Point(e.X, e.Y);
+                        t.ContainerGrid.PickupTile(t);
+                        t.ContainerGrid = null;
 
-            this.BringToFront();
+                    }
+                }
+                foreach (TileBlock t in tileblockset)
+                {
+                    t.BringToFront();
+                }
+            }
+            
         }
 
-        private void TileBlock_MouseMove(object sender, MouseEventArgs e)
+        public void TileBlock_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
-                this.Left += e.X - startPoint.X;
-                this.Top += e.Y - startPoint.Y;
+                if(e.Button == MouseButtons.Left)
+                {
+                    this.Left += e.X - startPoint.X;
+                    this.Top += e.Y - startPoint.Y;
+                }
+                else
+                {
+                    foreach (TileBlock t in tileblockset)
+                    {
+                        t.Left += e.X - t.startPoint.X;
+                        t.Top += e.Y - t.startPoint.Y;
+                    }
+                }
             }
         }
 
         private void TileBlock_MouseUp(object sender, MouseEventArgs e)
         {
-            isDragging = false;
-
-            TileGridPanel grid = FindTileGrid();
-            if (grid != null)
+            if(e.Button == MouseButtons.Left)
             {
-                grid.PlaceTile(this, this.Left, this.Top);
+                isDragging = false;
+                TileGridPanel grid = FindTileGrid();
+                if (grid != null)
+                {
+                    grid.PlaceTile(this, Left, Top);
+                }
+                else
+                {
+                    Location = prevLocation;
+                    prevGrid.PlaceTile(this, Left, Top);
+                }
             }
             else
             {
-                this.Location = prevLocation;
-                prevGrid.PlaceTile(this, this.Left, this.Top);
+                foreach (TileBlock t in tileblockset)
+                {
+                    t.isDragging = false;
+                    TileGridPanel grid = t.FindTileGrid();
+                    if (grid != null)
+                    {
+                        grid.PlaceTile(t, t.Left, t.Top);
+                    }
+                    else
+                    {
+                        t.Location = t.prevLocation;
+                        t.prevGrid.PlaceTile(t, t.Left, t.Top);
+                    }
+                }
             }
+            
         }
-
+        public bool isPlaceable()
+        {
+            for (int i = 1; i < tileblockset.Count(); i++)
+            {
+                if (tileblockset[i].FindTileGrid().isPlaceable(tileblockset[i]) == false)
+                    return false;
+            }
+            return true;
+        }
         private TileGridPanel FindTileGrid()
         {
             foreach (TileGridPanel grid in grids)
@@ -139,6 +204,11 @@ namespace Client
         private void lbl_num_MouseMove(object sender, MouseEventArgs e)
         {
             TileBlock_MouseMove(sender, e);
+        }
+
+        private void lbl_num_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

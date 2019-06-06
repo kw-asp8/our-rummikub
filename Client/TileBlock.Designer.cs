@@ -35,7 +35,7 @@
             // 
             this.lbl_num.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_num.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_num.Font = new System.Drawing.Font("함초롬돋움", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_num.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_num.Location = new System.Drawing.Point(0, 0);
             this.lbl_num.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_num.Name = "lbl_num";
@@ -43,6 +43,7 @@
             this.lbl_num.TabIndex = 0;
             this.lbl_num.Text = "J";
             this.lbl_num.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.lbl_num.Click += new System.EventHandler(this.lbl_num_Click);
             this.lbl_num.MouseDown += new System.Windows.Forms.MouseEventHandler(this.lbl_num_MouseDown);
             this.lbl_num.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_num_MouseMove);
             this.lbl_num.MouseUp += new System.Windows.Forms.MouseEventHandler(this.lbl_num_MouseUp);

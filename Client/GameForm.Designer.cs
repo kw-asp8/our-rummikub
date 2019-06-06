@@ -49,6 +49,7 @@
             this.btn_return = new System.Windows.Forms.Button();
             this.btn_complete = new System.Windows.Forms.Button();
             this.lbl_exit = new System.Windows.Forms.Label();
+            this.profile4 = new System.Windows.Forms.PictureBox();
             this.profile3 = new System.Windows.Forms.PictureBox();
             this.profile2 = new System.Windows.Forms.PictureBox();
             this.profile1 = new System.Windows.Forms.PictureBox();
@@ -57,16 +58,15 @@
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
-            this.profile4 = new System.Windows.Forms.PictureBox();
             this.tgpHolding = new Client.TileGridPanel();
             this.tgpTable = new Client.TileGridPanel();
             this.Chatting.SuspendLayout();
             this.MainForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profile4)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile1)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.profile4)).BeginInit();
             this.SuspendLayout();
             // 
             // Chatting
@@ -304,6 +304,21 @@
             this.lbl_exit.MouseLeave += new System.EventHandler(this.lbl_exit_MouseLeave);
             this.lbl_exit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_exit_MouseMove);
             // 
+            // profile4
+            // 
+            this.profile4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.profile4.BackColor = System.Drawing.Color.Transparent;
+            this.profile4.Image = global::Client.Properties.Resources.프사4;
+            this.profile4.Location = new System.Drawing.Point(17, 396);
+            this.profile4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.profile4.Name = "profile4";
+            this.profile4.Size = new System.Drawing.Size(83, 79);
+            this.profile4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
+            this.profile4.TabIndex = 6;
+            this.profile4.TabStop = false;
+            // 
             // profile3
             // 
             this.profile3.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -414,21 +429,6 @@
             this.tmrClock.Interval = 1000;
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
-            // profile4
-            // 
-            this.profile4.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.profile4.BackColor = System.Drawing.Color.Transparent;
-            this.profile4.Image = global::Client.Properties.Resources.프사4;
-            this.profile4.Location = new System.Drawing.Point(17, 396);
-            this.profile4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.profile4.Name = "profile4";
-            this.profile4.Size = new System.Drawing.Size(83, 79);
-            this.profile4.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
-            this.profile4.TabIndex = 6;
-            this.profile4.TabStop = false;
-            // 
             // tgpHolding
             // 
             this.tgpHolding.Location = new System.Drawing.Point(117, 500);
@@ -471,10 +471,10 @@
             this.MainForm.ResumeLayout(false);
             this.MainForm.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.profile4)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.profile1)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.profile4)).EndInit();
             this.ResumeLayout(false);
 
         }

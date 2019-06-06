@@ -43,6 +43,7 @@ namespace Client
             if (isMove && (e.Button & MouseButtons.Left) == MouseButtons.Left)
                 Location = new Point(this.Left - (fPt.X - e.X), this.Top - (fPt.Y - e.Y));
         }
+
         private void button2_Click(object sender, EventArgs e)
         {
             client.Connect();
@@ -59,6 +60,11 @@ namespace Client
         private void lbl_exit_Click(object sender, EventArgs e)
         {
             this.Close();
+        }
+
+        private void panel1_Paint(object sender, PaintEventArgs e)
+        {
+
         }
     }
 }

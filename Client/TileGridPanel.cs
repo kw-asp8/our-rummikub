@@ -10,8 +10,7 @@ namespace Client
     public partial class TileGridPanel : UserControl
     {
         public Size TileSize { get; set; }
-
-        private TileBlock[,] tiles;
+        public TileBlock[,] tiles;
         private TileBlock[,] oldTiles;
 
         public bool OptionRemoveSpaces { get; set; } = false;
@@ -75,7 +74,7 @@ namespace Client
                 for (int i = 0; i < tiles.GetLength(0); i++)//기존 판 내용 복사
                 {
                     for (int j = 0; j < tiles.GetLength(1); j++)
-                        oldTiles[i,j] = tiles[i,j];
+                        oldTiles[i, j] = tiles[i, j];
                 }
 
                 tiles = new TileBlock[verticalCap, horizontalCap];//기존 판 확장
@@ -83,8 +82,8 @@ namespace Client
                 int disVer = (verticalCap - oldTiles.GetLength(0)) / 2;
                 int disHor = (horizontalCap - oldTiles.GetLength(1)) / 2;
 
-                for (int i = disVer; i < verticalCap - disVer; i++){
-                    for (int j = disHor; j < horizontalCap - disHor; j++){
+                for (int i = disVer; i < verticalCap - disVer; i++) {
+                    for (int j = disHor; j < horizontalCap - disHor; j++) {
                         if (oldTiles[i - disVer, j - disHor] != null)
                         {
                             tiles[i, j] = oldTiles[i - disVer, j - disHor];
@@ -137,7 +136,7 @@ namespace Client
             foreach (TileBlock block in tileAcenList)
             {
                 tiles[m, n] = block;
-                tiles[m, n].Location = new Point(n* TileSize.Width, m* TileSize.Height);
+                tiles[m, n].Location = new Point(n * TileSize.Width, m * TileSize.Height);
 
                 n++;
                 if (n >= tiles.GetLength(0))
@@ -216,9 +215,9 @@ namespace Client
                 for (int j = 0; j < tiles.GetLength(1); j++)
                 {
                     TileBlock block = tiles[i, j];
-                    if (block != null) { 
+                    if (block != null) {
                         if (block.Tile is JokerTile)
-                             tileAcenList.Add(block);
+                            tileAcenList.Add(block);
                     }
                 }
             }
@@ -299,13 +298,86 @@ namespace Client
             }
             OnPlace(tile.Tile, i, j);
         }
-
-        public void PlaceTile(TileBlock tile, int x, int y)
+        public bool isPlaceable(TileBlock tile)
+        {
+            Point index = LocationToIndex(new Point(tile.Left, tile.Top));
+            if (tiles[index.Y,index.X] == null)
+                return true;
+            else
+                return false;
+            
+        }
+        public bool PlaceTile(TileBlock tile, int x, int y)
         {
             Point index = LocationToIndex(new Point(x, y));
-            AddTile(tile, index.Y, index.X);
+            if (tile.leftblock != null)
+            {
+                for (int i = 0; i < tiles.GetLength(0); i++)
+                {
+                    for (int j = 0; j < tiles.GetLength(1); j++)
+                    {
+                        if (tiles[i, j] == tile.leftblock)
+                        {
+                            AddTile(tile, i, j + 1);
+                            return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                if (tiles[index.Y, index.X] == null)
+                {
+                    AddTile(tile, index.Y, index.X);
+                    return true;
+                }
+                else
+                {
+                    return PlaceTile(tile, new Point(index.X + 1, index.Y));
+                }
+            }
         }
-
+        public bool PlaceTile(TileBlock tile,Point index)
+        {
+            if (tile.leftblock != null)
+            {
+                for (int i = 0; i < tiles.GetLength(0); i++)
+                {
+                    for (int j = 0; j < tiles.GetLength(1); j++)
+                    {
+                        if (tiles[i, j] == tile.leftblock)
+                        {
+                                AddTile(tile, i, j + 1);
+                                return true;
+                        }
+                    }
+                }
+                return false;
+            }
+            else
+            {
+                if (tiles[index.Y, index.X] == null)
+                {
+                    if (tile.tileblockset.Count>0 && tile.isPlaceable())
+                    {
+                        AddTile(tile, index.X, index.Y);
+                        return true;
+                    }
+                    else if (tile.tileblockset.Count == 0)
+                    {
+                        AddTile(tile, index.X, index.Y);
+                        return true;
+                    }
+                    else
+                        return false;
+                }
+                else
+                {
+                    return PlaceTile(tile, new Point(index.X + 1, index.Y));
+                }
+            }
+        }
         public bool PlaceAtFirst(TileBlock tile)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
@@ -358,5 +430,74 @@ namespace Client
             int innerY = loc.Y - this.Top;
             return new Point(innerX / TileSize.Width, innerY / TileSize.Height);
         }
+
+        public void TileGridPanel_MouseDown(object sender, MouseEventArgs e)
+        {
+            int innerX = this.Left;
+        }
+        public List<TileBlock> FindTileSet(TileBlock tile)
+        {
+            List<TileBlock> tileset = new List<TileBlock>();
+            int r, c;
+            for (int i = 0; i < tiles.GetLength(0); i++)
+            {
+                for (int j = 0; j < tiles.GetLength(1); j++)
+                {
+                    if (tiles[i, j] == tile)
+                    {
+                        r = i;
+                        c = j;
+                            for (int sc = c; sc >= 0; sc--)
+                            {
+                                if (sc > 0)
+                                {
+                                    if (tiles[r, sc - 1] == null)
+                                    {
+                                        for (int a = r; a < tiles.GetLength(0); a++)
+                                        {
+                                            for (int b = sc; b < tiles.GetLength(1); b++)
+                                            {
+                                                if (tiles[a, b] != null)
+                                                {
+                                                    if (b > 0)
+                                                    {
+                                                        tiles[a, b].leftblock = tiles[a, b - 1];
+                                                    }
+                                                    tileset.Add(tiles[a, b]);
+                                                }
+                                                else
+                                                    return tileset;
+                                            }
+                                        }
+                                    }
+                                }
+                                else if (sc == 0)
+                                {
+                                    for (int a = r; a < tiles.GetLength(0); a++)
+                                    {
+                                        for (int b = sc; b < tiles.GetLength(1); b++)
+                                        {
+                                            if (tiles[a, b] != null)
+                                            {
+                                                if (b > 0)
+                                                {
+                                                    tiles[a, b].leftblock = tiles[a, b - 1];
+                                                }
+                                                tileset.Add(tiles[a, b]);
+                                            }
+                                            else
+                                                return tileset;
+                                        }
+                                    }
+                                }
+                                
+                            }
+                        
+                    }
+                }
+            }
+            return tileset;
+        }
     }
+
 }
