@@ -16,7 +16,6 @@ namespace Client
     public partial class GameForm : Form
     {
         private List<TileGridPanel> tileGridPanels = new List<TileGridPanel>();
-        private Timer timer = new Timer();
 
         private GameClient client;
         private RoomStatus roomStatus;
@@ -112,7 +111,6 @@ namespace Client
 
         private void GameForm_Load(object sender, EventArgs e)
         {
-            tmrClock.Start();
         }
 
         public void UpdateRoomStatus(RoomStatus roomStatus)
@@ -186,6 +184,13 @@ namespace Client
 
         public void UpdateGameStatus(GameStatus gameStatus)
         {
+            if (this.gameStatus != null && this.gameStatus.CurrentPlayer != gameStatus.CurrentPlayer)
+            {
+                tmrClock.Stop();
+                btn_timer.Text = "60";
+                tmrClock.Start();
+            }
+
             this.gameStatus = gameStatus;
 
             Invoke(new MethodInvoker(delegate ()
