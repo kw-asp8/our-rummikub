@@ -43,10 +43,8 @@
             this.nickname3 = new System.Windows.Forms.Label();
             this.nickname2 = new System.Windows.Forms.Label();
             this.nickname1 = new System.Windows.Forms.Label();
-            this.tgpHolding = new Client.TileGridPanel();
             this.tileTable = new System.Windows.Forms.PictureBox();
             this.lbl_title = new System.Windows.Forms.Label();
-            this.tgpTable = new Client.TileGridPanel();
             this.btnStart = new System.Windows.Forms.Button();
             this.btn_return = new System.Windows.Forms.Button();
             this.btn_complete = new System.Windows.Forms.Button();
@@ -60,6 +58,8 @@
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
+            this.tgpHolding = new Client.TileGridPanel();
+            this.tgpTable = new Client.TileGridPanel();
             this.Chatting.SuspendLayout();
             this.MainForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
@@ -115,7 +115,7 @@
             this.txtbox_chat.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtbox_chat.Name = "txtbox_chat";
             this.txtbox_chat.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtbox_chat.Size = new System.Drawing.Size(749, 25);
+            this.txtbox_chat.Size = new System.Drawing.Size(749, 21);
             this.txtbox_chat.TabIndex = 2;
             this.txtbox_chat.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtbox_chat_KeyUp);
             // 
@@ -219,18 +219,6 @@
             this.nickname1.TabIndex = 14;
             this.nickname1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // tgpHolding
-            // 
-            this.tgpHolding.Location = new System.Drawing.Point(117, 500);
-            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.tgpHolding.Name = "tgpHolding";
-            this.tgpHolding.OnPickup = null;
-            this.tgpHolding.OnPlace = null;
-            this.tgpHolding.OptionRemoveSpaces = false;
-            this.tgpHolding.Size = new System.Drawing.Size(617, 120);
-            this.tgpHolding.TabIndex = 13;
-            this.tgpHolding.TileSize = new System.Drawing.Size(0, 0);
-            // 
             // tileTable
             // 
             this.tileTable.BackColor = System.Drawing.Color.Transparent;
@@ -255,24 +243,13 @@
             this.lbl_title.Cursor = System.Windows.Forms.Cursors.Default;
             this.lbl_title.Font = new System.Drawing.Font("Garamond", 30F, System.Drawing.FontStyle.Bold);
             this.lbl_title.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.lbl_title.Location = new System.Drawing.Point(693, 451);
+            this.lbl_title.Location = new System.Drawing.Point(672, 438);
             this.lbl_title.Name = "lbl_title";
             this.lbl_title.Size = new System.Drawing.Size(214, 45);
             this.lbl_title.TabIndex = 1;
             this.lbl_title.Text = "Rummikub";
             this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tgpTable
-            // 
-            this.tgpTable.Location = new System.Drawing.Point(117, 42);
-            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.tgpTable.Name = "tgpTable";
-            this.tgpTable.OnPickup = null;
-            this.tgpTable.OnPlace = null;
-            this.tgpTable.OptionRemoveSpaces = false;
-            this.tgpTable.Size = new System.Drawing.Size(617, 450);
-            this.tgpTable.TabIndex = 2;
-            this.tgpTable.TileSize = new System.Drawing.Size(0, 0);
+            this.lbl_title.Click += new System.EventHandler(this.Lbl_title_Click);
             // 
             // btnStart
             // 
@@ -452,6 +429,30 @@
             // 
             this.tmrClock.Interval = 1000;
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
+            // 
+            // tgpHolding
+            // 
+            this.tgpHolding.Location = new System.Drawing.Point(102, 397);
+            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tgpHolding.Name = "tgpHolding";
+            this.tgpHolding.OnPickup = null;
+            this.tgpHolding.OnPlace = null;
+            this.tgpHolding.OptionRemoveSpaces = false;
+            this.tgpHolding.Size = new System.Drawing.Size(540, 96);
+            this.tgpHolding.TabIndex = 13;
+            this.tgpHolding.TileSize = new System.Drawing.Size(0, 0);
+            // 
+            // tgpTable
+            // 
+            this.tgpTable.Location = new System.Drawing.Point(102, 34);
+            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tgpTable.Name = "tgpTable";
+            this.tgpTable.OnPickup = null;
+            this.tgpTable.OnPlace = null;
+            this.tgpTable.OptionRemoveSpaces = false;
+            this.tgpTable.Size = new System.Drawing.Size(540, 360);
+            this.tgpTable.TabIndex = 2;
+            this.tgpTable.TileSize = new System.Drawing.Size(0, 0);
             // 
             // GameForm
             // 
