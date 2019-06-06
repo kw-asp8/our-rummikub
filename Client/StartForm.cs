@@ -56,10 +56,5 @@ namespace Client
         {
             this.Close();
         }
-
-        private void StartForm_Load(object sender, EventArgs e)
-        {
-
-        }
     }
 }

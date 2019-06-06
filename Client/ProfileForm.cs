@@ -62,19 +62,20 @@ namespace Client
             client.Login(textBox1.Text);
         }
 
-        private void ProfileForm_Load(object sender, EventArgs e)
-        {
-
-        }
-
         private void lbl_exit_Click(object sender, EventArgs e)
         {
             this.Close();
         }
 
-        private void panel1_Paint(object sender, PaintEventArgs e)
+        private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-
+            if (e.KeyCode == Keys.Enter)
+            {
+                client.Connect();
+                client.Login(textBox1.Text);
+                this.Close();
+                client.OpenGameForm();
+            }
         }
     }
 }
