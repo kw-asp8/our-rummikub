@@ -19,7 +19,7 @@ namespace Server
         public GameServer()
         {
             conServer = new ConnectionServer(IPAddress.Parse(Properties.Settings.Default.ip),
-                7777);
+                Int32.Parse(Properties.Settings.Default.port));
             conServer.RegisterPacketHandler(PacketType.SB_Login, (connection, packet) =>
             {
                 var login = (LoginPacket)packet;

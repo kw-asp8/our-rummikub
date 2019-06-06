@@ -37,7 +37,7 @@ namespace Server.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("7777")]
+        [global::System.Configuration.DefaultSettingValueAttribute("8888")]
         public string port {
             get {
                 return ((string)(this["port"]));

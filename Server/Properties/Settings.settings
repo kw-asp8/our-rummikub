@@ -6,7 +6,7 @@
       <Value Profile="(Default)">127.0.0.1</Value>
     </Setting>
     <Setting Name="port" Type="System.String" Scope="User">
-      <Value Profile="(Default)">7777</Value>
+      <Value Profile="(Default)">8888</Value>
     </Setting>
   </Settings>
 </SettingsFile>
