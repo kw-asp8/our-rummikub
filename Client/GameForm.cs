@@ -283,7 +283,7 @@ namespace Client
         {
             Invoke(new MethodInvoker(delegate ()
             {
-                GameResultForm resultForm = new GameResultForm(ranking);
+                GameResultForm resultForm = new GameResultForm(client, ranking);
                 resultForm.StartPosition = FormStartPosition.CenterParent;
                 resultForm.Owner = this;
                 resultForm.Show();

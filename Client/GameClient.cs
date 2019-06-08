@@ -13,7 +13,7 @@ namespace Client
     {
         private ConnectionClient conClient = new ConnectionClient();
         private StartForm startForm;
-        private GameForm gameForm;
+        public GameForm gameForm;
         public ProfileForm profileForm;
         public PlayerInfo Player;
 
@@ -21,10 +21,14 @@ namespace Client
         {
             conClient.RegisterPacketHandler(PacketType.CB_Login, (con, packet) => {
                 var sendLoginStatus = (SendLoginPacket)packet;
-                profileForm.Invoke(new MethodInvoker(() =>
+                if (profileForm != null && profileForm.IsHandleCreated)
                 {
-                    profileForm.UpdateLoginStatus(sendLoginStatus.Success);
-                }));
+                    profileForm.Invoke(new MethodInvoker(() =>
+                    {
+                        profileForm.UpdateLoginStatus(sendLoginStatus.Success);
+                    }));
+                }
+                startForm.Invoke(new MethodInvoker(() => OpenGameForm()));
             });
             conClient.RegisterPacketHandler(PacketType.CB_SendRoomStatus, (con, packet) => {
                 while (gameForm == null || !gameForm.IsHandleCreated) ;
@@ -100,7 +104,6 @@ namespace Client
                 conClient.Disconnect();
                 startForm.Show();
             };
-
             gameForm.Show();
         }
 

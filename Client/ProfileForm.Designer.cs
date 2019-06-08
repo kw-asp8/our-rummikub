@@ -42,17 +42,18 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 35F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label1.ForeColor = System.Drawing.Color.Red;
-            this.label1.Location = new System.Drawing.Point(87, 75);
+            this.label1.Location = new System.Drawing.Point(76, 60);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(281, 67);
+            this.label1.Size = new System.Drawing.Size(224, 54);
             this.label1.TabIndex = 0;
             this.label1.Text = "PROFILE";
             // 
             // textBox1
             // 
-            this.textBox1.Location = new System.Drawing.Point(221, 286);
+            this.textBox1.Location = new System.Drawing.Point(193, 229);
+            this.textBox1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(145, 25);
+            this.textBox1.Size = new System.Drawing.Size(127, 21);
             this.textBox1.TabIndex = 1;
             this.textBox1.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBox1_KeyUp);
             // 
@@ -61,9 +62,9 @@
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.label2.ForeColor = System.Drawing.Color.Red;
-            this.label2.Location = new System.Drawing.Point(39, 276);
+            this.label2.Location = new System.Drawing.Point(34, 221);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(146, 36);
+            this.label2.Size = new System.Drawing.Size(121, 29);
             this.label2.TabIndex = 2;
             this.label2.Text = "Nickname";
             // 
@@ -72,9 +73,10 @@
             this.btn_start.BackColor = System.Drawing.Color.Goldenrod;
             this.btn_start.Font = new System.Drawing.Font("Microsoft Sans Serif", 25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_start.ForeColor = System.Drawing.Color.Red;
-            this.btn_start.Location = new System.Drawing.Point(142, 408);
+            this.btn_start.Location = new System.Drawing.Point(124, 326);
+            this.btn_start.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(167, 75);
+            this.btn_start.Size = new System.Drawing.Size(146, 60);
             this.btn_start.TabIndex = 4;
             this.btn_start.Text = "START";
             this.btn_start.UseVisualStyleBackColor = false;
@@ -86,9 +88,9 @@
             this.lbl_exit.Dock = System.Windows.Forms.DockStyle.Right;
             this.lbl_exit.Font = new System.Drawing.Font("Microsoft JhengHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_exit.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lbl_exit.Location = new System.Drawing.Point(435, 0);
+            this.lbl_exit.Location = new System.Drawing.Point(383, 0);
             this.lbl_exit.Name = "lbl_exit";
-            this.lbl_exit.Size = new System.Drawing.Size(34, 36);
+            this.lbl_exit.Size = new System.Drawing.Size(27, 28);
             this.lbl_exit.TabIndex = 11;
             this.lbl_exit.Text = "X";
             this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
@@ -97,8 +99,9 @@
             // 
             this.panel1.Controls.Add(this.lbl_exit);
             this.panel1.Location = new System.Drawing.Point(0, 0);
+            this.panel1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(469, 38);
+            this.panel1.Size = new System.Drawing.Size(410, 30);
             this.panel1.TabIndex = 12;
             this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseDown);
             this.panel1.MouseMove += new System.Windows.Forms.MouseEventHandler(this.panel1_MouseMove);
@@ -106,10 +109,10 @@
             // 
             // ProfileForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.MenuHighlight;
-            this.ClientSize = new System.Drawing.Size(470, 527);
+            this.ClientSize = new System.Drawing.Size(411, 422);
             this.ControlBox = false;
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.btn_start);
@@ -117,6 +120,7 @@
             this.Controls.Add(this.textBox1);
             this.Controls.Add(this.label1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "ProfileForm";
             this.Text = "profile";
             this.panel1.ResumeLayout(false);

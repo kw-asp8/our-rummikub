@@ -29,7 +29,6 @@ namespace Client
             if(success)
             {
                 this.Close();
-                client.OpenGameForm();
             }
             else
                 textBox1.Clear();
@@ -59,6 +58,7 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
+            client.Player = new PlayerInfo(textBox1.Text, 0, 0);
             client.Connect();
             client.Login(textBox1.Text);
         }
@@ -72,11 +72,9 @@ namespace Client
         {
             if (e.KeyCode == Keys.Enter)
             {
+                client.Player = new PlayerInfo(textBox1.Text, 0, 0);
                 client.Connect();
                 client.Login(textBox1.Text);
-                this.Close();
-                client.Player = new PlayerInfo(textBox1.Text, 0, 0);
-                client.OpenGameForm();
             }
         }
     }

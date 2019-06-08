@@ -15,11 +15,13 @@ namespace Client
 {
     public partial class GameResultForm : Form
     {
+        private GameClient client;
         private List<PlayerInfo> ranking;
 
-        public GameResultForm(List<PlayerInfo> ranking)
+        public GameResultForm(GameClient client, List<PlayerInfo> ranking)
         {
             InitializeComponent();
+            this.client = client;
             this.ranking = ranking;
             btn_regame.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, btn_regame.Width, btn_regame.Height, 30, 30));
             btn_main.Region = Region.FromHrgn(CreateRoundRectRgn(1, 1, btn_main.Width, btn_main.Height, 30, 30));
@@ -94,6 +96,23 @@ namespace Client
                         break;
                 }
             }
+        }
+
+        private void Btn_regame_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            client.gameForm.Close();
+
+            string oldNickname = client.Player.Nickname;
+            client.Player = new PlayerInfo(oldNickname, 0, 0);
+            client.Connect();
+            client.Login(oldNickname);
+        }
+
+        private void Btn_main_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            client.gameForm.Close();
         }
     }
 }
