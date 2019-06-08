@@ -14,6 +14,7 @@ namespace Server
         public Room Room { get; private set; }
         public bool IsEnabled { get; set; } = false;
         public Tile[,] PreviousTable { get; private set; } = new Tile[10, 20];
+        public List<Tile> PreviousHoldingTiles { get; private set; } = new List<Tile>();
         public Tile[,] Table { get; set; } = new Tile[10, 20];
         public List<Tile> Dummy { get; private set; } = new List<Tile>();
         public Player CurrentPlayer { get; private set; }
@@ -65,6 +66,7 @@ namespace Server
                     player.HoldingTiles.Add(PopDummy());
                 }
             }
+            PreviousHoldingTiles = new List<Tile>(CurrentPlayer.HoldingTiles);
         }
         
         public void End()
@@ -155,11 +157,11 @@ namespace Server
         public void Rollback()//rollback 버튼 클릭시
         {
             Table = (Tile [,])PreviousTable.Clone();
+            CurrentPlayer.HoldingTiles = PreviousHoldingTiles;
         }
 
         public bool HasAnyInvalidTileSet()
         {
-            PreviousTable = (Tile[,])Table.Clone();
             bool hasInvalidSet = false;
             foreach (TileSet tileSet in GetTileSets())
             {
@@ -178,6 +180,8 @@ namespace Server
                 nextIndex = 0;
 
             CurrentPlayer = Room.Players[nextIndex];
+            PreviousTable = (Tile[,])Table.Clone();
+            PreviousHoldingTiles = new List<Tile>(CurrentPlayer.HoldingTiles);
         }
 
         public GameStatus ToStatus()

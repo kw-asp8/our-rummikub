@@ -104,7 +104,8 @@ namespace Server
                 {
                     Game.Rollback();
 
-                    SendGameStatus();
+                    SendTable();
+                    SendPrivateTilesTo(Game.CurrentPlayer);
 
                     Console.WriteLine(Game.CurrentPlayer.Nickname + " has rollbacked the table.");
                 }
@@ -167,6 +168,7 @@ namespace Server
             else
             {
                 Game.Rollback();
+                SendTable();
                 for (int i = 0; i < 3; i++)
                 {
                     if (Game.CurrentPlayer.HoldingTiles.Count >= Game.MaxTileNum)
