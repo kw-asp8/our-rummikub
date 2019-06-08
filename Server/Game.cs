@@ -9,6 +9,8 @@ namespace Server
 {
     public class Game
     {
+        public static readonly int MaxTileNum = 20;
+
         public Room Room { get; private set; }
         public bool IsEnabled { get; set; } = false;
         public Tile[,] PreviousTable { get; private set; } = new Tile[10, 20];

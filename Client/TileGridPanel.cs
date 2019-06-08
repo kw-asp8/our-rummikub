@@ -265,12 +265,12 @@ namespace Client
                 tiles[m, n].Location = new Point(n * TileSize.Width, m * TileSize.Height);
 
                 n++;
-                if (n >= tiles.GetLength(0))
+                if (n >= tiles.GetLength(1))
                 {
                     n = 0;
                     m++;
 
-                    if (n >= tiles.GetLength(1))
+                    if (m >= tiles.GetLength(0))
                         break;
                 }
             }
@@ -283,7 +283,7 @@ namespace Client
                 index.X >= 0 && index.X < tiles.GetLength(1));
         }
 
-        public void AddTile(TileBlock tile, int i, int j)
+        public void AddTile(TileBlock tile, int i, int j, bool callEvent = true)
         {
             panel.Controls.Add(tile);
             tiles[i, j] = tile;
@@ -296,7 +296,10 @@ namespace Client
             {
                 RemoveSpaces();
             }
-            OnPlace(tile.Tile, i, j);
+            if (callEvent)
+            {
+                OnPlace(tile.Tile, i, j);
+            }
         }
         public bool isPlaceable(Point index,int Size)
         {
@@ -396,7 +399,7 @@ namespace Client
                 }
             }
         }
-        public bool PlaceAtFirst(TileBlock tile)
+        public bool PlaceAtFirst(TileBlock tile, bool callEvent = true)
         {
             for (int i = 0; i < tiles.GetLength(0); i++)
             {
@@ -404,7 +407,7 @@ namespace Client
                 {
                     if (tiles[i, j] == null)
                     {
-                        AddTile(tile, i, j);
+                        AddTile(tile, i, j, callEvent);
                         return true;
                     }
                 }
@@ -432,13 +435,16 @@ namespace Client
             return tiles[i, j];
         }
 
-        public TileBlock PickupTile(int i, int j)
+        public TileBlock PickupTile(int i, int j, bool callEvent = true)
         {
             TileBlock tile = tiles[i, j];
             panel.Controls.Remove(tile);
             this.Parent.Controls.Add(tile);
             tiles[i, j] = null;
-            OnPickup(tile.Tile, i, j);
+            if (callEvent)
+            {
+                OnPickup(tile.Tile, i, j);
+            }
             return tile;
         }
 

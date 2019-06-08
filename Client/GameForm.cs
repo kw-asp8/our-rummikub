@@ -43,9 +43,10 @@ namespace Client
             tgpTable.OnPickup += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
 
             tgpHolding.TileSize = new Size(36, 48);
-            tgpHolding.SetCapacity(20, 2);
+            tgpHolding.SetCapacity(15, 2);
             tgpHolding.OnPlace += (tile, i, j) => client.UpdatePrivateTiles(tgpHolding.GetTileList());
             tgpHolding.OnPickup += (tile, i, j) => client.UpdatePrivateTiles(tgpHolding.GetTileList());
+            tgpHolding.OptionRemoveSpaces = false;
 
             profile1.Visible = false;
             profile2.Visible = false;
@@ -217,7 +218,7 @@ namespace Client
                     {
                         if (tgpTable.BlockAt(i, j) != null)
                         {
-                            TileBlock block = tgpTable.PickupTile(i, j);
+                            TileBlock block = tgpTable.PickupTile(i, j, false);
                             block.Parent.Controls.Remove(block);
                         }
                     }
@@ -235,7 +236,7 @@ namespace Client
                         block.Size = new Size(40, 40);
                         block.Location = new Point(100, 100);
 
-                        Invoke(new MethodInvoker(() => tgpTable.AddTile(block, i, j)));
+                        Invoke(new MethodInvoker(() => tgpTable.AddTile(block, i, j, false)));
                     }
                 }
             }
@@ -249,9 +250,9 @@ namespace Client
                 {
                     for (int j = 0; j < tgpHolding.GetTileTable().GetLength(1); j++)
                     {
-                        if (tgpTable.BlockAt(i, j) != null)
+                        if (tgpHolding.BlockAt(i, j) != null)
                         {
-                            TileBlock block = tgpTable.PickupTile(i, j);
+                            TileBlock block = tgpHolding.PickupTile(i, j, false);
                             block.Parent.Controls.Remove(block);
                         }
                     }
@@ -265,7 +266,7 @@ namespace Client
                     block.Size = new Size(40, 40);
                     block.Location = new Point(100, 100);
 
-                    tgpHolding.PlaceAtFirst(block);
+                    tgpHolding.PlaceAtFirst(block, false);
                 }
             }));
         }

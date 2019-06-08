@@ -116,21 +116,7 @@ namespace Server
 
                 if (player == Game.CurrentPlayer)
                 {
-                    if (!Game.HasAnyInvalidTileSet())
-                    {
-                        CancelTurnTimer();
-                        Game.NextTurn();
-                        SendGameStatus();
-                        SendRoomStatus();
-
-                        InitTurnTimer();
-
-                        Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
-                    }
-                    else
-                    {
-                        Console.WriteLine(player.Nickname + " has failed to change turn: There's a invalid tile set.");
-                    }
+                    TryNextTurn();
                 }
             });
             conServer.RegisterPacketHandler(PacketType.SB_SendChat, (connection, packet) =>
@@ -164,6 +150,45 @@ namespace Server
             conServer.Stop();
         }
 
+        public void TryNextTurn()
+        {
+            CancelTurnTimer();
+
+            if (!Game.HasAnyInvalidTileSet())
+            {
+                if (Game.CurrentPlayer.HoldingTiles.Count < Game.MaxTileNum)
+                {
+                    if (Game.Dummy.Count > 0)
+                    {
+                        Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                    }
+                }
+            }
+            else
+            {
+                Game.Rollback();
+                for (int i = 0; i < 3; i++)
+                {
+                    if (Game.CurrentPlayer.HoldingTiles.Count >= Game.MaxTileNum)
+                        break;
+                    if (Game.Dummy.Count == 0)
+                        break;
+                    Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                }
+
+                Console.WriteLine(Game.CurrentPlayer.Nickname + " has failed to make valid tile-sets.");
+            }
+
+            SendPrivateTilesTo(Game.CurrentPlayer);
+            Game.NextTurn();
+            SendGameStatus();
+            SendRoomStatus();
+
+            InitTurnTimer();
+
+            Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
+        }
+
         public void CancelTurnTimer()
         {
             if (turnTimer != null && !turnTimer.IsCancellationRequested)
@@ -183,13 +208,8 @@ namespace Server
 
                 if (!token.IsCancellationRequested)
                 {
-                    Game.Rollback();
-                    Game.NextTurn();
-                    SendGameStatus(); //TODO 마우스에 집어져 있는 타일 제거
-                    SendRoomStatus();
-                    InitTurnTimer();
-
-                    Console.WriteLine("Time-out! Now " + Game.CurrentPlayer.Nickname + "'s turn.");
+                    TryNextTurn();
+                    //TODO 마우스에 집어져 있는 타일 제거
                 }
             }, token);
         }
@@ -225,6 +245,12 @@ namespace Server
                 if (player != excluded)
                     player.Connection.Send(sendTable);
             }
+        }
+
+        public void SendPrivateTilesTo(Player player)
+        {
+            var sendPrivateTiles = new SendPrivateTilesPacket(player.HoldingTiles);
+            player.Connection.Send(sendPrivateTiles);
         }
 
         public void SendChat(string nickname, string message)
