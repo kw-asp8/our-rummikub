@@ -26,7 +26,7 @@ namespace Server
                 bool success = true;
                 Player player = new Player(connection, login.Nickname);
 
-                if (Game.Room.Players.Count < Room.MaxPlayers)
+                if (Game.Room.Players.Count < Room.MaxPlayers && !Game.IsEnabled)
                 {
                     foreach (Player p in Game.Room.Players)
                     {
@@ -48,12 +48,12 @@ namespace Server
                         SendGameStatus();
                     }
                 }
-                else//TODO Send login fail packet
+                else
                 {
                     success = false;
                     var sendLoginStatus = new SendLoginPacket(success);
                     player.Connection.Send(sendLoginStatus);
-                    Console.WriteLine(login.Nickname + " has failed to log in: The room is full.");
+                    Console.WriteLine(login.Nickname + " has failed to log in: The room isn't available now.");
                 }
             });
             conServer.RegisterPacketHandler(PacketType.SB_StartGame, (connection, packet) =>

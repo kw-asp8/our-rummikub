@@ -28,7 +28,8 @@ namespace Client
                         profileForm.UpdateLoginStatus(sendLoginStatus.Success);
                     }));
                 }
-                startForm.Invoke(new MethodInvoker(() => OpenGameForm()));
+                if (sendLoginStatus.Success)
+                    startForm.Invoke(new MethodInvoker(() => OpenGameForm()));
             });
             conClient.RegisterPacketHandler(PacketType.CB_SendRoomStatus, (con, packet) => {
                 while (gameForm == null || !gameForm.IsHandleCreated) ;
