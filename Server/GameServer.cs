@@ -166,10 +166,10 @@ namespace Server
 
         public void CancelTurnTimer()
         {
-            if (turnTimer != null)
+            if (turnTimer != null && !turnTimer.IsCancellationRequested)
             {
                 turnTimer.Cancel();
-                turnTimer = null;
+                turnTimer.Dispose();
             }
         }
 
@@ -180,11 +180,17 @@ namespace Server
             Task.Factory.StartNew(() =>
             {
                 Thread.Sleep(60 * 1000);
-                Game.NextTurn();
-                SendGameStatus(); //TODO 마우스에 집어져 있는 타일 제거
-                SendRoomStatus();
 
-                Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
+                if (!token.IsCancellationRequested)
+                {
+                    Game.Rollback();
+                    Game.NextTurn();
+                    SendGameStatus(); //TODO 마우스에 집어져 있는 타일 제거
+                    SendRoomStatus();
+                    InitTurnTimer();
+
+                    Console.WriteLine("Time-out! Now " + Game.CurrentPlayer.Nickname + "'s turn.");
+                }
             }, token);
         }
 
