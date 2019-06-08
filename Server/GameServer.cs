@@ -293,7 +293,7 @@ namespace Server
         {
             List<PlayerInfo> ranking =
                 (from player in Game.Room.Players
-                 orderby player.Nickname //TODO orderby game.ScoreOf(player)
+                 orderby player.GetScore()
                  select player.ToInfo())
                  .ToList();
             var endGame = new EndGamePacket(ranking);
