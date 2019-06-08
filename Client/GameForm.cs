@@ -228,7 +228,7 @@ namespace Client
                     Tile tile = table[i, j];
                     if (tile != null)
                     {
-                        TileBlock block = new TileBlock(new NumberTile(TileColor.BLACK, 1), tileGridPanels);
+                        TileBlock block = new TileBlock(tile, tileGridPanels);
                         block.Size = new Size(40, 40);
                         block.Location = new Point(100, 100);
 
