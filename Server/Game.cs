@@ -142,12 +142,12 @@ namespace Server
                         if (Set.Count() != 0)
                         {
                             totalSet.Add(new TileSet(Set));
-                            Set.Clear();
+                            Set = new List<Tile>();
                         }
                     }
                 }
             }
-            return totalSet; //TODO
+            return totalSet;
         }
 
         public void Rollback()//rollback 버튼 클릭시
@@ -323,7 +323,7 @@ namespace Server
 
         public bool IsValid()
         {
-            return !(Run() && Group()); //둘다 참이 아니라면
+            return Run() || Group();
         }
     }
 }
