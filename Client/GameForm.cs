@@ -186,9 +186,12 @@ namespace Client
         {
             if (this.gameStatus != null && this.gameStatus.CurrentPlayer != gameStatus.CurrentPlayer)
             {
-                tmrClock.Stop();
-                btn_timer.Text = "60";
-                tmrClock.Start();
+                Invoke(new MethodInvoker(delegate ()
+                {
+                    tmrClock.Stop();
+                    btn_timer.Text = "60";
+                    tmrClock.Start();
+                }));
             }
 
             this.gameStatus = gameStatus;
