@@ -160,13 +160,17 @@ namespace Server
         {
             CancelTurnTimer();
 
+            bool hasPlacedAnyTile = Game.PreviousHoldingTiles.Count > Game.CurrentPlayer.HoldingTiles.Count;
             if (!Game.HasAnyInvalidTileSet())
             {
-                if (Game.CurrentPlayer.HoldingTiles.Count < Game.MaxTileNum)
+                if (!hasPlacedAnyTile)
                 {
-                    if (Game.Dummy.Count > 0)
+                    if (Game.CurrentPlayer.HoldingTiles.Count < Game.MaxTileNum)
                     {
-                        Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                        if (Game.Dummy.Count > 0)
+                        {
+                            Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                        }
                     }
                 }
             }
