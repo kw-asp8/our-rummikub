@@ -138,6 +138,11 @@ namespace Server
                 SendGameStatus();
 
                 Console.WriteLine(player.Nickname + " has logged out.");
+
+                if (Game.IsEnabled && Game.Room.Players.Count <= 1)
+                {
+                    EndGame();
+                }
             });
         }
 
@@ -180,15 +185,31 @@ namespace Server
 
                 Console.WriteLine(Game.CurrentPlayer.Nickname + " has failed to make valid tile-sets.");
             }
-
             SendPrivateTilesTo(Game.CurrentPlayer);
-            Game.NextTurn();
-            SendGameStatus();
-            SendRoomStatus();
 
-            InitTurnTimer();
+            if (Game.CanEndGame())
+            {
+                EndGame();
+            }
+            else
+            {
+                Game.NextTurn();
+                SendGameStatus();
+                SendRoomStatus();
 
-            Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
+                InitTurnTimer();
+
+                Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
+            }
+        }
+
+        public void EndGame()
+        {
+            Game.End();
+            SendGameOver();
+
+            Player winner = Game.Room.Players.OrderBy(player => player.GetScore()).First();
+            Console.WriteLine("Gameover: " + winner.Nickname + " has won!");
         }
 
         public void CancelTurnTimer()
@@ -221,9 +242,9 @@ namespace Server
             RoomStatus roomStatus = Game.Room.ToStatus();
             var sendRoomStatus = new SendRoomStatusPacket(roomStatus);
 
-            foreach (Connection everyCon in conServer.Connections)
+            foreach (Player player in Game.Room.Players)
             {
-                everyCon.Send(sendRoomStatus);
+                player.Connection.Send(sendRoomStatus);
             }
         }
 
@@ -258,9 +279,9 @@ namespace Server
         public void SendChat(string nickname, string message)
         {
             var sendChatToClient = new SendChatToClientPacket(nickname, message);
-            foreach (Connection everyCon in conServer.Connections)
+            foreach (Player player in Game.Room.Players)
             {
-                everyCon.Send(sendChatToClient);
+                player.Connection.Send(sendChatToClient);
             }
         }
 
@@ -273,9 +294,9 @@ namespace Server
                  .ToList();
             var endGame = new EndGamePacket(ranking);
 
-            foreach (Connection everyCon in conServer.Connections)
+            foreach (Player player in Game.Room.Players)
             {
-                everyCon.Send(endGame);
+                player.Connection.Send(endGame);
             }
         }
     }

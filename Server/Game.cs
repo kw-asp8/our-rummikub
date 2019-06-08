@@ -184,6 +184,11 @@ namespace Server
             PreviousHoldingTiles = new List<Tile>(CurrentPlayer.HoldingTiles);
         }
 
+        public bool CanEndGame()
+        {
+            return Room.Players.Any(player => player.HoldingTiles.Count == 0);
+        }
+
         public GameStatus ToStatus()
         {
             PlayerInfo currentPlayer = CurrentPlayer != null ? CurrentPlayer.ToInfo() : null;
