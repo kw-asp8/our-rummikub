@@ -120,9 +120,9 @@ namespace Client
             conClient.Connection.Send(new StartGamePacket());
         }
 
-        public void UpdateTable(Tile tile, int i, int j)
+        public void UpdateTable(Tile[,] table)
         {
-            conClient.Connection.Send(new UpdateTablePacket(tile, i, j));
+            conClient.Connection.Send(new UpdateTablePacket(table));
         }
 
         public void UpdatePrivateTiles(List<Tile> tiles)

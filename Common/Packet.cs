@@ -47,17 +47,11 @@ namespace Common
     [Serializable]
     public class UpdateTablePacket : Packet
     {
-        public Tile Tile { get; private set; }
+        public Tile[,] Table { get; private set; }
 
-        public int I { get; private set; }
-
-        public int J { get; private set; }
-
-        public UpdateTablePacket(Tile tile, int i, int j) : base(PacketType.SB_UpdateTable)
+        public UpdateTablePacket(Tile[,] table) : base(PacketType.SB_UpdateTable)
         {
-            Tile = tile;
-            I = i;
-            J = j;
+            Table = table;
         }
     }
 

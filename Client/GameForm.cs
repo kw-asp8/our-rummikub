@@ -39,8 +39,8 @@ namespace Client
 
             tgpTable.TileSize = new Size(27, 36);
             tgpTable.SetCapacity(20, 10);
-            tgpTable.OnPlace += (tile, i, j) => client.UpdateTable(tile, i, j);
-            tgpTable.OnPickup += (tile, i, j) => client.UpdateTable(null, i, j);
+            tgpTable.OnPlace += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
+            tgpTable.OnPickup += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
 
             tgpHolding.TileSize = new Size(36, 48);
             tgpHolding.SetCapacity(20, 2);

@@ -83,7 +83,7 @@ namespace Server
                 if (player == Game.CurrentPlayer)
                 {
                     //TODO verify the table
-                    Game.Table[updateTable.I, updateTable.J] = updateTable.Tile;
+                    Game.Table = updateTable.Table;
                     SendTable(player);
                 }
             });
