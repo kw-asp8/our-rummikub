@@ -65,6 +65,7 @@ namespace Server
                 {
                     Game.Start();
                     SendGameStatus();
+                    SendRoomStatus();
 
                     Console.WriteLine(player.Nickname + " has started the game!");
                     InitTurnTimer();
@@ -120,6 +121,7 @@ namespace Server
                         CancelTurnTimer();
                         Game.NextTurn();
                         SendGameStatus();
+                        SendRoomStatus();
 
                         InitTurnTimer();
 
@@ -180,6 +182,7 @@ namespace Server
                 Thread.Sleep(60 * 1000);
                 Game.NextTurn();
                 SendGameStatus(); //TODO 마우스에 집어져 있는 타일 제거
+                SendRoomStatus();
 
                 Console.WriteLine("Now " + Game.CurrentPlayer.Nickname + "'s turn.");
             }, token);
