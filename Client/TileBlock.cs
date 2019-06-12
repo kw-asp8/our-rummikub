@@ -69,7 +69,16 @@ namespace Client
 
         public void TileBlock_MouseDown(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            try
+            {
+                if (ContainerGrid.gameform.getClient().Player == null || ContainerGrid.gameform.getClient().Player.Nickname != ContainerGrid.gameform.getGameStatus().CurrentPlayer.Nickname)
+                    return;
+            }
+            catch (NullReferenceException i)
+            {
+                return;
+            }
+            if (e.Button == MouseButtons.Left)
             {
                 if (ContainerGrid != null)
                 {
@@ -131,7 +140,9 @@ namespace Client
 
         private void TileBlock_MouseUp(object sender, MouseEventArgs e)
         {
-            if(e.Button == MouseButtons.Left)
+            if (isDragging == false)
+                return;
+            if (e.Button == MouseButtons.Left)
             {
                 isDragging = false;
                 TileGridPanel grid = FindTileGrid();

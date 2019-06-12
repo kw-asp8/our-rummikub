@@ -192,6 +192,11 @@ namespace Client
                     tmrClock.Stop();
                     btn_timer.Text = "60";
                     tmrClock.Start();
+                    foreach(TileBlock t in this.Controls["MainForm"].Controls.Find("TileBlock", false))
+                    {
+                        t.Dispose();
+                        this.Controls["MainForm"].Controls.Remove(t);
+                    }
                 }));
             }
 
@@ -331,6 +336,20 @@ namespace Client
             tile.Location = new Point(100, 100);
 
             tgpHolding.PlaceAtFirst(tile);
+        }
+
+        private void MainForm_Paint(object sender, PaintEventArgs e)
+        {
+            tgpHolding.SetGameForm(this);
+            tgpTable.SetGameForm(this);
+        }
+        public GameClient getClient()
+        {
+            return client;
+        }
+        public GameStatus getGameStatus()
+        {
+            return gameStatus;
         }
     }
 }

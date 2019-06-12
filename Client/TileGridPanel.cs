@@ -12,6 +12,7 @@ namespace Client
         public Size TileSize { get; set; }
         public TileBlock[,] tiles;
         private TileBlock[,] oldTiles;
+        public GameForm gameform;
 
         public bool OptionRemoveSpaces { get; set; } = false;
 
@@ -22,6 +23,10 @@ namespace Client
         public TileGridPanel()
         {
             InitializeComponent();
+        }
+        public void SetGameForm(GameForm gameform)
+        {
+            this.gameform = gameform;
         }
 
         public Tile[,] GetTileTable()
@@ -65,7 +70,7 @@ namespace Client
                     {
                         TileBlock block = tiles[i, j];
                         if (block != null)
-                            block.Size = this.TileSize;
+                            block.Invoke(new MethodInvoker(delegate () { block.Size = this.TileSize; }));
                     }
                 }
 
@@ -87,7 +92,7 @@ namespace Client
                         if (oldTiles[i - disVer, j - disHor] != null)
                         {
                             tiles[i, j] = oldTiles[i - disVer, j - disHor];
-                            tiles[i, j].Location = new Point(j * TileSize.Width, i * TileSize.Height);
+                            tiles[i,j].Invoke(new MethodInvoker(delegate() { tiles[i, j].Location = new Point(j * TileSize.Width, i * TileSize.Height); }));
                         }
                     }
                 }
