@@ -145,7 +145,11 @@ namespace Client
             if (e.Button == MouseButtons.Left)
             {
                 isDragging = false;
-                TileGridPanel grid = FindTileGrid();
+                TileGridPanel grid;
+                if (leftblock != null)
+                    grid = leftblock.ContainerGrid;
+                else
+                    grid = FindTileGrid();
                 if (grid != null)
                 {
                     if (!grid.PlaceTile(this, Left, Top))
@@ -165,7 +169,11 @@ namespace Client
                 foreach (TileBlock t in tileblockset)
                 {
                     t.isDragging = false;
-                    TileGridPanel grid = t.FindTileGrid();
+                    TileGridPanel grid;
+                    if (t.leftblock != null)
+                        grid = t.leftblock.ContainerGrid;
+                    else
+                        grid = FindTileGrid();
                     if (grid != null)
                     {
                         if (!grid.PlaceTile(t, t.Left, t.Top))
