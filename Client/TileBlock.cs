@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Common;
+using Client.Properties;
 
 namespace Client
 {
@@ -34,19 +35,19 @@ namespace Client
                 lbl_num.Text = (((NumberTile)Tile).Number).ToString();
                 TileColor color = ((NumberTile)Tile).getColor();
 
-                switch(color.ToString())
+                switch (color.ToString())
                 {
                     case "RED":
-                        lbl_num.ForeColor = Color.Red;
+                        lbl_num.ForeColor = Color.FromArgb(0xD50000);
                         break;
                     case "YELLOW":
-                        lbl_num.ForeColor = Color.Yellow;
+                        lbl_num.ForeColor = Color.FromArgb(0xFFD600);
                         break;
                     case "BLUE":
-                        lbl_num.ForeColor = Color.Blue;
+                        lbl_num.ForeColor = Color.FromArgb(0x304FFE);
                         break;
                     case "BLACK":
-                        lbl_num.ForeColor = Color.Black;
+                        lbl_num.ForeColor = Color.FromArgb(0x212121);
                         break;
                 }
             }
@@ -55,13 +56,15 @@ namespace Client
                 lbl_num.Text = "J";
                 TileColor color = ((JokerTile)Tile).getColor();
 
-                switch(color.ToString())
+                switch (color.ToString())
                 {
                     case "RED":
-                        lbl_num.ForeColor = Color.Red;
+                        lbl_num.Text = "";
+                        lbl_num.Image = Resources.joker_red;
                         break;
                     case "BLACK":
-                        lbl_num.ForeColor = Color.Black;
+                        lbl_num.Text = "";
+                        lbl_num.Image = Resources.joker_black;
                         break;
                 }
             }
@@ -72,9 +75,7 @@ namespace Client
             try
             {
                 if (ContainerGrid.gameform.getClient().Player == null || ContainerGrid.gameform.getClient().Player.Nickname != ContainerGrid.gameform.getGameStatus().CurrentPlayer.Nickname)
-                {
                     return;
-                }
             }
             catch (NullReferenceException i)
             {
@@ -87,11 +88,11 @@ namespace Client
                     tileblockset = null;
                     leftblock = null;
                     isDragging = true;
-                        prevLocation = new Point(ContainerGrid.Left + Location.X, ContainerGrid.Top + Location.Y);
-                        prevGrid = ContainerGrid;
-                        startPoint = new Point(e.X, e.Y);
-                        ContainerGrid.PickupTile(this);
-                        ContainerGrid = null;
+                    prevLocation = new Point(ContainerGrid.Left + Location.X, ContainerGrid.Top + Location.Y);
+                    prevGrid = ContainerGrid;
+                    startPoint = new Point(e.X, e.Y);
+                    ContainerGrid.PickupTile(this);
+                    ContainerGrid = null;
                 }
                 BringToFront();
             }
@@ -117,14 +118,14 @@ namespace Client
                     t.BringToFront();
                 }
             }
-            
+
         }
 
         public void TileBlock_MouseMove(object sender, MouseEventArgs e)
         {
             if (isDragging)
             {
-                if(e.Button == MouseButtons.Left)
+                if (e.Button == MouseButtons.Left)
                 {
                     this.Left += e.X - startPoint.X;
                     this.Top += e.Y - startPoint.Y;
@@ -142,7 +143,6 @@ namespace Client
 
         private void TileBlock_MouseUp(object sender, MouseEventArgs e)
         {
-            
             if (isDragging == false)
                 return;
             if (e.Button == MouseButtons.Left)
@@ -155,7 +155,6 @@ namespace Client
                     grid = FindTileGrid();
                 if (grid != null)
                 {
-                   
                     if (!grid.PlaceTile(this, Left, Top) || (Tile.IsFromTable && grid == grids[1]))
                     {
                         Location = prevLocation;
@@ -193,7 +192,7 @@ namespace Client
                     }
                 }
             }
-            
+
         }
         private TileGridPanel FindTileGrid()
         {
