@@ -98,8 +98,11 @@ namespace Client
             }
         }
 
+        private bool iHaveToQuit = false;
+
         private void Btn_regame_Click(object sender, EventArgs e)
         {
+            iHaveToQuit = true;
             this.Close();
             client.gameForm.Close();
 
@@ -111,8 +114,18 @@ namespace Client
 
         private void Btn_main_Click(object sender, EventArgs e)
         {
+            iHaveToQuit = true;
             this.Close();
             client.gameForm.Close();
+        }
+
+        private void GameResultForm_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (!iHaveToQuit)
+            {
+                iHaveToQuit = true;
+                client.gameForm.Close();
+            }
         }
     }
 }
