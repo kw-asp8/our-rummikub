@@ -344,7 +344,12 @@ namespace Client
 
         private void Btn_sort_col_Click(object sender, EventArgs e)
         {
+            tgpHolding.GroupAsNumber();
+        }
 
+        private void btn_sort_num_Click(object sender, EventArgs e)
+        {
+            tgpHolding.SortAscending();
         }
     }
 }
