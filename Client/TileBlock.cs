@@ -152,7 +152,7 @@ namespace Client
                     grid = FindTileGrid();
                 if (grid != null)
                 {
-                    if (!grid.PlaceTile(this, Left, Top))
+                    if (!grid.PlaceTile(this, Left, Top) || (Tile.IsFromTable && grid == grids[1]))
                     {
                         Location = prevLocation;
                         prevGrid.PlaceTile(this, Left, Top);
@@ -176,7 +176,7 @@ namespace Client
                         grid = FindTileGrid();
                     if (grid != null)
                     {
-                        if (!grid.PlaceTile(t, t.Left, t.Top))
+                        if (!grid.PlaceTile(t, t.Left, t.Top) || (t.Tile.IsFromTable && grid == grids[1]))
                         {
                             t.Location = t.prevLocation;
                             t.prevGrid.PlaceTile(t, t.Left, t.Top);

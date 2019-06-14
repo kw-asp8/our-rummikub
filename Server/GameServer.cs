@@ -177,7 +177,6 @@ namespace Server
             else
             {
                 Game.Rollback();
-                SendTable();
                 for (int i = 0; i < 3; i++)
                 {
                     if (Game.CurrentPlayer.HoldingTiles.Count >= Game.MaxTileNum)
@@ -198,6 +197,7 @@ namespace Server
             else
             {
                 Game.NextTurn();
+                SendTable();
                 SendGameStatus();
                 SendRoomStatus();
 

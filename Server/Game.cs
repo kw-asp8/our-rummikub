@@ -179,6 +179,17 @@ namespace Server
             if (nextIndex >= Room.Players.Count)
                 nextIndex = 0;
 
+            for (int i = 0; i < Table.GetLength(0); i++)
+            {
+                for (int j = 0; j < Table.GetLength(1); j++)
+                {
+                    if (Table[i, j] != null)
+                    {
+                        Table[i, j].IsFromTable = true;
+                    }
+                }
+            }
+
             CurrentPlayer = Room.Players[nextIndex];
             PreviousTable = (Tile[,])Table.Clone();
             PreviousHoldingTiles = new List<Tile>(CurrentPlayer.HoldingTiles);

@@ -4,11 +4,15 @@ using System.Text;
 
 namespace Common
 {
-    public interface Tile { }
+    public interface Tile
+    {
+        bool IsFromTable { get; set; }
+    }
 
     [Serializable]
     public class NumberTile : Tile
     {
+        public bool IsFromTable { get; set; } = false;
         public TileColor Color { get; private set; }
         public int Number { get; private set; }
 
@@ -25,7 +29,9 @@ namespace Common
     }
 
     [Serializable]
-    public class JokerTile : Tile {
+    public class JokerTile : Tile
+    {
+        public bool IsFromTable { get; set; } = false;
         public TileColor Color { get; private set; }
 
         public JokerTile(TileColor color)
