@@ -72,7 +72,9 @@ namespace Client
             try
             {
                 if (ContainerGrid.gameform.getClient().Player == null || ContainerGrid.gameform.getClient().Player.Nickname != ContainerGrid.gameform.getGameStatus().CurrentPlayer.Nickname)
+                {
                     return;
+                }
             }
             catch (NullReferenceException i)
             {
@@ -140,6 +142,7 @@ namespace Client
 
         private void TileBlock_MouseUp(object sender, MouseEventArgs e)
         {
+            
             if (isDragging == false)
                 return;
             if (e.Button == MouseButtons.Left)
@@ -152,6 +155,7 @@ namespace Client
                     grid = FindTileGrid();
                 if (grid != null)
                 {
+                   
                     if (!grid.PlaceTile(this, Left, Top) || (Tile.IsFromTable && grid == grids[1]))
                     {
                         Location = prevLocation;
