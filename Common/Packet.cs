@@ -190,6 +190,7 @@ namespace Common
             MemoryStream memoryStream = new MemoryStream(1024 * 4);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             binaryFormatter.Serialize(memoryStream, obj);
+            memoryStream.Seek(0, SeekOrigin.Begin);
             return memoryStream.ToArray();
         }
 
