@@ -235,9 +235,11 @@ namespace Client
                 for (int j = 0; j < table.GetLength(1); j++)
                 {
                     Tile tile = table[i, j];
+                    
                     if (tile != null)
                     {
                         TileBlock block = new TileBlock(tile, tileGridPanels);
+                        
                         block.Size = new Size(40, 40);
                         block.Location = new Point(100, 100);
 

@@ -191,15 +191,6 @@ namespace Client
             }
             
         }
-        //public bool isPlaceable()
-        //{
-        //    for (int i = 1; i < tileblockset.Count(); i++)
-        //    {
-        //        if (tileblockset[i].FindTileGrid().isPlaceable(tileblockset[i]) == false)
-        //            return false;
-        //    }
-        //    return true;
-        //}
         private TileGridPanel FindTileGrid()
         {
             foreach (TileGridPanel grid in grids)

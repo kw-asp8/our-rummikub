@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Drawing;
 using System.Windows.Forms;
+using System;
 
 namespace Client
 {
@@ -315,7 +316,7 @@ namespace Client
                     if (tiles[index.Y, index.X + i] != null)
                         return false;
                 }
-                catch(System.Exception e)
+                catch(Exception e)
                 {
                     return false;
                 }
@@ -343,24 +344,31 @@ namespace Client
             }
             else
             {
-                if (tiles[index.Y, index.X] == null)
+                try
                 {
-                    if (tile.tileblockset!=null && tile.tileblockset.Count > 0 && isPlaceable(index, tile.tileblockset.Count))
+                    if (tiles[index.Y, index.X] == null)
                     {
-                        AddTile(tile, index.Y, index.X);
-                        return true;
-                    }
-                    else if (tile.tileblockset == null)
-                    {
-                        AddTile(tile, index.Y, index.X);
-                        return true;
+                        if (tile.tileblockset != null && tile.tileblockset.Count > 0 && isPlaceable(index, tile.tileblockset.Count))
+                        {
+                            AddTile(tile, index.Y, index.X);
+                            return true;
+                        }
+                        else if (tile.tileblockset == null)
+                        {
+                            AddTile(tile, index.Y, index.X);
+                            return true;
+                        }
+                        else
+                            return false;
                     }
                     else
-                        return false;
+                    {
+                        return PlaceTile(tile, new Point(index.X + 1, index.Y));
+                    }
                 }
-                else
+                catch(Exception ex)
                 {
-                    return PlaceTile(tile, new Point(index.X + 1, index.Y));
+                    return false;
                 }
             }
         }
@@ -443,6 +451,7 @@ namespace Client
         public TileBlock PickupTile(int i, int j, bool callEvent = true)
         {
             TileBlock tile = tiles[i, j];
+            //tile.Visible = false;
             panel.Controls.Remove(tile);
             this.Parent.Controls.Add(tile);
             tiles[i, j] = null;
@@ -482,42 +491,37 @@ namespace Client
                                 {
                                     if (tiles[r, sc - 1] == null)
                                     {
-                                        for (int a = r; a < tiles.GetLength(0); a++)
-                                        {
                                             for (int b = sc; b < tiles.GetLength(1); b++)
                                             {
-                                                if (tiles[a, b] != null)
+                                                if (tiles[r, b] != null)
                                                 {
                                                     if (b > 0)
                                                     {
-                                                        tiles[a, b].leftblock = tiles[a, b - 1];
+                                                        tiles[r, b].leftblock = tiles[r, b - 1];
                                                     }
-                                                    tileset.Add(tiles[a, b]);
+                                                    tileset.Add(tiles[r, b]);
                                                 }
                                                 else
                                                     return tileset;
                                             }
-                                        }
+                                    return tileset;
                                     }
                                 }
                                 else if (sc == 0)
                                 {
-                                    for (int a = r; a < tiles.GetLength(0); a++)
-                                    {
                                         for (int b = sc; b < tiles.GetLength(1); b++)
                                         {
-                                            if (tiles[a, b] != null)
+                                            if (tiles[r, b] != null)
                                             {
                                                 if (b > 0)
                                                 {
-                                                    tiles[a, b].leftblock = tiles[a, b - 1];
+                                                    tiles[r, b].leftblock = tiles[r, b - 1];
                                                 }
-                                                tileset.Add(tiles[a, b]);
+                                                tileset.Add(tiles[r, b]);
                                             }
                                             else
                                                 return tileset;
                                         }
-                                    }
                                 }
                                 
                             }
