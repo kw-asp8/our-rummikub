@@ -160,34 +160,76 @@ namespace Server
         {
             CancelTurnTimer();
 
-            bool hasPlacedAnyTile = Game.PreviousHoldingTiles.Count > Game.CurrentPlayer.HoldingTiles.Count;
-            if (!Game.HasAnyInvalidTileSet())
+            if (!Game.CurrentPlayer.HasEnrolled)
             {
-                if (!hasPlacedAnyTile)
+                bool hasPlacedAnyTile = Game.PreviousHoldingTiles.Count > Game.CurrentPlayer.HoldingTiles.Count;
+                List<TileSet> placedSets = new List<TileSet>();
+                foreach (TileSet curTileSet in Game.GetTileSets())
                 {
-                    if (Game.CurrentPlayer.HoldingTiles.Count < Game.MaxTileNum)
+                    bool existsInPrev = false;
+                    foreach (TileSet prevTileSet in Game.GetPreviousTileSets())
                     {
-                        if (Game.Dummy.Count > 0)
+                        if (curTileSet == prevTileSet)
                         {
-                            Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                            existsInPrev = true;
+                            break;
                         }
                     }
+
+                    if (!existsInPrev)
+                        placedSets.Add(curTileSet);
+                }
+
+                if (hasPlacedAnyTile && !Game.HasAnyInvalidTileSet() &&
+                    placedSets.All(tileSet => tileSet.Tiles.All(tile => !tile.IsFromTable)) &&
+                    placedSets.Sum(tileSet => tileSet.SumOfNumbers()) >= 30)
+                {
+                    Game.CurrentPlayer.SetEnrolled();
+                    Console.WriteLine(Game.CurrentPlayer.Nickname + " has succeeded to enroll.");
+                }
+                else
+                {
+                    Game.Rollback();
+                    for (int i = 0; i < 1; i++)
+                    {
+                        Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                    }
+
+                    Console.WriteLine(Game.CurrentPlayer.Nickname + " has failed to enroll.");
                 }
             }
             else
             {
-                Game.Rollback();
-                for (int i = 0; i < 3; i++)
+                bool hasPlacedAnyTile = Game.PreviousHoldingTiles.Count > Game.CurrentPlayer.HoldingTiles.Count;
+                if (!Game.HasAnyInvalidTileSet())
                 {
-                    if (Game.CurrentPlayer.HoldingTiles.Count >= Game.MaxTileNum)
-                        break;
-                    if (Game.Dummy.Count == 0)
-                        break;
-                    Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                    if (!hasPlacedAnyTile)
+                    {
+                        if (Game.CurrentPlayer.HoldingTiles.Count < Game.MaxTileNum)
+                        {
+                            if (Game.Dummy.Count > 0)
+                            {
+                                Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                            }
+                        }
+                    }
                 }
+                else
+                {
+                    Game.Rollback();
+                    for (int i = 0; i < 3; i++)
+                    {
+                        if (Game.CurrentPlayer.HoldingTiles.Count >= Game.MaxTileNum)
+                            break;
+                        if (Game.Dummy.Count == 0)
+                            break;
+                        Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
+                    }
 
-                Console.WriteLine(Game.CurrentPlayer.Nickname + " has failed to make valid tile-sets.");
+                    Console.WriteLine(Game.CurrentPlayer.Nickname + " has failed to make valid tile-sets.");
+                }
             }
+
             SendPrivateTilesTo(Game.CurrentPlayer);
 
             if (Game.CanEndGame())

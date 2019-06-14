@@ -154,6 +154,29 @@ namespace Server
             return totalSet;
         }
 
+        public List<TileSet> GetPreviousTileSets()//타일의 모든 조합을 가져옴
+        {
+            List<Tile> Set = new List<Tile>();
+            List<TileSet> totalSet = new List<TileSet>();
+            for (int i = 0; i < PreviousTable.GetLength(0); i++)
+            {
+                for (int j = 0; j < PreviousTable.GetLength(1); j++)
+                {
+                    if (PreviousTable[i, j] != null)
+                        Set.Add(PreviousTable[i, j]);
+                    else
+                    {
+                        if (Set.Count() != 0)
+                        {
+                            totalSet.Add(new TileSet(Set));
+                            Set = new List<Tile>();
+                        }
+                    }
+                }
+            }
+            return totalSet;
+        }
+
         public void Rollback()//rollback 버튼 클릭시
         {
             Table = (Tile [,])PreviousTable.Clone();
@@ -234,14 +257,14 @@ namespace Server
             this.Tiles = tiles;
         }
         
-        public bool Run()
+        public int Run()
         {
             TileColor beginningColor=TileColor.BLACK;
             TileColor currentColor= TileColor.BLACK; 
             int jokerNumber1 = 0;
             int jokerNumber2 = 0;
 
-            if (Tiles.Count < 3) return false;
+            if (Tiles.Count < 3) return 0;
             for (int i = 0; i < Tiles.Count; i++)
             {
                 Tile tile = Tiles[i];
@@ -262,7 +285,7 @@ namespace Server
                                     Tile tile2 = Tiles[i - 2];
                                     NumberTile twotilebefore = (NumberTile)tile2;
                                     if ((twotilebefore.Number+1)!= jokerNumber1)
-                                        return false;
+                                        return 0;
                                 }
                             }
                             beginningColor = numberTile.Color;
@@ -272,7 +295,7 @@ namespace Server
                             Tile tile2 = Tiles[i - 1];
                             NumberTile numberTile2 = (NumberTile)tile2;
                             if (numberTile.Number != numberTile2.Number + 1)
-                                return false;//전타일 +1 이 아니면 RUN아님
+                                return 0;//전타일 +1 이 아니면 RUN아님
                         }
                     }
                     if (i == 0) beginningColor = numberTile.Color;
@@ -293,18 +316,20 @@ namespace Server
                         }
                     }
                 }
-                if (!Equals(beginningColor, currentColor)) return false;
+                if (!Equals(beginningColor, currentColor)) return 0;
             }
-            return true;
+            return jokerNumber1 + jokerNumber2 + Tiles.Sum(tile => {
+                return tile is NumberTile ? (tile as NumberTile).Number : 0;
+            });
         }
 
-        public bool Group()
+        public int Group()
         {
             List<TileColor> tilesColor = new List<TileColor>();
             int tileNumber1 = 0;
             int count_numberTile = 0;
 
-            if (Tiles.Count < 3 || Tiles.Count > 4) return false;
+            if (Tiles.Count < 3 || Tiles.Count > 4) return 0;
             //타일의 개수 3개 미만 4개 초과일 경우 바로 false 반환
 
             for (int i = 0; i < Tiles.Count; i++)
@@ -324,14 +349,14 @@ namespace Server
                     else
                     {
                         if (tileNumber1 != numberTile.Number)
-                            return false;
+                            return 0;
                         //맨 처음 숫자와 다를 경우 false 반환
 
                         for (int j = 0; j < count_numberTile-1; j++)
                         {
                             //그 전까지의 타일 색상 비교
                             if (tilesColor[j] == numberTile.Color)
-                                return false;
+                                return 0;
                             else
                             {
                                 tilesColor.Add(numberTile.Color);
@@ -340,12 +365,47 @@ namespace Server
                     }
                 }
             }
-            return true;
+            return tileNumber1 * Tiles.Count;
         }
 
         public bool IsValid()
         {
-            return Run() || Group();
+            return Run() > 0 || Group() > 0;
+        }
+
+        public int SumOfNumbers()
+        {
+            return Run() + Group();
+        }
+
+        public override bool Equals(object obj)
+        {
+            return obj is TileSet set &&
+                   !Tiles.Except(set.Tiles).Any() &&
+                   !set.Tiles.Except(Tiles).Any();
+        }
+
+        public override int GetHashCode()
+        {
+            return 1095759006 + EqualityComparer<List<Tile>>.Default.GetHashCode(Tiles);
+        }
+
+        public static bool operator ==(TileSet lhs, TileSet rhs)
+        {
+            if (Object.ReferenceEquals(lhs, null))
+            {
+                if (Object.ReferenceEquals(rhs, null))
+                {
+                    return true;
+                }
+                return false;
+            }
+            return lhs.Equals(rhs);
+        }
+
+        public static bool operator !=(TileSet lhs, TileSet rhs)
+        {
+            return !(lhs == rhs);
         }
     }
 }
