@@ -145,12 +145,11 @@ namespace Client
                 tiles[m, n].Location = new Point(n * TileSize.Width, m * TileSize.Height);
 
                 n++;
-                if (n >= tiles.GetLength(0))
+                if (n >= tiles.GetLength(1))
                 {
                     n = 0;
                     m++;
-
-                    if (n >= tiles.GetLength(1))
+                    if (m >= tiles.GetLength(0))
                         break;
                 }
             }
@@ -237,11 +236,11 @@ namespace Client
                 tiles[m, n].Location = new Point(n * TileSize.Width, m * TileSize.Height);
 
                 n++;
-                if (n >= tiles.GetLength(0))
+                if (n >= tiles.GetLength(1))
                 {
                     n = 0;
                     m++;
-                    if (n >= tiles.GetLength(1))
+                    if (m >= tiles.GetLength(0))
                         break;
                 }
             }

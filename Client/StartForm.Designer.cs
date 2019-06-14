@@ -39,10 +39,10 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("나눔바른고딕", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
-            this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(556, 517);
+            this.label2.ForeColor = System.Drawing.Color.BlanchedAlmond;
+            this.label2.Location = new System.Drawing.Point(617, 665);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(203, 17);
+            this.label2.Size = new System.Drawing.Size(262, 22);
             this.label2.TabIndex = 3;
             this.label2.Text = "김민주 | 서진하 | 최우진 | 허현성";
             // 
@@ -55,10 +55,10 @@
             this.btn_profile.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_profile.Font = new System.Drawing.Font("나눔바른고딕", 15F);
             this.btn_profile.ForeColor = System.Drawing.Color.White;
-            this.btn_profile.Location = new System.Drawing.Point(486, 321);
+            this.btn_profile.Location = new System.Drawing.Point(636, 428);
             this.btn_profile.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_profile.Name = "btn_profile";
-            this.btn_profile.Size = new System.Drawing.Size(191, 66);
+            this.btn_profile.Size = new System.Drawing.Size(218, 82);
             this.btn_profile.TabIndex = 2;
             this.btn_profile.Text = "JOIN GAME";
             this.btn_profile.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -76,10 +76,10 @@
             this.btn_exit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_exit.Font = new System.Drawing.Font("나눔바른고딕", 15F);
             this.btn_exit.ForeColor = System.Drawing.Color.White;
-            this.btn_exit.Location = new System.Drawing.Point(486, 407);
+            this.btn_exit.Location = new System.Drawing.Point(636, 536);
             this.btn_exit.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.btn_exit.Name = "btn_exit";
-            this.btn_exit.Size = new System.Drawing.Size(191, 66);
+            this.btn_exit.Size = new System.Drawing.Size(218, 82);
             this.btn_exit.TabIndex = 4;
             this.btn_exit.Text = "EXIT GAME";
             this.btn_exit.TextImageRelation = System.Windows.Forms.TextImageRelation.TextBeforeImage;
@@ -90,12 +90,13 @@
             // 
             // StartForm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.BackColor = System.Drawing.Color.Black;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(780, 557);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(891, 696);
             this.Controls.Add(this.btn_exit);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_profile);
