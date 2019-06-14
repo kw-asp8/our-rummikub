@@ -282,6 +282,7 @@
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GameResultForm";
             this.Text = "GameResult";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameResultForm_FormClosing);
             this.Load += new System.EventHandler(this.GameResult_Load);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.GameResult_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.GameResult_MouseMove);

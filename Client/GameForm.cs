@@ -37,8 +37,8 @@ namespace Client
             tileGridPanels.Add(tgpTable);
             tileGridPanels.Add(tgpHolding);
 
-            tgpTable.TileSize = new Size(27, 36);
-            tgpTable.SetCapacity(20, 10);
+            tgpTable.TileSize = new Size(36, 48);
+            tgpTable.SetCapacity(15, 8);
             tgpTable.OnPlace += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
             tgpTable.OnPickup += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
 
@@ -342,6 +342,16 @@ namespace Client
         public GameStatus getGameStatus()
         {
             return gameStatus;
+        }
+
+        private void btn_sort_num_Click(object sender, EventArgs e)
+        {
+            tgpHolding.SortAscending();
+        }
+
+        private void btn_sort_col_Click(object sender, EventArgs e)
+        {
+            tgpHolding.GroupAsNumber();
         }
     }
 }

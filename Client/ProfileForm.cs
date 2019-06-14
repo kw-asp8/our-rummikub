@@ -58,9 +58,19 @@ namespace Client
 
         private void button2_Click(object sender, EventArgs e)
         {
-            client.Player = new PlayerInfo(textBox1.Text, 0, 0);
-            client.Connect();
-            client.Login(textBox1.Text);
+            if (textBox1.Text != "")
+            {
+                client.Player = new PlayerInfo(textBox1.Text, 0, 0);
+                try
+                {
+                    client.Connect();
+                    client.Login(textBox1.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("서버 접속에 실패했습니다!");
+                }
+            }
         }
 
         private void lbl_exit_Click(object sender, EventArgs e)
@@ -70,11 +80,18 @@ namespace Client
 
         private void textBox1_KeyUp(object sender, KeyEventArgs e)
         {
-            if (e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter && textBox1.Text != "")
             {
                 client.Player = new PlayerInfo(textBox1.Text, 0, 0);
-                client.Connect();
-                client.Login(textBox1.Text);
+                try
+                {
+                    client.Connect();
+                    client.Login(textBox1.Text);
+                }
+                catch
+                {
+                    MessageBox.Show("서버 접속에 실패했습니다!");
+                }
             }
         }
 
