@@ -167,5 +167,20 @@
       <Name>Common</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\right-arrow.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\title.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\title1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\title2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\title3.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

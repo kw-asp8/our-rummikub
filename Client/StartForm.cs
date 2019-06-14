@@ -56,5 +56,23 @@ namespace Client
         {
             this.Close();
         }
+
+        private void Btn_profile_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.White;
+        }
+
+        private void Btn_profile_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.White;
+        }
+
+        private void Btn_exit_Click(object sender, EventArgs e)
+        {
+            this.Close();
+        }
     }
 }

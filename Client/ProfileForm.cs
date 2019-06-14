@@ -77,5 +77,18 @@ namespace Client
                 client.Login(textBox1.Text);
             }
         }
+
+        private void Btn_start_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.White;
+            btn.FlatAppearance.BorderColor = Color.Black;
+        }
+
+        private void Btn_start_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.Black;
+        }
     }
 }
