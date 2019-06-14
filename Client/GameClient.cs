@@ -60,7 +60,7 @@ namespace Client
                 while (gameForm == null) ;
 
                 var sendTable = (SendTablePacket)packet;
-                gameForm.UpdateTable(sendTable.Table);
+               gameForm.UpdateTable(sendTable.Table);
             });
             conClient.RegisterPacketHandler(PacketType.CB_SendPrivateTiles, (con, packet) => {
                 while (gameForm == null) ;
