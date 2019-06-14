@@ -182,5 +182,20 @@
   <ItemGroup>
     <None Include="Resources\title3.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rollback.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\rollback1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checked.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\checked1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\check.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

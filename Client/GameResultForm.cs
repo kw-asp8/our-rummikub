@@ -45,16 +45,6 @@ namespace Client
             this.Close();
         }
 
-        private void lbl_exit_MouseLeave(object sender, EventArgs e)
-        {
-            lbl_exit.ForeColor = Color.FromArgb(255, 255, 255);
-        }
-
-        private void lbl_exit_MouseMove(object sender, MouseEventArgs e)
-        {
-            lbl_exit.ForeColor = Color.FromArgb(102, 102, 102);
-        }
-
         private Point mousePoint;
 
         private void GameResult_MouseMove(object sender, MouseEventArgs e)

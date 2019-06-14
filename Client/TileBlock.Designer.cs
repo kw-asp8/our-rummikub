@@ -35,11 +35,11 @@
             // 
             this.lbl_num.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_num.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_num.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_num.Font = new System.Drawing.Font("나눔바른고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_num.Location = new System.Drawing.Point(0, 0);
             this.lbl_num.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_num.Name = "lbl_num";
-            this.lbl_num.Size = new System.Drawing.Size(27, 36);
+            this.lbl_num.Size = new System.Drawing.Size(24, 29);
             this.lbl_num.TabIndex = 0;
             this.lbl_num.Text = "J";
             this.lbl_num.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -50,13 +50,12 @@
             // 
             // TileBlock
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGoldenrodYellow;
+            this.BackColor = System.Drawing.Color.White;
             this.Controls.Add(this.lbl_num);
-            this.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Name = "TileBlock";
-            this.Size = new System.Drawing.Size(27, 36);
+            this.Size = new System.Drawing.Size(24, 29);
             this.MouseDown += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseMove);
             this.MouseUp += new System.Windows.Forms.MouseEventHandler(this.TileBlock_MouseUp);

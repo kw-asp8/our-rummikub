@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.lbl_exit = new System.Windows.Forms.Label();
             this.lbl_result = new System.Windows.Forms.Label();
             this.lbl_1 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -46,29 +45,14 @@
             this.btn_main = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
-            // lbl_exit
-            // 
-            this.lbl_exit.AutoSize = true;
-            this.lbl_exit.Dock = System.Windows.Forms.DockStyle.Right;
-            this.lbl_exit.Font = new System.Drawing.Font("Microsoft JhengHei UI", 16.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbl_exit.ForeColor = System.Drawing.SystemColors.HighlightText;
-            this.lbl_exit.Location = new System.Drawing.Point(544, 0);
-            this.lbl_exit.Name = "lbl_exit";
-            this.lbl_exit.Size = new System.Drawing.Size(27, 28);
-            this.lbl_exit.TabIndex = 10;
-            this.lbl_exit.Text = "X";
-            this.lbl_exit.Click += new System.EventHandler(this.lbl_exit_Click);
-            this.lbl_exit.MouseLeave += new System.EventHandler(this.lbl_exit_MouseLeave);
-            this.lbl_exit.MouseMove += new System.Windows.Forms.MouseEventHandler(this.lbl_exit_MouseMove);
-            // 
             // lbl_result
             // 
             this.lbl_result.AutoSize = true;
-            this.lbl_result.Font = new System.Drawing.Font("Cambria", 24F);
+            this.lbl_result.Font = new System.Drawing.Font("나눔바른고딕", 24F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lbl_result.ForeColor = System.Drawing.Color.White;
             this.lbl_result.Location = new System.Drawing.Point(190, 54);
             this.lbl_result.Name = "lbl_result";
-            this.lbl_result.Size = new System.Drawing.Size(190, 37);
+            this.lbl_result.Size = new System.Drawing.Size(201, 37);
             this.lbl_result.TabIndex = 11;
             this.lbl_result.Text = "Game Result";
             // 
@@ -226,10 +210,10 @@
             // 
             // btn_regame
             // 
-            this.btn_regame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(43)))), ((int)(((byte)(180)))));
+            this.btn_regame.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.btn_regame.FlatAppearance.BorderSize = 0;
             this.btn_regame.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_regame.Font = new System.Drawing.Font("Georgia", 17F);
+            this.btn_regame.Font = new System.Drawing.Font("나눔바른고딕", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_regame.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_regame.Location = new System.Drawing.Point(107, 327);
             this.btn_regame.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -242,10 +226,10 @@
             // 
             // btn_main
             // 
-            this.btn_main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(20)))), ((int)(((byte)(43)))), ((int)(((byte)(180)))));
+            this.btn_main.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(66)))), ((int)(((byte)(66)))), ((int)(((byte)(66)))));
             this.btn_main.FlatAppearance.BorderSize = 0;
             this.btn_main.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_main.Font = new System.Drawing.Font("Georgia", 17F);
+            this.btn_main.Font = new System.Drawing.Font("나눔바른고딕", 17.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btn_main.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
             this.btn_main.Location = new System.Drawing.Point(330, 327);
             this.btn_main.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
@@ -260,7 +244,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(120)))), ((int)(((byte)(240)))));
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
             this.ClientSize = new System.Drawing.Size(571, 425);
             this.Controls.Add(this.btn_main);
             this.Controls.Add(this.btn_regame);
@@ -277,10 +261,10 @@
             this.Controls.Add(this.label1);
             this.Controls.Add(this.lbl_1);
             this.Controls.Add(this.lbl_result);
-            this.Controls.Add(this.lbl_exit);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.Name = "GameResultForm";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "GameResult";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GameResultForm_FormClosing);
             this.Load += new System.EventHandler(this.GameResult_Load);
@@ -292,8 +276,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Label lbl_exit;
         private System.Windows.Forms.Label lbl_result;
         private System.Windows.Forms.Label lbl_1;
         private System.Windows.Forms.Label label1;
