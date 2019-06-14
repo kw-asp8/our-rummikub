@@ -345,11 +345,13 @@ namespace Client
         private void Btn_sort_col_Click(object sender, EventArgs e)
         {
             tgpHolding.GroupAsNumber();
+            client.UpdatePrivateTiles(tgpHolding.GetTileList());
         }
 
         private void btn_sort_num_Click(object sender, EventArgs e)
         {
             tgpHolding.SortAscending();
+            client.UpdatePrivateTiles(tgpHolding.GetTileList());
         }
     }
 }
