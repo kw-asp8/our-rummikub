@@ -132,16 +132,19 @@ namespace Server
             conServer.OnDisconnect.Add((connection) =>
             {
                 Player player = Game.PlayerOf(connection);
-                Game.Room.RemovePlayer(player);
-
-                SendRoomStatus();
-                SendGameStatus();
-
-                Console.WriteLine(player.Nickname + " has logged out.");
-
-                if (Game.IsEnabled && Game.Room.Players.Count <= 1)
+                if (player != null)
                 {
-                    EndGame();
+                    Game.Room.RemovePlayer(player);
+
+                    SendRoomStatus();
+                    SendGameStatus();
+
+                    Console.WriteLine(player.Nickname + " has logged out.");
+
+                    if (Game.IsEnabled && Game.Room.Players.Count <= 1)
+                    {
+                        EndGame();
+                    }
                 }
             });
         }
