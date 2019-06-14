@@ -45,10 +45,8 @@
             this.nickname3 = new System.Windows.Forms.Label();
             this.nickname2 = new System.Windows.Forms.Label();
             this.nickname1 = new System.Windows.Forms.Label();
-            this.tgpHolding = new Client.TileGridPanel();
             this.tileTable = new System.Windows.Forms.PictureBox();
             this.lbl_title = new System.Windows.Forms.Label();
-            this.tgpTable = new Client.TileGridPanel();
             this.btn_return = new System.Windows.Forms.Button();
             this.profile4 = new System.Windows.Forms.PictureBox();
             this.profile3 = new System.Windows.Forms.PictureBox();
@@ -59,6 +57,8 @@
             this.btn_timer = new System.Windows.Forms.Button();
             this.imageList1 = new System.Windows.Forms.ImageList(this.components);
             this.tmrClock = new System.Windows.Forms.Timer(this.components);
+            this.tgpHolding = new Client.TileGridPanel();
+            this.tgpTable = new Client.TileGridPanel();
             this.Chatting.SuspendLayout();
             this.MainForm.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tileTable)).BeginInit();
@@ -90,6 +90,7 @@
             this.txt_log.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txt_log.Multiline = true;
             this.txt_log.Name = "txt_log";
+            this.txt_log.ReadOnly = true;
             this.txt_log.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.txt_log.Size = new System.Drawing.Size(780, 103);
             this.txt_log.TabIndex = 4;
@@ -178,6 +179,8 @@
             this.btnStart.Text = "START";
             this.btnStart.UseVisualStyleBackColor = true;
             this.btnStart.Click += new System.EventHandler(this.BtnStart_Click);
+            this.btnStart.MouseEnter += new System.EventHandler(this.OutlineBtn_MouseEnter);
+            this.btnStart.MouseLeave += new System.EventHandler(this.OutlineBtn_MouseLeave);
             // 
             // btn_complete
             // 
@@ -185,6 +188,8 @@
             this.btn_complete.BackColor = System.Drawing.Color.Transparent;
             this.btn_complete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_complete.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_complete.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btn_complete.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_complete.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_complete.Font = new System.Drawing.Font("나눔바른고딕 UltraLight", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_complete.ForeColor = System.Drawing.Color.White;
@@ -196,6 +201,8 @@
             this.btn_complete.Text = "FINISH";
             this.btn_complete.UseVisualStyleBackColor = false;
             this.btn_complete.Click += new System.EventHandler(this.Btn_complete_Click);
+            this.btn_complete.MouseEnter += new System.EventHandler(this.OutlineBtn_MouseEnter);
+            this.btn_complete.MouseLeave += new System.EventHandler(this.OutlineBtn_MouseLeave);
             // 
             // remain4
             // 
@@ -221,7 +228,7 @@
             // 
             this.remain2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.remain2.ForeColor = System.Drawing.Color.White;
-            this.remain2.Location = new System.Drawing.Point(68, 106);
+            this.remain2.Location = new System.Drawing.Point(67, 106);
             this.remain2.Name = "remain2";
             this.remain2.Size = new System.Drawing.Size(24, 24);
             this.remain2.TabIndex = 19;
@@ -231,7 +238,7 @@
             // 
             this.remain1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.remain1.ForeColor = System.Drawing.Color.White;
-            this.remain1.Location = new System.Drawing.Point(68, 11);
+            this.remain1.Location = new System.Drawing.Point(67, 11);
             this.remain1.Name = "remain1";
             this.remain1.Size = new System.Drawing.Size(24, 24);
             this.remain1.TabIndex = 18;
@@ -241,7 +248,7 @@
             // 
             this.nickname4.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.nickname4.ForeColor = System.Drawing.Color.White;
-            this.nickname4.Location = new System.Drawing.Point(13, 359);
+            this.nickname4.Location = new System.Drawing.Point(13, 360);
             this.nickname4.Name = "nickname4";
             this.nickname4.Size = new System.Drawing.Size(60, 12);
             this.nickname4.TabIndex = 17;
@@ -261,7 +268,7 @@
             // 
             this.nickname2.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.nickname2.ForeColor = System.Drawing.Color.White;
-            this.nickname2.Location = new System.Drawing.Point(13, 171);
+            this.nickname2.Location = new System.Drawing.Point(13, 172);
             this.nickname2.Name = "nickname2";
             this.nickname2.Size = new System.Drawing.Size(60, 12);
             this.nickname2.TabIndex = 15;
@@ -271,23 +278,11 @@
             // 
             this.nickname1.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.nickname1.ForeColor = System.Drawing.Color.White;
-            this.nickname1.Location = new System.Drawing.Point(13, 76);
+            this.nickname1.Location = new System.Drawing.Point(13, 77);
             this.nickname1.Name = "nickname1";
             this.nickname1.Size = new System.Drawing.Size(60, 11);
             this.nickname1.TabIndex = 14;
             this.nickname1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tgpHolding
-            // 
-            this.tgpHolding.Location = new System.Drawing.Point(108, 312);
-            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.tgpHolding.Name = "tgpHolding";
-            this.tgpHolding.OnPickup = null;
-            this.tgpHolding.OnPlace = null;
-            this.tgpHolding.OptionRemoveSpaces = false;
-            this.tgpHolding.Size = new System.Drawing.Size(540, 96);
-            this.tgpHolding.TabIndex = 13;
-            this.tgpHolding.TileSize = new System.Drawing.Size(0, 0);
             // 
             // tileTable
             // 
@@ -321,23 +316,13 @@
             this.lbl_title.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.lbl_title.Click += new System.EventHandler(this.Lbl_title_Click);
             // 
-            // tgpTable
-            // 
-            this.tgpTable.Location = new System.Drawing.Point(108, 11);
-            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
-            this.tgpTable.Name = "tgpTable";
-            this.tgpTable.OnPickup = null;
-            this.tgpTable.OnPlace = null;
-            this.tgpTable.OptionRemoveSpaces = false;
-            this.tgpTable.Size = new System.Drawing.Size(540, 288);
-            this.tgpTable.TabIndex = 2;
-            this.tgpTable.TileSize = new System.Drawing.Size(0, 0);
-            // 
             // btn_return
             // 
             this.btn_return.BackColor = System.Drawing.Color.Transparent;
             this.btn_return.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_return.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_return.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btn_return.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_return.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_return.Font = new System.Drawing.Font("나눔바른고딕 UltraLight", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_return.ForeColor = System.Drawing.Color.White;
@@ -349,6 +334,8 @@
             this.btn_return.Text = "ROLLBACK";
             this.btn_return.UseVisualStyleBackColor = false;
             this.btn_return.Click += new System.EventHandler(this.Btn_return_Click);
+            this.btn_return.MouseEnter += new System.EventHandler(this.OutlineBtn_MouseEnter);
+            this.btn_return.MouseLeave += new System.EventHandler(this.OutlineBtn_MouseLeave);
             // 
             // profile4
             // 
@@ -408,6 +395,8 @@
             this.btn_sort_col.BackColor = System.Drawing.Color.Transparent;
             this.btn_sort_col.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.btn_sort_col.FlatAppearance.BorderColor = System.Drawing.Color.White;
+            this.btn_sort_col.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btn_sort_col.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_sort_col.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_sort_col.Font = new System.Drawing.Font("나눔바른고딕 UltraLight", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_sort_col.ForeColor = System.Drawing.Color.White;
@@ -419,6 +408,8 @@
             this.btn_sort_col.Text = "777";
             this.btn_sort_col.UseVisualStyleBackColor = false;
             this.btn_sort_col.Click += new System.EventHandler(this.Btn_sort_col_Click);
+            this.btn_sort_col.MouseEnter += new System.EventHandler(this.OutlineBtn_MouseEnter);
+            this.btn_sort_col.MouseLeave += new System.EventHandler(this.OutlineBtn_MouseLeave);
             // 
             // btn_sort_num
             // 
@@ -439,14 +430,19 @@
             this.btn_sort_num.Text = "789";
             this.btn_sort_num.UseVisualStyleBackColor = false;
             this.btn_sort_num.Click += new System.EventHandler(this.btn_sort_num_Click);
+            this.btn_sort_num.MouseEnter += new System.EventHandler(this.OutlineBtn_MouseEnter);
+            this.btn_sort_num.MouseLeave += new System.EventHandler(this.OutlineBtn_MouseLeave);
             // 
             // btn_timer
             // 
             this.btn_timer.AllowDrop = true;
             this.btn_timer.BackColor = System.Drawing.Color.White;
             this.btn_timer.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btn_timer.Enabled = false;
             this.btn_timer.FlatAppearance.BorderColor = System.Drawing.Color.White;
             this.btn_timer.FlatAppearance.BorderSize = 2;
+            this.btn_timer.FlatAppearance.MouseDownBackColor = System.Drawing.Color.White;
+            this.btn_timer.FlatAppearance.MouseOverBackColor = System.Drawing.Color.White;
             this.btn_timer.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_timer.Font = new System.Drawing.Font("나눔바른고딕 UltraLight", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.btn_timer.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(33)))), ((int)(((byte)(33)))), ((int)(((byte)(33)))));
@@ -473,6 +469,30 @@
             this.tmrClock.Interval = 1000;
             this.tmrClock.Tick += new System.EventHandler(this.tmrClock_Tick);
             // 
+            // tgpHolding
+            // 
+            this.tgpHolding.Location = new System.Drawing.Point(108, 312);
+            this.tgpHolding.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tgpHolding.Name = "tgpHolding";
+            this.tgpHolding.OnPickup = null;
+            this.tgpHolding.OnPlace = null;
+            this.tgpHolding.OptionRemoveSpaces = false;
+            this.tgpHolding.Size = new System.Drawing.Size(540, 96);
+            this.tgpHolding.TabIndex = 13;
+            this.tgpHolding.TileSize = new System.Drawing.Size(0, 0);
+            // 
+            // tgpTable
+            // 
+            this.tgpTable.Location = new System.Drawing.Point(108, 11);
+            this.tgpTable.Margin = new System.Windows.Forms.Padding(3, 5, 3, 5);
+            this.tgpTable.Name = "tgpTable";
+            this.tgpTable.OnPickup = null;
+            this.tgpTable.OnPlace = null;
+            this.tgpTable.OptionRemoveSpaces = false;
+            this.tgpTable.Size = new System.Drawing.Size(540, 288);
+            this.tgpTable.TabIndex = 2;
+            this.tgpTable.TileSize = new System.Drawing.Size(0, 0);
+            // 
             // GameForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 12F);
@@ -481,6 +501,7 @@
             this.ClientSize = new System.Drawing.Size(780, 557);
             this.Controls.Add(this.MainForm);
             this.Controls.Add(this.Chatting);
+            this.DoubleBuffered = true;
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
             this.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.MaximizeBox = false;

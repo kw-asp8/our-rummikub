@@ -35,7 +35,7 @@
             // 
             this.lbl_num.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.lbl_num.BackColor = System.Drawing.Color.Transparent;
-            this.lbl_num.Font = new System.Drawing.Font("나눔바른고딕", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbl_num.Font = new System.Drawing.Font("나눔바른고딕", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(129)));
             this.lbl_num.Location = new System.Drawing.Point(0, 0);
             this.lbl_num.Margin = new System.Windows.Forms.Padding(0);
             this.lbl_num.Name = "lbl_num";

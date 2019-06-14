@@ -36,7 +36,7 @@ namespace Client
             tileGridPanels.Add(tgpHolding);
 
             tgpTable.TileSize = new Size(36, 48);
-            tgpTable.SetCapacity(15, 8);
+            tgpTable.SetCapacity(15, 6);
             tgpTable.OnPlace += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
             tgpTable.OnPickup += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
 
@@ -50,6 +50,8 @@ namespace Client
             profile2.Visible = false;
             profile3.Visible = false;
             profile4.Visible = false;
+            btn_complete.Visible = false;
+            btn_return.Visible = false;
         }
 
         [DllImport("Gdi32.dll", EntryPoint = "CreateRoundRectRgn")]            //Dll임포트
@@ -121,7 +123,7 @@ namespace Client
                             if (gameStatus != null && gameStatus.CurrentPlayer != null &&
                                 gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
                             {
-                                nickname1.ForeColor = Color.FromArgb(0xD50000);
+                                nickname1.ForeColor = Color.FromArgb(0xFFD600);
                             }
                             else
                             {
@@ -146,7 +148,7 @@ namespace Client
                             if (gameStatus != null && gameStatus.CurrentPlayer != null &&
                                 gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
                             {
-                                nickname2.ForeColor = Color.FromArgb(0xD50000);
+                                nickname2.ForeColor = Color.FromArgb(0xFFD600);
                             }
                             else
                             {
@@ -171,7 +173,7 @@ namespace Client
                             if (gameStatus != null && gameStatus.CurrentPlayer != null &&
                                 gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
                             {
-                                nickname3.ForeColor = Color.FromArgb(0xD50000);
+                                nickname3.ForeColor = Color.FromArgb(0xFFD600);
                             }
                             else
                             {
@@ -196,7 +198,7 @@ namespace Client
                             if (gameStatus != null && gameStatus.CurrentPlayer != null &&
                                 gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
                             {
-                                nickname4.ForeColor = Color.FromArgb(0xD50000);
+                                nickname4.ForeColor = Color.FromArgb(0xFFD600);
                             }
                             else
                             {
@@ -228,6 +230,17 @@ namespace Client
                     {
                         t.Dispose();
                         this.Controls["MainForm"].Controls.Remove(t);
+                    }
+
+                    if (gameStatus.CurrentPlayer.Nickname == client.Player.Nickname)
+                    {
+                        btn_complete.Visible = true;
+                        btn_return.Visible = true;
+                    }
+                    else
+                    {
+                        btn_complete.Visible = false;
+                        btn_return.Visible = false;
                     }
                 }));
             }
@@ -396,6 +409,19 @@ namespace Client
         {
             tgpHolding.SortAscending();
             client.UpdatePrivateTiles(tgpHolding.GetTileList());
+        }
+
+        private void OutlineBtn_MouseEnter(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.Black;
+            btn.FlatAppearance.BorderColor = Color.White;
+        }
+
+        private void OutlineBtn_MouseLeave(object sender, EventArgs e)
+        {
+            Button btn = sender as Button;
+            btn.ForeColor = Color.White;
         }
     }
 }

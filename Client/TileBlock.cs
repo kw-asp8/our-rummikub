@@ -41,7 +41,7 @@ namespace Client
                         lbl_num.ForeColor = Color.FromArgb(0xD50000);
                         break;
                     case "YELLOW":
-                        lbl_num.ForeColor = Color.FromArgb(0xFFD600);
+                        lbl_num.ForeColor = Color.FromArgb(0xF9A825);
                         break;
                     case "BLUE":
                         lbl_num.ForeColor = Color.FromArgb(0x304FFE);
