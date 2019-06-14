@@ -117,12 +117,23 @@ namespace Client
                             profile1.Visible = true;
                             nickname1.Text = roomStatus.Players[0].Nickname;
                             remain1.Text = roomStatus.Players[0].TileAmount.ToString();
+
+                            if (gameStatus != null && gameStatus.CurrentPlayer != null &&
+                                gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
+                            {
+                                nickname1.ForeColor = Color.FromArgb(0xD50000);
+                            }
+                            else
+                            {
+                                nickname1.ForeColor = Color.White;
+                            }
                         }
                         else
                         {
                             profile1.Visible = false;
                             nickname1.Text = "";
                             remain1.Text = "";
+                            nickname1.ForeColor = Color.White;
                         }
                         break;
                     case 1:
@@ -131,12 +142,23 @@ namespace Client
                             profile2.Visible = true;
                             nickname2.Text = roomStatus.Players[1].Nickname;
                             remain2.Text = roomStatus.Players[1].TileAmount.ToString();
+
+                            if (gameStatus != null && gameStatus.CurrentPlayer != null &&
+                                gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
+                            {
+                                nickname2.ForeColor = Color.FromArgb(0xD50000);
+                            }
+                            else
+                            {
+                                nickname2.ForeColor = Color.White;
+                            }
                         }
                         else
                         {
                             profile2.Visible = false;
                             nickname2.Text = "";
                             remain2.Text = "";
+                            nickname2.ForeColor = Color.White;
                         }
                         break;
                     case 2:
@@ -145,12 +167,23 @@ namespace Client
                             profile3.Visible = true;
                             nickname3.Text = roomStatus.Players[2].Nickname;
                             remain3.Text = roomStatus.Players[2].TileAmount.ToString();
+
+                            if (gameStatus != null && gameStatus.CurrentPlayer != null &&
+                                gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
+                            {
+                                nickname3.ForeColor = Color.FromArgb(0xD50000);
+                            }
+                            else
+                            {
+                                nickname3.ForeColor = Color.White;
+                            }
                         }
                         else
                         {
                             profile3.Visible = false;
                             nickname3.Text = "";
                             remain3.Text = "";
+                            nickname3.ForeColor = Color.White;
                         }
                         break;
                     case 3:
@@ -159,12 +192,23 @@ namespace Client
                             profile4.Visible = true;
                             nickname4.Text = roomStatus.Players[3].Nickname;
                             remain4.Text = roomStatus.Players[3].TileAmount.ToString();
+
+                            if (gameStatus != null && gameStatus.CurrentPlayer != null &&
+                                gameStatus.CurrentPlayer.Nickname == roomStatus.Players[i].Nickname)
+                            {
+                                nickname4.ForeColor = Color.FromArgb(0xD50000);
+                            }
+                            else
+                            {
+                                nickname4.ForeColor = Color.White;
+                            }
                         }
                         else
                         {
                             profile4.Visible = false;
                             nickname4.Text = "";
                             remain4.Text = "";
+                            nickname4.ForeColor = Color.White;
                         }
                         break;
                 }
