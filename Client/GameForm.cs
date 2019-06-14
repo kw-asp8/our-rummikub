@@ -343,5 +343,15 @@ namespace Client
         {
             return gameStatus;
         }
+
+        private void btn_sort_num_Click(object sender, EventArgs e)
+        {
+            tgpHolding.SortAscending();
+        }
+
+        private void btn_sort_col_Click(object sender, EventArgs e)
+        {
+            tgpHolding.GroupAsNumber();
+        }
     }
 }
