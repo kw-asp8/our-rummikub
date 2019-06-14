@@ -117,7 +117,7 @@ namespace Server
             {
                 foreach (TileColor v in type)
                 {
-                    for (int k = 1; k <= 12; k++)
+                    for (int k = 1; k <= 13; k++)
                     {
                         tile = new NumberTile(v, k);
                         Dummy.Add(tile);
