@@ -232,6 +232,8 @@ namespace Server
 
             SendPrivateTilesTo(Game.CurrentPlayer);
 
+            Game.ResolveTableSize();
+
             if (Game.CanEndGame())
             {
                 EndGame();

@@ -10,12 +10,14 @@ namespace Server
     public class Game
     {
         public static readonly int MaxTileNum = 20;
+        public static readonly int InitialTableWidth = 15;
+        public static readonly int InitialTableHeight = 6;
 
         public Room Room { get; private set; }
         public bool IsEnabled { get; set; } = false;
-        public Tile[,] PreviousTable { get; private set; } = new Tile[10, 20];
+        public Tile[,] PreviousTable { get; private set; }
         public List<Tile> PreviousHoldingTiles { get; private set; } = new List<Tile>();
-        public Tile[,] Table { get; set; } = new Tile[10, 20];
+        public Tile[,] Table { get; set; }
         public List<Tile> Dummy { get; private set; } = new List<Tile>();
         public Player CurrentPlayer { get; private set; }
 
@@ -32,10 +34,70 @@ namespace Server
             {
                 player.ClearGameData();
             }
-            PreviousTable = new Tile[10, 20];
-            Table = new Tile[10, 20];
+            PreviousTable = new Tile[InitialTableHeight, InitialTableWidth];
+            Table = new Tile[InitialTableHeight, InitialTableWidth];
             InitDummy();
             ShuffleDummy();
+        }
+
+        public void ResolveTableSize()
+        {
+            if (TableHorizontalCap < 25 && TableVerticalCap < 16)
+            {
+                bool existsInTopOrBottom = false;
+                for (int j = 0; j < Table.GetLength(1); j++)
+                {
+                    if (Table[0, j] != null || Table[Table.GetLength(0) - 1, j] != null)
+                    {
+                        existsInTopOrBottom = true;
+                        break;
+                    }
+                }
+                bool existsInLeftOrRight = false;
+                for (int i = 0; i < Table.GetLength(0); i++)
+                {
+                    if (Table[i, 0] != null || Table[i, Table.GetLength(1) - 1] != null)
+                    {
+                        existsInLeftOrRight = true;
+                        break;
+                    }
+                }
+
+                if (existsInTopOrBottom && existsInLeftOrRight)
+                {
+                    SetCapacity(TableHorizontalCap + 4, TableVerticalCap + 4);
+                }
+            }
+        }
+
+        public int TableHorizontalCap { get { return Table.GetLength(1); } }
+        public int TableVerticalCap { get { return Table.GetLength(0); } }
+
+        public void SetCapacity(int horizontalCap, int verticalCap)
+        {
+            Tile[,] oldTiles = new Tile[Table.GetLength(0), Table.GetLength(1)];
+
+            for (int i = 0; i < Table.GetLength(0); i++)//기존 판 내용 복사
+            {
+                for (int j = 0; j < Table.GetLength(1); j++)
+                    oldTiles[i, j] = Table[i, j];
+            }
+
+            Table = new Tile[verticalCap, horizontalCap];//기존 판 확장
+
+            int disVer = (verticalCap - oldTiles.GetLength(0)) / 2;
+            int disHor = (horizontalCap - oldTiles.GetLength(1)) / 2;
+
+            for (int i = disVer; i < verticalCap - disVer; i++)
+            {
+                for (int j = disHor; j < horizontalCap - disHor; j++)
+                {
+                    if (oldTiles[i - disVer, j - disHor] != null)
+                    {
+                        Table[i, j] = oldTiles[i - disVer, j - disHor];
+                    }
+                }
+            }
         }
 
         private void ShuffleDummy()

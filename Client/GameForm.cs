@@ -37,8 +37,8 @@ namespace Client
             tileGridPanels.Add(tgpTable);
             tileGridPanels.Add(tgpHolding);
 
-            tgpTable.TileSize = new Size(27, 36);
-            tgpTable.SetCapacity(20, 10);
+            tgpTable.TileSize = new Size(36, 48);
+            tgpTable.SetCapacity(15, 8);
             tgpTable.OnPlace += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
             tgpTable.OnPickup += (tile, i, j) => client.UpdateTable(tgpTable.GetTileTable());
 
