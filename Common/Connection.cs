@@ -51,16 +51,19 @@ namespace Common
         public void Send(Packet packet)
         {
             Contract.Requires(packet != null);
-
+            
             try
             {
-                Packet.Serialize(packet).CopyTo(sendBuffer, 0);
-                networkStream.Write(sendBuffer, 0, sendBuffer.Length);
-                networkStream.Flush();
-
-                for (int i = 0; i < BufferSize; i++)
+                lock (sendBuffer)
                 {
-                    sendBuffer[i] = 0;
+                    Packet.Serialize(packet).CopyTo(sendBuffer, 0);
+                    networkStream.Write(sendBuffer, 0, sendBuffer.Length);
+                    networkStream.Flush();
+
+                    for (int i = 0; i < BufferSize; i++)
+                    {
+                        sendBuffer[i] = 0;
+                    }
                 }
             }
             catch
@@ -79,6 +82,7 @@ namespace Common
                 try
                 {
                     packetLength = 0;
+                    //while (!networkStream.DataAvailable) ;
                     packetLength = networkStream.Read(readBuffer, 0, BufferSize);
                 }
                 catch
@@ -89,7 +93,8 @@ namespace Common
                 if (packetLength > 0)
                 {
                     Packet packet = (Packet)Packet.Deserialize(readBuffer);
-                    owner.Handle(this, packet);
+                    if (packet != null)
+                        owner.Handle(this, packet);
                 }
                 else
                 {

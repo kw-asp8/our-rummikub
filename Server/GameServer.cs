@@ -257,10 +257,13 @@ namespace Server
         public void EndGame()
         {
             Game.End();
-            SendGameOver();
 
-            Player winner = Game.Room.Players.OrderBy(player => player.GetScore()).First();
-            Console.WriteLine("Gameover: " + winner.Nickname + " has won!");
+            if (Game.Room.Players.Any())
+            {
+                SendGameOver();
+                Player winner = Game.Room.Players.OrderBy(player => player.GetScore()).First();
+                Console.WriteLine("Gameover: " + winner.Nickname + " has won!");
+            }
         }
 
         public void CancelTurnTimer()

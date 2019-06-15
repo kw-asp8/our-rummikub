@@ -187,7 +187,7 @@ namespace Common
 
         public static byte[] Serialize(Object obj)
         {
-            MemoryStream memoryStream = new MemoryStream(1024 * 4);
+            MemoryStream memoryStream = new MemoryStream(Connection.BufferSize);
             BinaryFormatter binaryFormatter = new BinaryFormatter();
             binaryFormatter.Serialize(memoryStream, obj);
             memoryStream.Seek(0, SeekOrigin.Begin);
@@ -196,7 +196,7 @@ namespace Common
 
         public static Object Deserialize(byte[] bytes)
         {
-            MemoryStream memoryStream = new MemoryStream(1024 * 4);
+            MemoryStream memoryStream = new MemoryStream(Connection.BufferSize);
             foreach (byte b in bytes)
             {
                 memoryStream.WriteByte(b);
@@ -204,9 +204,17 @@ namespace Common
 
             memoryStream.Position = 0;
             BinaryFormatter binaryFormatter = new BinaryFormatter();
-            Object obj = binaryFormatter.Deserialize(memoryStream);
-            memoryStream.Close();
-            return obj;
+            try
+            {
+                Object obj = binaryFormatter.Deserialize(memoryStream);
+                memoryStream.Close();
+                return obj;
+            }
+            catch {
+                memoryStream.Close();
+                //throw new Exception("왜안돼");
+                return null;
+            }
         }
     }
 }
