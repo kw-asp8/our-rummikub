@@ -9,7 +9,7 @@ namespace Server
 {
     public class Game
     {
-        public static readonly int MaxTileNum = 20;
+        public static readonly int MaxTileNum = 30;
         public static readonly int InitialTableWidth = 15;
         public static readonly int InitialTableHeight = 6;
 

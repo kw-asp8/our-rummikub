@@ -72,7 +72,7 @@ namespace Server
 
                     foreach (Player everyone in Game.Room.Players)
                     {
-                        everyone.Connection.Send(new SendPrivateTilesPacket(everyone.HoldingTiles));
+                        SendPrivateTilesTo(everyone);
                     }
                 }
             });
@@ -193,10 +193,8 @@ namespace Server
                 else
                 {
                     Game.Rollback();
-                    for (int i = 0; i < 1; i++)
-                    {
+                    if (Game.CurrentPlayer.HoldingTiles.Count < Game.MaxTileNum && Game.Dummy.Count > 0)
                         Game.CurrentPlayer.HoldingTiles.Add(Game.PopDummy());
-                    }
 
                     Console.WriteLine(Game.CurrentPlayer.Nickname + " has failed to enroll.");
                 }
@@ -247,6 +245,7 @@ namespace Server
                 SendTable();
                 SendGameStatus();
                 SendRoomStatus();
+                SendPrivateTilesTo(Game.CurrentPlayer);
 
                 InitTurnTimer();
 
